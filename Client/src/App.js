@@ -20,12 +20,11 @@ const App = (props) => {
     <div>
       <Header headerButtons={headerItems} />
 
-      {/*{props.location.pathname.substring(0, 8) === '/results' || props.location.pathname.substring(0, 7) === '/sample' ? (*/}
-      {/*    <div>*/}
-      {/*        {children}*/}
-      {/*    </div>*/}
-      {/*) : (*/}
-
+      {props.location.pathname.substring(0, 8) === '/results' || props.location.pathname.substring(0, 7) === '/sample' ? (
+        <div>
+          {children}
+        </div>
+      ) : (
       <div className="ui grid container">
         <div className="two wide left floated column">
           <MenuWrapper items={MenuItems} />
