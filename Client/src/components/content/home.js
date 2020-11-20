@@ -42,23 +42,23 @@ const onFileUpload = (e) => {
     inputFormat === 'simpleFile'
       ? genes = genes.split(/\r\n|\n|\r/)
       : null
-    
+
     history.push({
       pathname: '/results',
       data: { tissue: selectedTissue, genes, inputFormat, genomeVersion }
     })
   }
-  
+
   const onGenomeVersionSelect = (e, { value }) => {
     setGenomeVersion(value)
   }
-  
+
   return (
     <div className="ui ui raised padded container segment">
       <form className="ui form" id="homeForm">
 
         <div className="ui dividing header">
-          <h1>Welcome to the Whateveristhename</h1>
+          <h1>Welcome to the Patho Search</h1>
           <p>Need a header about something</p>
         </div>
 
@@ -88,7 +88,7 @@ const onFileUpload = (e) => {
               <label htmlFor="organism">Upload your input Genes with one of the following:</label>
             </Grid.Column>
           </Grid.Row>
-          
+
           <Segment placeholder size='big' style={{width: "100%"}}>
             <Grid stackable textAlign='center' columns={3} divided >
               <Grid.Column>
@@ -155,7 +155,7 @@ const onFileUpload = (e) => {
           </Segment>
 
           <Grid.Row>
-            <Button 
+            <Button
               color="blue" icon labelPosition="right" style={{margin: 'auto'}}
               disabled={!submissionPerm}
               onClick={onSubmit}>
