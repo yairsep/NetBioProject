@@ -3,9 +3,9 @@ import { render } from 'react-dom';
 import { HashRouter, Route, Switch } from 'react-router-dom'
 import App from './App';
 import Home from './components/content/home'
-import FAQ from "./Pages/FAQ";
-import Tutorial from "./Pages/Tutorial";
-import outputExamples from "./Pages/outputExamples";
+import FAQ from "./Pages/FAQ/FAQ";
+import Tutorial from "./Pages/Tutorial/Tutorial";
+import outputExamples from "./Pages/OutputExamples/outputExamples";
 
 // import '../semantic/dist/semantic.min.css'
 

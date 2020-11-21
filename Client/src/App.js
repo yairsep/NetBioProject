@@ -25,7 +25,7 @@ const App = (props) => {
           {children}
         </div>
       ) : (
-        <div className="ui grid container">
+        <div className="ui grid" style={{padding: 20}}>
           <div className="two wide left floated column">
             <MenuWrapper items={MenuItems} />
           </div>
@@ -40,7 +40,7 @@ const App = (props) => {
     <div>
       <Header headerButtons={headerItems} />
 
-      <div className="ui grid container">
+      <div className="ui grid">
         <div className="two wide left floated column">
           <MenuWrapper items={MenuItems} />
         </div>
