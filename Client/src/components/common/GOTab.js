@@ -33,7 +33,6 @@ const GOTab = (props) => {
     setLoading(false)
   }, [ensembl]);
 
-
   return (
     gene === null ? (
       <>

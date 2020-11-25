@@ -14,7 +14,7 @@ render((
         <Route path="/home" component={Home} />
         {/*<Route path="/login" component={ Login }/>*/}
         {/*<Route path="/sample" component={ Results } />*/}
-        <Route path="/results" component={ outputContainer }/>
+        <Route path="/results" component={outputContainer} />
       </Switch>
     </App>
   </HashRouter>

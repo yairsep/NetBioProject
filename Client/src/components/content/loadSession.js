@@ -8,7 +8,6 @@ const LoadSession = (props) => {
   const [isFetched, setFetchStatus] = useState(false)
   const [sessions, setSessions] = useState([])
 
-
   // useEffect(() => {
   //     if (userName !== undefined && userName !== null) {
   //         const response = getSessions()

@@ -3,7 +3,6 @@ import { Icon, Label, Menu, Table } from 'semantic-ui-react'
 import { CSVDownload, CSVLink } from 'react-csv';
 import tissues from './tissues';
 
-
 const TabsTable = (props) => {
   const { content, data } = props
   const headers = ['Property', 'Value']

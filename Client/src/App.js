@@ -25,14 +25,14 @@ const App = (props) => {
           {children}
         </div>
       ) : (
-      <div className="ui grid container">
-        <div className="two wide left floated column">
-          <MenuWrapper items={MenuItems} />
+        <div className="ui grid container">
+          <div className="two wide left floated column">
+            <MenuWrapper items={MenuItems} />
+          </div>
+          <div className="twelve wide right floated column">
+            {children}
+          </div>
         </div>
-        <div className="twelve wide right floated column">
-          {children}
-        </div>
-      </div>
       )}
       <Footer />
     </div>

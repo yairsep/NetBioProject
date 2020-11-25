@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { Dropdown, Input, Button, Icon, Grid, Segment, Checkbox } from 'semantic-ui-react';
+import { Dropdown, Button, Icon, Grid, Segment, Checkbox } from 'semantic-ui-react';
 import { withRouter, useHistory } from 'react-router-dom';
 import tissues from '../common/tissues';
 import Uploader from '../form/uploader'
 import GeneSearch from '../form/geneSearch'
-const Home = (props) => {
+
+const Home = () => {
   const [selectedTissue, setTissue] = useState('heart')
   const [submissionPerm, setSubmissionPerm] = useState(false)
-  const [userName, setUserName] = useState('')
+  // const [userName, setUserName] = useState('')
   const [inputFormat, setInputFormat] = useState('VCF')
-  const [inputData, setInputData] = useState(['', []]);   //[fileName, Data]
+  const [inputData, setInputData] = useState(['', []]); //[fileName, Data]
   const [genomeVersion, setGenomeVersion] = useState('hg38')
-  let history = useHistory()
+  const history = useHistory()
 
   useEffect(() => {
     setSubmissionPerm(inputData[1].length > 0)
-  })
+  }, [inputData])
 
   const onInputFormatSelect = (e, { value }) => {
     setInputFormat(value)
@@ -26,21 +27,21 @@ const Home = (props) => {
 
   const onGeneResultSelect = (genes) => {
     setInputData(['', genes])
-}
+  }
 
-const onFileUpload = (e) => {
-  const file = e.target.files[0]
-  var fileName = file.name
-  var reader = new FileReader();
-  reader.onloadend = () => setInputData([fileName, reader.result])
-  reader.readAsText(file)
-}
+  const onFileUpload = (e) => {
+    const file = e.target.files[0]
+    const fileName = file.name
+    const reader = new FileReader();
+    reader.onloadend = () => setInputData([fileName, reader.result])
+    reader.readAsText(file)
+  }
 
   const onSubmit = (e) => {
     e.preventDefault()
     let genes = inputData[1]
-    inputFormat === 'simpleFile'
-      ? genes = genes.split(/\r\n|\n|\r/)
+    genes = inputFormat === 'simpleFile'
+      ? genes.split(/\r\n|\n|\r/)
       : null
     
     console.log(genes, inputFormat)
@@ -90,37 +91,37 @@ const onFileUpload = (e) => {
             </Grid.Column>
           </Grid.Row>
           
-          <Segment placeholder size='big' style={{width: "100%"}}>
-            <Grid stackable textAlign='center' columns={3} divided >
+          <Segment placeholder size="big" style={{ width: '100%' }}>
+            <Grid stackable textAlign="center" columns={3} divided>
               <Grid.Column>
                 <Checkbox
                   radio
-                  value='VCF'
+                  value="VCF"
                   onChange={onInputFormatSelect}
                   checked={inputFormat === 'VCF'}
-                  label='VCF File'
+                  label="VCF File"
                 />
-                  {/* <Popup style={{display: 'inline-block'}} content={popups.vcf} position='top right' size={'small'} trigger={ <sup>&nbsp;&nbsp;&nbsp;&nbsp;?</sup> }/> */}
+                {/* <Popup style={{display: 'inline-block'}} content={popups.vcf} position='top right' size={'small'} trigger={ <sup>&nbsp;&nbsp;&nbsp;&nbsp;?</sup> }/> */}
                 <br /><br />
                 <div>
-                  <Uploader type="VCF" onFileUpload={onFileUpload} data={inputData} disabled={inputFormat !== 'VCF'}/>
+                  <Uploader type="VCF" onFileUpload={onFileUpload} data={inputData} disabled={inputFormat !== 'VCF'} />
                 </div>
                 <br />
                 <div>
                   <Checkbox
                     radio
-                    value='hg38'
+                    value="hg38"
                     onChange={onGenomeVersionSelect}
                     checked={genomeVersion === 'hg38'}
-                    label='hg38'
+                    label="hg38"
                     disabled={inputFormat !== 'VCF'}
                   />
                   <Checkbox
                     radio
-                    value='hg37'
+                    value="hg37"
                     onChange={onGenomeVersionSelect}
                     checked={genomeVersion === 'hg37'}
-                    label='hg37'
+                    label="hg37"
                     disabled={inputFormat !== 'VCF'}
                   />
                 </div>
@@ -129,27 +130,27 @@ const onFileUpload = (e) => {
               <Grid.Column>
                 <Checkbox
                   radio
-                  value='manual'
+                  value="manual"
                   onChange={onInputFormatSelect}
                   checked={inputFormat === 'manual'}
-                  label='Manual Search'
+                  label="Manual Search"
                   style={{ zIndex: '10' }}
                 />
                 <br />
-                <GeneSearch onGeneSelect={onGeneResultSelect} disabled={inputFormat !== 'manual'} totalSelectedGenes={inputData[1]}/>
+                <GeneSearch onGeneSelect={onGeneResultSelect} disabled={inputFormat !== 'manual'} totalSelectedGenes={inputData[1]} />
               </Grid.Column>
 
               <Grid.Column>
                 <Checkbox
                   radio
-                  value='simpleFile'
+                  value="simpleFile"
                   onChange={onInputFormatSelect}
                   checked={inputFormat === 'simpleFile'}
-                  label='Simple Text File'
+                  label="Simple Text File"
                 />
                 <br /><br />
                 <div>
-                  <Uploader type="simple" onFileUpload={onFileUpload} data={inputData} disabled={inputFormat !== 'simpleFile'}/>
+                  <Uploader type="simple" onFileUpload={onFileUpload} data={inputData} disabled={inputFormat !== 'simpleFile'} />
                 </div>
               </Grid.Column>
             </Grid>
@@ -157,9 +158,13 @@ const onFileUpload = (e) => {
 
           <Grid.Row>
             <Button 
-              color="blue" icon labelPosition="right" style={{margin: 'auto'}}
+              color="blue"
+              icon
+              labelPosition="right"
+              style={{ margin: 'auto' }}
               disabled={!submissionPerm}
-              onClick={onSubmit}>
+              onClick={onSubmit}
+            >
               Submit new job
               <Icon name="check circle" />
             </Button>

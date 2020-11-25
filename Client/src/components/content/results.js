@@ -8,7 +8,6 @@ import ResultsTable from './resultsTable'
 import tissues from '../common/tissues';
 import { getRandomSession, getSession, postSession, postSessionGenes, postSessionVcf } from '../common/fetchers';
 
-
 const Results = (props) => {
   const initialTissue = () => {
     if (props.location.state === 'sample') { return 'heart'; }
@@ -75,7 +74,6 @@ const Results = (props) => {
     fetchResults()
   }, [selectedTissue]);
 
-
   const changeTissue = (e, { value }) => {
     if (props.location.state === 'sample') props.location.state = undefined;
     setFetchStatus(false)
@@ -130,15 +128,15 @@ const Results = (props) => {
                   Switch tissue for your query
                   <Label.Detail>
                     <Dropdown
-                              name="tissue"
-                              options={tissues}
-                              onChange={changeTissue}
-                              defaultValue={selectedTissue}
-                              labeled
-                              button
-                              icon="exchange"
-                              className="ui black icon"
-                            />
+                      name="tissue"
+                      options={tissues}
+                      onChange={changeTissue}
+                      defaultValue={selectedTissue}
+                      labeled
+                      button
+                      icon="exchange"
+                      className="ui black icon"
+                    />
                   </Label.Detail>
                 </Label>
               </div>
@@ -192,6 +190,5 @@ const Results = (props) => {
     )
   )
 }
-
 
 export default withRouter(Results);
