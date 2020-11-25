@@ -43,6 +43,7 @@ const onFileUpload = (e) => {
       ? genes = genes.split(/\r\n|\n|\r/)
       : null
     
+    console.log(genes, inputFormat)
     history.push({
       pathname: '/results',
       data: { tissue: selectedTissue, genes, inputFormat, genomeVersion }
