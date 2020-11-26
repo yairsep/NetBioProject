@@ -1,6 +1,6 @@
 export default [
   {
-    name: 'Run Trace',
+    name: 'Run Patho Search',
     link: '/'
   },
   // {
@@ -12,8 +12,9 @@ export default [
   //   link: 'load-session'
   // },
   {
-    name: 'Show example output',
-    link: 'sample'
+    name: 'Show Example Output',
+    title: 'Show Example Output',
+    link: '/OutputExamples'
   },
   // {
   //   name: 'Full Gene List',
@@ -29,14 +30,15 @@ export default [
 
   {
     name: 'Tutorial',
-    href: 'http://netbio.bgu.ac.il/labwebsite/trace-tutorial/',
-    title: 'Tutorial'
+    title: 'Tutorial',
+    // href: 'http://netbio.bgu.ac.il/labwebsite/trace-tutorial/',
+    link: '/Tutorial'
   },
 
   {
     name: 'FAQ',
-    href: 'http://netbio.bgu.ac.il/labwebsite/trace-faq/',
-    title: 'FAQ'
+    // href: 'http://netbio.bgu.ac.il/labwebsite/trace-faq/',
+    link: '/FAQ'
   },
   // {
   //     name: 'API',
