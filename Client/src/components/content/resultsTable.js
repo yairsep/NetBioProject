@@ -35,7 +35,6 @@ const ResultsTable = (props) => {
         : setSortStatus({ ...sortStatus, data: sortStatus.data.reverse(), direction: 'ascending' }))
   }
 
-
   const getSliceRng = () => ((parseInt(currPage)) - 1) * 16
 
   useEffect(() => {
@@ -57,11 +56,10 @@ const ResultsTable = (props) => {
             >
               {value + toggleArrow(attr)}
             </Table.HeaderCell
-                                >
+            >
           ))}
         </Table.Row>
       </Table.Header>
-
 
       <Table.Body>
         {sortStatus.data.slice(getSliceRng(), (getSliceRng() + 16))
@@ -73,10 +71,10 @@ const ResultsTable = (props) => {
                 {' '}
                 {MIM_morbid_accession.length > 0 ? (
                   <>
-                      <label>{MIM_morbid_accession}</label> 
-                      {' '}
-                      <a href={`https://www.omim.org/${MIM_morbid_accession}`} target="_blank"><Icon link name="external alternate" /></a>
-                    </>
+                    <label>{MIM_morbid_accession}</label> 
+                    {' '}
+                    <a href={`https://www.omim.org/${MIM_morbid_accession}`} target="_blank"><Icon link name="external alternate" /></a>
+                  </>
                 ) : <>N/A</>}
                 {' '}
               </Table.Cell>

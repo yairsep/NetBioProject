@@ -1,15 +1,17 @@
-
 {
   "parser": "babel-eslint",
   "extends": ["airbnb"],
+  "plugins": [
+    "react-hooks"
+  ],
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "jsx-a11y/label-has-associated-control": [ "error", {
+    "jsx-a11y/label-has-associated-control": [ "off", {
       "required": {
         "some": [ "nesting", "id"  ]
       }
     }],
-    "jsx-a11y/label-has-for": [ "error", {
+    "jsx-a11y/label-has-for": [ "off", {
       "required": {
         "some": [ "nesting", "id"  ]
       }
@@ -26,7 +28,7 @@
     "max-len": "off",
     "spaced-comment": "off",
     "semi": "off",
-    "prefer-default-export": [0],
+    "import/prefer-default-export": "off",
     "no-return-await": [0],
     "no-named-as-default-member": "off",
     "dot-notation": "off",
@@ -34,6 +36,17 @@
     "prefer-destructuring": "warn",
     "object-shorthand": "warn",
     "object-curly-newline": "off",
-    "implicit-arrow-linebreak": "warn"
+    "implicit-arrow-linebreak": "warn",
+    "no-case-declarations": "warn",
+    "no-param-reassign": "off",
+    "consistent-return": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "linebreak-style": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "indent": [
+      "error",
+      2
+    ]
   }
 }

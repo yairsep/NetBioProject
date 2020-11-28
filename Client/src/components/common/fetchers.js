@@ -1,4 +1,3 @@
-
 export const postSessionVcf = async (tissue, vcf) => {
   const response = await fetch(`http://netbio.bgu.ac.il/trace-api/api/v1/vcf/${tissue}`, {
     method: 'POST',
@@ -45,7 +44,6 @@ export const getRandomSession = async () => {
 //         return await response.json();
 //
 // };
-
 
 // export const getSessions = async () => {
 //

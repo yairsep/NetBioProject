@@ -4,7 +4,6 @@ import Message from 'semantic-ui-react/dist/commonjs/collections/Message/Message
 import InjectionText from '../common/injectionText';
 import generateGUID from '../common/utilities'
 
-
 const Login = () => {
   const userNameInput = React.createRef();
   const [userVerified, setVerification] = useState(false);
@@ -39,7 +38,6 @@ const Login = () => {
     setInvalidName(false)
   }
 
-
   return (userVerified) ? (
     <div className="ui middle aligned center aligned grid">
       <div className="six wide column">
@@ -49,7 +47,7 @@ const Login = () => {
           ) : (
             <h2 className="ui teal header">
               Welcome
-{userName}
+              {userName}
             </h2>
           )}
           <br />
@@ -92,7 +90,7 @@ const Login = () => {
             <br />
             <Button onClick={anonymousLoginHandler}>
               Enter Anonymously
-                        </Button>
+            </Button>
           </div>
 
         </div>
