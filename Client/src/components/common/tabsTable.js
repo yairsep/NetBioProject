@@ -10,8 +10,8 @@ const TabsTable = (props) => {
   const mean = (scores.reduce((acc, cur) => acc + cur)) / data.length
 
   const summary = {
-    Tissue: tissues.find((tissue) => tissue['value'] === content['tissue'])['text'],
-    'Total query genes': JSON.parse(localStorage.getItem('genes')).length,
+    Tissue: 'ccdscdsdskcbkc kjbckcjbcjk',//tissues.find((tissue) => tissue['value'] === content['tissue'])['text'],
+    'Total query genes':3, //JSON.parse(localStorage.getItem('genes')).length,
     'Total unique genes': data.length,
     'Total unrecognized genes': content['gene_not_in_db'],
     'Max score': Math.max(...scores).toFixed(2),

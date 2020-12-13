@@ -111,19 +111,19 @@ const Results = (props) => {
                 </div>
               </div>
 
-              <div style={{ textAlign: 'center' }}>
-                {/*<label>Switch Tissue for your query</label>*/}
-                {/*<span>&nbsp;&nbsp;</span>*/}
-                {/*<Dropdown name="tissue"*/}
-                {/*options={tissues}*/}
-                {/*onChange={changeTissue}*/}
-                {/*defaultValue={selectedTissue}*/}
-                {/*floating*/}
-                {/*labeled*/}
-                {/*button*/}
-                {/*icon='exchange'*/}
-                {/*className='icon'*/}
-                {/*/>*/}
+              {/* <div style={{ textAlign: 'center' }}>
+                <label>Switch Tissue for your query</label>
+                <span>&nbsp;&nbsp;</span>
+                <Dropdown name="tissue"
+                options={tissues}
+                onChange={changeTissue}
+                defaultValue={selectedTissue}
+                floating
+                labeled
+                button
+                icon='exchange'
+                className='icon'
+                />
                 <Label size="big" style={{ lineHeight: '2em' }}>
                   Switch tissue for your query
                   <Label.Detail>
@@ -139,13 +139,13 @@ const Results = (props) => {
                     />
                   </Label.Detail>
                 </Label>
-              </div>
+              </div> */}
             </div>
 
             <div className="computer only six wide centered column" style={{ paddingLeft: '0.1rem' }}>
               <div className="ui basic segment">
                 <div className="ui segment">
-                  <Tabs data={resultsData} summaryData={summary} gene={selectedRow} style={{ width: '0', minWidth: '100%' }} />
+                  <Tabs data={resultsData} summaryData={"summary"} gene={selectedRow} style={{ width: '0', minWidth: '100%' }} />
                 </div>
               </div>
             </div>
