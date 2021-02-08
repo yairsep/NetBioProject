@@ -13,7 +13,7 @@ render((
         <Route exact path="/" component={Home} />
         <Route path="/home" component={Home} />
         {/*<Route path="/login" component={ Login }/>*/}
-        <Route path="/OutputExamples" component={ outputContainer } />
+        <Route path="/OutputExamples" component={outputContainer} />
         <Route path="/results" component={outputContainer} />
       </Switch>
     </App>

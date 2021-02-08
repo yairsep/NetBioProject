@@ -1,20 +1,22 @@
+/* eslint-disable react/button-has-type */
 import React, { useEffect, useState } from 'react';
-import { Grid, Label, Dropdown } from 'semantic-ui-react';
+//import { Grid, Label, Dropdown } from 'semantic-ui-react';
 import { useHistory, withRouter } from 'react-router-dom';
-import { fetchGene, fetchSample } from './fetchers';
+//import { fetchGene, fetchSample } from './fetchers';
 import sample from './sample';
 import ResultsTable from '../content/resultsTable';
-import tissues from '../common/tissues';
+//import tissues from '../common/tissues';
 import Tabs from '../common/tabs';
 
 const OutputContainer = (props) => {
-
   const initialTissue = () => {
-    if (location === 'sample')
-        return 'heart';
-    else if (props.location.data)
-        return props.location.data.tissue;
-    else return localStorage.tissue;
+    // eslint-disable-next-line no-use-before-define
+    if (location === 'sample') {
+      return 'heart';
+    // eslint-disable-next-line no-else-return
+    } else if (props.location.data) {
+      return props.location.data.tissue;
+    } else return localStorage.tissue;
   }
 
   const { location } = 'sample';//props;
@@ -25,19 +27,17 @@ const OutputContainer = (props) => {
   const [selectedTissue, setNewTissue] = useState(initialTissue())
   const summary = {
     tissue: {
-      text: "test"
+      text: 'test'
     },
-    gene_not_in_db: "test"
+    gene_not_in_db: 'test'
   }
-  const onRowSelect = e => selectRow(e.target.id)
+  const onRowSelect = (e) => selectRow(e.target.id)
 
-  
-
-  const changeTissue = (e, {value}) => {
-    if (props.location.state === 'sample') location = undefined;
-    setFetchStatus(false)
-    setNewTissue(value)
-}
+  // const changeTissue = (e, {value}) => {
+  //   if (props.location.state === 'sample') location = undefined;
+  //   setFetchStatus(false)
+  //   setNewTissue(value)
+  // }
 
   // useEffect(() => {
   //   console.log(history.location.data);
@@ -45,17 +45,17 @@ const OutputContainer = (props) => {
   //   // eslint-disable-next-line react-hooks/exhaustive-deps
   // }, []);
   
-
-  return(
+  return (
     <div className="ui grid">
-
       <div
         className="sixteen wide tablet ten wide computer center aligned column"
-        style={{paddingRight: '0.2rem'}}
+        style={{ paddingRight: '0.2rem' }}
       >
+        <button onClick={() => history.push('/')}>back</button>
+
         <div className="ui basic segment">
-          <div className="ui center aligned segment" style={{overflow: 'auto'}}>
-            <ResultsTable tableData={sample} onRowSelect={onRowSelect} selectedRow={selectedRow}/>
+          <div className="ui center aligned segment" style={{ overflow: 'auto' }}>
+            <ResultsTable tableData={sample} onRowSelect={onRowSelect} selectedRow={selectedRow} />
             {/*<br/><br/>*/}
           </div>
         </div>
@@ -68,56 +68,44 @@ const OutputContainer = (props) => {
           </div>
         </div>
       </div>
-    </div>);
+    </div>
+  );
 };
-
 
 export default withRouter(OutputContainer);
 
+//   <div style={{ textAlign: 'center' }}>
+//   {/*<label>Switch Tissue for your query</label>*/}
+//   {/*<span>&nbsp;&nbsp;</span>*/}
+//   {/*<Dropdown name="tissue"*/}
+//   {/*options={tissues}*/}
+//   {/*onChange={changeTissue}*/}
+//   {/*defaultValue={selectedTissue}*/}
+//   {/*floating*/}
+//   {/*labeled*/}
+//   {/*button*/}
+//   {/*icon='exchange'*/}
+//   {/*className='icon'*/}
+//   {/*/>*/}
+//   {/* <Label size='big' style={{lineHeight: '2em'}} >
+//             Switch tissue model
+//             <Label.Detail>
+//                 <Dropdown name="tissue"
+//                 options={tissues}
+//                 onChange={changeTissue}
+//                 defaultValue={selectedTissue}
+//                 labeled
+//                 button
+//                 icon='exchange'
+//                 className='ui black icon'
+//                 />
+//             </Label.Detail>
+//           </Label> */}
+// </div>
 
-
-
-
-
-
-
-
-
-
-
-<div style={{textAlign: "center"}}>
-          {/*<label>Switch Tissue for your query</label>*/}
-          {/*<span>&nbsp;&nbsp;</span>*/}
-          {/*<Dropdown name="tissue"*/}
-          {/*options={tissues}*/}
-          {/*onChange={changeTissue}*/}
-          {/*defaultValue={selectedTissue}*/}
-          {/*floating*/}
-          {/*labeled*/}
-          {/*button*/}
-          {/*icon='exchange'*/}
-          {/*className='icon'*/}
-          {/*/>*/}
-          {/* <Label size='big' style={{lineHeight: '2em'}} >
-            Switch tissue model
-            <Label.Detail>
-                <Dropdown name="tissue"
-                options={tissues}
-                onChange={changeTissue}
-                defaultValue={selectedTissue}
-                labeled
-                button
-                icon='exchange'
-                className='ui black icon'
-                />
-            </Label.Detail>
-          </Label> */}
-        </div>
-
-
-  // return (
-  //   <>
-  //     <Grid.Column width={10} />
-  //     <Grid.Column width={6} />
-  //   </>
-  // );
+// return (
+//   <>
+//     <Grid.Column width={10} />
+//     <Grid.Column width={6} />
+//   </>
+// );

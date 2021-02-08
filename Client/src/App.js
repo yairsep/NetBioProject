@@ -18,18 +18,17 @@ const App = (props) => {
 
   return (serverRunning === 1) ? (
     <div>
+    
       <Header headerButtons={headerItems} />
-
+      {/*eslint-disable-next-line react/destructuring-assignment*/}
       {props.location.pathname.substring(0, 8) === '/results' || props.location.pathname.substring(0, 7) === '/sample' ? (
         <div>
           {children}
         </div>
       ) : (
         <div className="ui grid container">
-          <div className="two wide left floated column">
-            <MenuWrapper items={MenuItems} />
-          </div>
-          <div className="twelve wide right floated column">
+         
+          <div className="twelve wide right floated column" style={{ marginLeft: '0.0rem' }}>
             {children}
           </div>
         </div>
