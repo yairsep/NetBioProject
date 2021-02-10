@@ -5,13 +5,14 @@ import React, { useState, useEffect } from 'react'
 import { Table, Icon, Pagination, Dropdown } from 'semantic-ui-react'
 import tissues from '../common/tissues'
 import resultsHeaders from '../../config/resultsHeaders'
+import sample from '../results/sample'
 
 const ResultsTable = (props) => {
   // eslint-disable-next-line react/destructuring-assignment
   const numOfPages = Math.ceil(props.tableData.length / 16);
 
   //const scoreList = props.tableData.map((item) => item['Pathological_probability']).sort((a, b) => a - b);
-  const numOfOccs = (value) => scoreList.reduce((occs, el) => occs + (el === value), 0);
+  //const numOfOccs = (value) => scoreList.reduce((occs, el) => occs + (el === value), 0);
 
   //Returns the order rank of the score. if there are duplicates of the score, it returns the average rank of the score
   //const getRank = (score) => ((scoreList.indexOf(score) + 1 + scoreList.indexOf(score) + numOfOccs(score)) * numOfOccs(score) / 2) / numOfOccs(score)
@@ -42,8 +43,13 @@ const ResultsTable = (props) => {
   const getSliceRng = () => ((parseInt(currPage)) - 1) * 16
 
   useEffect(() => {
-    const percentiledData = props.tableData.map((item) => ({ ...item }))//, Pathological_probability: Number((getRank(item['Pathological_probability']) / scoreList.length * 100).toFixed(2))
-    setSortStatus({ column: 'Pathological_probability', direction: 'descending', data: sortData(percentiledData, 'Pathological_probability').reverse() })
+    if (props.tableData.length === 0) {
+      const percentiledData = props.tableData.map((item) => ({ ...item }))//, Pathological_probability: Number((getRank(item['Pathological_probability']) / scoreList.length * 100).toFixed(2))
+      setSortStatus({ column: 'Pathological_probability', direction: 'descending', data: sortData(percentiledData, 'Pathological_probability').reverse() })
+    } else {
+      const percentiledData = sample.map((item) => ({ ...item }))//, Pathological_probability: Number((getRank(item['Pathological_probability']) / scoreList.length * 100).toFixed(2))
+      setSortStatus({ column: 'Pathological_probability', direction: 'descending', data: sortData(percentiledData, 'Pathological_probability').reverse() })
+    }
   }, [])
 
   return (
@@ -95,7 +101,7 @@ const ResultsTable = (props) => {
             prevItem={{ content: <Icon name="angle left" />, icon: true, type: 'prevItem' }}
             nextItem={{ content: <Icon name="angle right" />, icon: true, type: 'nextItem' }}
             totalPages={numOfPages}
-            onPageChange={(e, data) => setPage(data.activePage)}
+            onPageChange={(_e, data) => setPage(data.activePage)}
           />
 
         </Table.Row>
@@ -103,7 +109,7 @@ const ResultsTable = (props) => {
 
     </Table>
 
-  )
+  ); 
 }
 
 export default ResultsTable;

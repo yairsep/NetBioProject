@@ -1,11 +1,11 @@
 /* eslint-disable react/button-has-type */
 import React, { useEffect, useState } from 'react';
-//import { Grid, Label, Dropdown } from 'semantic-ui-react';
+import { Grid, Label, Dropdown } from 'semantic-ui-react';
 import { useHistory, withRouter } from 'react-router-dom';
-//import { fetchGene, fetchSample } from './fetchers';
+import { fetchGene, fetchSample } from './fetchers';
 import sample from './sample';
 import ResultsTable from '../content/resultsTable';
-//import tissues from '../common/tissues';
+import tissues from '../common/tissues';
 import Tabs from '../common/tabs';
 
 const OutputContainer = (props) => {
@@ -25,6 +25,7 @@ const OutputContainer = (props) => {
   const [selectedRow, selectRow] = useState(null)
   const [isFetched, setFetchStatus] = useState(false)
   const [selectedTissue, setNewTissue] = useState(initialTissue())
+  const [samples, setSamples] = useState([]);
   const summary = {
     tissue: {
       text: 'test'
@@ -33,17 +34,18 @@ const OutputContainer = (props) => {
   }
   const onRowSelect = (e) => selectRow(e.target.id)
 
-  // const changeTissue = (e, {value}) => {
-  //   if (props.location.state === 'sample') location = undefined;
-  //   setFetchStatus(false)
-  //   setNewTissue(value)
-  // }
+  const changeTissue = (e, { value }) => {
+    // eslint-disable-next-line no-const-assign
+    if (props.location.state === 'sample') location = undefined;
+    setFetchStatus(false)
+    setNewTissue(value)
+  }
 
-  // useEffect(() => {
-  //   console.log(history.location.data);
-  //   pathname.includes('results') ? fetchGene() : fetchSample();
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
+  useEffect(() => {
+    console.log(history.location.data);
+    //pathname.includes('results') ? fetchGene() : fetchSample();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   
   return (
     <div className="ui grid">
@@ -67,40 +69,43 @@ const OutputContainer = (props) => {
           </div>
         </div>
       </div>
+      <div className="ui grid" style={{ textAlign: 'center' }}>
+        <label>Switch Tissue for your query</label>
+        <span>&nbsp;&nbsp;</span>
+        <Dropdown 
+          name="tissue"
+          options={tissues}
+          onChange={changeTissue}
+          defaultValue={selectedTissue}
+          floating
+          labeled
+          button
+          icon="exchange"
+          className="icon"
+        />
+        <Label size="big" style={{ lineHeight: '2em' }}>
+          Switch tissue model
+          <Label.Detail>
+            <Dropdown 
+              name="tissue"
+              options={tissues}
+              onChange={changeTissue}
+              defaultValue={selectedTissue}
+              labeled
+              button
+              icon="exchange"
+              className="ui black icon"
+            />
+          </Label.Detail>
+        </Label>
+      </div>
     </div>
   );
 };
 
 export default withRouter(OutputContainer);
 
-//   <div style={{ textAlign: 'center' }}>
-//   {/*<label>Switch Tissue for your query</label>*/}
-//   {/*<span>&nbsp;&nbsp;</span>*/}
-//   {/*<Dropdown name="tissue"*/}
-//   {/*options={tissues}*/}
-//   {/*onChange={changeTissue}*/}
-//   {/*defaultValue={selectedTissue}*/}
-//   {/*floating*/}
-//   {/*labeled*/}
-//   {/*button*/}
-//   {/*icon='exchange'*/}
-//   {/*className='icon'*/}
-//   {/*/>*/}
-//   {/* <Label size='big' style={{lineHeight: '2em'}} >
-//             Switch tissue model
-//             <Label.Detail>
-//                 <Dropdown name="tissue"
-//                 options={tissues}
-//                 onChange={changeTissue}
-//                 defaultValue={selectedTissue}
-//                 labeled
-//                 button
-//                 icon='exchange'
-//                 className='ui black icon'
-//                 />
-//             </Label.Detail>
-//           </Label> */}
-// </div>
+//  
 
 // return (
 //   <>
