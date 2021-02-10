@@ -53,62 +53,54 @@ const ResultsTable = (props) => {
   }, [])
 
   return (
-    // eslint-disable-next-line react/jsx-no-duplicate-props
-    <Table sortable celled selectable textAlign="center" display="inline-block" overflow="auto" overflow="scroll">
-      <Table.Header>
-        <Table.Row>
-          {resultsHeaders.map(({ attr, value }) => (
-            <Table.HeaderCell
-              key={attr}
-              sorted={sortStatus.column === { attr } ? sortStatus.direction : null}
-              onClick={handleSort}
-              id={attr}
-              // + toggleArrow(attr) -> should be next to value tow row down
-            >
-              {value + toggleArrow(attr)}
-            </Table.HeaderCell>
-          ))}
-        </Table.Row>
-      </Table.Header>
+    <div>
+      <Table sortable celled selectable textAlign="center" display="inline-block" overflow="scroll">
+        <Table.Header>
+          <Table.Row>
+            {resultsHeaders.map(({ attr, value }) => (
+              <Table.HeaderCell
+                key={attr}
+                sorted={sortStatus.column === { attr } ? sortStatus.direction : null}
+                onClick={handleSort}
+                id={attr}
+              >
+                {value + toggleArrow(attr)}
+              </Table.HeaderCell>
+            ))}
+          </Table.Row>
+        </Table.Header>
 
-      <Table.Body>
-        {sortStatus.data.slice(getSliceRng(), (getSliceRng() + 16))
-          .map(({ GeneName, GeneID_y, Chr, Pos, Ref, Alt, Type, Length, SITFval, PolyPhenVal, PHRED, Pathological_probability }) => (
-            <Table.Row positive={GeneName === props.selectedRow} onClick={props.onRowSelect} key={`${GeneName}_${Math.random()}`}>
-              <Table.Cell id={GeneName}>{GeneName}</Table.Cell>
-              <Table.Cell id={GeneName}>{GeneID_y}</Table.Cell>
-              <Table.Cell id={GeneName}>{Chr}</Table.Cell>
-              <Table.Cell id={GeneName}>{Pos}</Table.Cell>
-              <Table.Cell id={GeneName}>{Ref}</Table.Cell>
-              <Table.Cell id={GeneName}>{Alt}</Table.Cell>
-              <Table.Cell id={GeneName}>{Type}</Table.Cell>
-              <Table.Cell id={GeneName}>{Length}</Table.Cell>
-              <Table.Cell id={GeneName}>{ SITFval || 'none' }</Table.Cell>
-              <Table.Cell id={GeneName}>{ PolyPhenVal || 'none'}</Table.Cell>
-              <Table.Cell id={GeneName}>{PHRED}</Table.Cell>
-              <Table.Cell id={GeneName}>{Pathological_probability}</Table.Cell>
-            </Table.Row>
-          ))}
-      </Table.Body>
-      {/* <br /> */}
-      <Table.Footer fullWidth>
-        <Table.Row verticalAlign="middle">
-          <Pagination
-            activePage={currPage}
-            ellipsisItem={{ content: <Icon name="ellipsis horizontal" />, icon: true, type: 'ellipsisItem' }}
-            firstItem={{ content: <Icon name="angle double left" />, icon: true, type: 'firstItem' }}
-            lastItem={{ content: <Icon name="angle double right" />, icon: true, type: 'lastItem' }}
-            prevItem={{ content: <Icon name="angle left" />, icon: true, type: 'prevItem' }}
-            nextItem={{ content: <Icon name="angle right" />, icon: true, type: 'nextItem' }}
-            totalPages={numOfPages}
-            onPageChange={(_e, data) => setPage(data.activePage)}
-          />
-
-        </Table.Row>
-      </Table.Footer>
-
-    </Table>
-
+        <Table.Body>
+          {sortStatus.data.slice(getSliceRng(), (getSliceRng() + 16))
+            .map(({ GeneName, GeneID_y, Chr, Pos, Ref, Alt, Type, Length, SITFval, PolyPhenVal, PHRED, Pathological_probability }) => (
+              <Table.Row positive={GeneName === props.selectedRow} onClick={props.onRowSelect} key={`${GeneName}_${Math.random()}`}>
+                <Table.Cell id={GeneName}>{GeneName}</Table.Cell>
+                <Table.Cell id={GeneName}>{GeneID_y}</Table.Cell>
+                <Table.Cell id={GeneName}>{Chr}</Table.Cell>
+                <Table.Cell id={GeneName}>{Pos}</Table.Cell>
+                <Table.Cell id={GeneName}>{Ref}</Table.Cell>
+                <Table.Cell id={GeneName}>{Alt}</Table.Cell>
+                <Table.Cell id={GeneName}>{Type}</Table.Cell>
+                <Table.Cell id={GeneName}>{Length}</Table.Cell>
+                <Table.Cell id={GeneName}>{ SITFval || 'none' }</Table.Cell>
+                <Table.Cell id={GeneName}>{ PolyPhenVal || 'none'}</Table.Cell>
+                <Table.Cell id={GeneName}>{PHRED}</Table.Cell>
+                <Table.Cell id={GeneName}>{Pathological_probability}</Table.Cell>
+              </Table.Row>
+            ))}
+        </Table.Body>  
+      </Table>
+      <Pagination
+        activePage={currPage}
+        ellipsisItem={{ content: <Icon name="ellipsis horizontal" />, icon: true, type: 'ellipsisItem' }}
+        firstItem={{ content: <Icon name="angle double left" />, icon: true, type: 'firstItem' }}
+        lastItem={{ content: <Icon name="angle double right" />, icon: true, type: 'lastItem' }}
+        prevItem={{ content: <Icon name="angle left" />, icon: true, type: 'prevItem' }}
+        nextItem={{ content: <Icon name="angle right" />, icon: true, type: 'nextItem' }}
+        totalPages={numOfPages}
+        onPageChange={(_e, data) => setPage(data.activePage)}
+      />
+    </div>
   ); 
 }
 

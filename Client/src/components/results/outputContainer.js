@@ -19,8 +19,8 @@ const OutputContainer = (props) => {
     } else return localStorage.tissue;
   }
 
-  const { location } = 'sample';//props;
-  //const { pathname } = location;
+  const location = 'sample';//props;
+  const pathname = 'sample';
   const history = useHistory();
   const [selectedRow, selectRow] = useState(null)
   const [isFetched, setFetchStatus] = useState(false)
@@ -43,7 +43,8 @@ const OutputContainer = (props) => {
 
   useEffect(() => {
     console.log(history.location.data);
-    //pathname.includes('results') ? fetchGene() : fetchSample();
+    const tmp = pathname.includes('results') ? fetchGene() : fetchSample()
+    setSamples(tmp)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   
@@ -57,7 +58,6 @@ const OutputContainer = (props) => {
         <div className="ui basic segment">
           <div className="ui center aligned segment" style={{ overflow: 'auto' }}>
             <ResultsTable tableData={sample} onRowSelect={onRowSelect} selectedRow={selectedRow} />
-            {/*<br/><br/>*/}
           </div>
         </div>
       </div>
@@ -69,7 +69,7 @@ const OutputContainer = (props) => {
           </div>
         </div>
       </div>
-      <div className="ui grid" style={{ textAlign: 'center' }}>
+      <div style={{ textAlign: 'center' }}>
         <label>Switch Tissue for your query</label>
         <span>&nbsp;&nbsp;</span>
         <Dropdown 
