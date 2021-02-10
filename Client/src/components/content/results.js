@@ -1,3 +1,6 @@
+/* eslint-disable block-scoped-var */
+/* eslint-disable no-var */
+/* eslint-disable vars-on-top */
 import React, { useState, useEffect } from 'react';
 import { Dropdown, Label, Loader, Placeholder } from 'semantic-ui-react';
 import { Table } from 'semantic-ui-react/dist/commonjs/collections/Table/Table';
@@ -6,6 +9,7 @@ import Uploader from '../form/uploader';
 import Tabs from '../common/tabs';
 import ResultsTable from './resultsTable'
 import tissues from '../common/tissues';
+// eslint-disable-next-line import/named
 import { getRandomSession, getSession, postSession, postSessionGenes, postSessionVcf } from '../common/fetchers';
 
 const Results = (props) => {
@@ -145,7 +149,7 @@ const Results = (props) => {
             <div className="computer only six wide centered column" style={{ paddingLeft: '0.1rem' }}>
               <div className="ui basic segment">
                 <div className="ui segment">
-                  <Tabs data={resultsData} summaryData={"summary"} gene={selectedRow} style={{ width: '0', minWidth: '100%' }} />
+                  <Tabs data={resultsData} summaryData="summary" gene={selectedRow} style={{ width: '0', minWidth: '100%' }} />
                 </div>
               </div>
             </div>

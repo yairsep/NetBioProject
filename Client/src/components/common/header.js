@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable jsx-a11y/tabindex-no-positive */
 /* eslint-disable jsx-a11y/anchor-has-content */
 /* eslint-disable jsx-a11y/control-has-associated-label */
