@@ -51,7 +51,6 @@ const OutputContainer = (props) => {
         className="sixteen wide tablet ten wide computer center aligned column"
         style={{ paddingRight: '0.2rem' }}
       >
-        <button onClick={() => history.push('/')}>back</button>
 
         <div className="ui basic segment">
           <div className="ui center aligned segment" style={{ overflow: 'auto' }}>

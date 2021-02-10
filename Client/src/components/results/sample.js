@@ -28,4 +28,5 @@ const sample = [
     Pathological_probability: 0.32125,
   },
 ];
+
 export default sample;

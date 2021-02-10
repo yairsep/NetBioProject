@@ -20,7 +20,7 @@ const SessionList = (props) => {
       </div>
     ) : (
       <div className="ui tiny header">
-        You don't appear to have any sessions yet.
+        You don`t appear to have any sessions yet.
         <br />
         <br />
       </div>

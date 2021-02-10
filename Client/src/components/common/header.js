@@ -1,3 +1,7 @@
+/* eslint-disable jsx-a11y/tabindex-no-positive */
+/* eslint-disable jsx-a11y/anchor-has-content */
+/* eslint-disable jsx-a11y/control-has-associated-label */
+/* eslint-disable camelcase */
 import React from 'react'
 import HeaderButton from './headerButton';
 import lab_header from '../../static/trace_lab_header.png'

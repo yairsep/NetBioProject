@@ -1,9 +1,13 @@
+/* eslint-disable camelcase */
+/* eslint-disable radix */
+/* eslint-disable no-use-before-define */
 import React, { useState, useEffect } from 'react'
 import { Table, Icon, Pagination, Dropdown } from 'semantic-ui-react'
 import tissues from '../common/tissues'
 import resultsHeaders from '../../config/resultsHeaders'
 
 const ResultsTable = (props) => {
+  // eslint-disable-next-line react/destructuring-assignment
   const numOfPages = Math.ceil(props.tableData.length / 16);
 
   //const scoreList = props.tableData.map((item) => item['Pathological_probability']).sort((a, b) => a - b);
@@ -35,16 +39,16 @@ const ResultsTable = (props) => {
         : setSortStatus({ ...sortStatus, data: sortStatus.data.reverse(), direction: 'ascending' }))
   }
 
-   const getSliceRng = () => ((parseInt(currPage)) - 1) * 16
+  const getSliceRng = () => ((parseInt(currPage)) - 1) * 16
 
   useEffect(() => {
     const percentiledData = props.tableData.map((item) => ({ ...item }))//, Pathological_probability: Number((getRank(item['Pathological_probability']) / scoreList.length * 100).toFixed(2))
     setSortStatus({ column: 'Pathological_probability', direction: 'descending', data: sortData(percentiledData, 'Pathological_probability').reverse() })
   }, [])
 
-   return (
-
-    <Table sortable celled fixed selectable textAlign="center">
+  return (
+    // eslint-disable-next-line react/jsx-no-duplicate-props
+    <Table sortable celled selectable textAlign="center" display="inline-block" overflow="auto" overflow="scroll">
       <Table.Header>
         <Table.Row>
           {resultsHeaders.map(({ attr, value }) => (
@@ -73,8 +77,8 @@ const ResultsTable = (props) => {
               <Table.Cell id={GeneName}>{Alt}</Table.Cell>
               <Table.Cell id={GeneName}>{Type}</Table.Cell>
               <Table.Cell id={GeneName}>{Length}</Table.Cell>
-              <Table.Cell id={GeneName}>{SITFval? SITFval : 'none'}</Table.Cell>
-              <Table.Cell id={GeneName}>{PolyPhenVal ? PolyPhenVal : 'none'}</Table.Cell>
+              <Table.Cell id={GeneName}>{ SITFval || 'none' }</Table.Cell>
+              <Table.Cell id={GeneName}>{ PolyPhenVal || 'none'}</Table.Cell>
               <Table.Cell id={GeneName}>{PHRED}</Table.Cell>
               <Table.Cell id={GeneName}>{Pathological_probability}</Table.Cell>
             </Table.Row>
