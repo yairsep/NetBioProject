@@ -14,7 +14,7 @@ export default [
   {
     name: 'Show Example Output',
     title: 'Show Example Output',
-    link: '/OutputExamples'
+    link: '/OutputExample'
   },
   // {
   //   name: 'Full Gene List',

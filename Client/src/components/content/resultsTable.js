@@ -5,7 +5,6 @@ import React, { useState, useEffect } from 'react'
 import { Table, Icon, Pagination, Dropdown } from 'semantic-ui-react'
 import tissues from '../common/tissues'
 import resultsHeaders from '../../config/resultsHeaders'
-import sample from '../results/sample'
 
 const ResultsTable = (props) => {
   // eslint-disable-next-line react/destructuring-assignment
@@ -43,14 +42,10 @@ const ResultsTable = (props) => {
   const getSliceRng = () => ((parseInt(currPage)) - 1) * 16
 
   useEffect(() => {
-    if (props.tableData.length === 0) {
-      const percentiledData = props.tableData.map((item) => ({ ...item }))//, Pathological_probability: Number((getRank(item['Pathological_probability']) / scoreList.length * 100).toFixed(2))
-      setSortStatus({ column: 'Pathological_probability', direction: 'descending', data: sortData(percentiledData, 'Pathological_probability').reverse() })
-    } else {
-      const percentiledData = sample.map((item) => ({ ...item }))//, Pathological_probability: Number((getRank(item['Pathological_probability']) / scoreList.length * 100).toFixed(2))
-      setSortStatus({ column: 'Pathological_probability', direction: 'descending', data: sortData(percentiledData, 'Pathological_probability').reverse() })
-    }
-  }, [])
+    const { tableData } = props
+    const percentiledData = tableData.map((item) => ({ ...item }))//, Pathological_probability: Number((getRank(item['Pathological_probability']) / scoreList.length * 100).toFixed(2))
+    setSortStatus({ column: 'Pathological_probability', direction: 'descending', data: sortData(percentiledData, 'Pathological_probability').reverse() })
+  }, [props])
 
   return (
     <div>
@@ -72,10 +67,10 @@ const ResultsTable = (props) => {
 
         <Table.Body>
           {sortStatus.data.slice(getSliceRng(), (getSliceRng() + 16))
-            .map(({ GeneName, GeneID_y, Chr, Pos, Ref, Alt, Type, Length, SITFval, PolyPhenVal, PHRED, Pathological_probability }) => (
+            .map(({ GeneName, GeneID, Chr, Pos, Ref, Alt, Type, Length, SITFval, PolyPhenVal, PHRED, Pathological_probability }) => (
               <Table.Row positive={GeneName === props.selectedRow} onClick={props.onRowSelect} key={`${GeneName}_${Math.random()}`}>
                 <Table.Cell id={GeneName}>{GeneName}</Table.Cell>
-                <Table.Cell id={GeneName}>{GeneID_y}</Table.Cell>
+                <Table.Cell id={GeneName}>{GeneID}</Table.Cell>
                 <Table.Cell id={GeneName}>{Chr}</Table.Cell>
                 <Table.Cell id={GeneName}>{Pos}</Table.Cell>
                 <Table.Cell id={GeneName}>{Ref}</Table.Cell>

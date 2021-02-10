@@ -1,6 +1,6 @@
 export default [
   { attr: 'GeneName', value: 'Gene Name' },
-  { attr: 'GeneID_y', value: 'Ensembl ID' },
+  { attr: 'GeneID', value: 'Ensembl ID' },
   { attr: 'Chr', value: 'Chr' },
   { attr: 'Pos', value: 'Pos' },
   { attr: 'Ref', value: 'Ref' },

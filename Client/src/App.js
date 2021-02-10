@@ -22,7 +22,7 @@ const App = (props) => {
     
       <Header headerButtons={headerItems} />
       {/*eslint-disable-next-line react/destructuring-assignment*/}
-      {props.location.pathname.substring(0, 8) === '/results' || props.location.pathname === '/OutputExamples' ? (
+      {props.location.pathname.substring(0, 8) === '/results' || props.location.pathname === '/OutputExample' ? (
         <div>
           {children}
         </div>
