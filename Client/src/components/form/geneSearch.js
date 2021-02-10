@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 import React, { useState, useEffect } from 'react';
 import { Dropdown, Header, Search } from 'semantic-ui-react'
 import Select, { components } from 'react-select'
@@ -56,6 +57,7 @@ const GeneSearch = (props) => {
     <Header key={key} content={value} subheader={text} size="tiny" icon="dna" textAlign="left" />
   )
 
+  // eslint-disable-next-line no-shadow
   const MultiValue = (props) => 
   // console.log(props)
     (

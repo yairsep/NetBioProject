@@ -1,3 +1,5 @@
+/* eslint-disable react/button-has-type */
+/* eslint-disable react/destructuring-assignment */
 import React, { useState, useEffect, useRef } from 'react';
 
 const Uploader = (props) => {

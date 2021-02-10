@@ -4,6 +4,7 @@ import InjectionText from '../common/injectionText'
 
 const MenuWrapper = (props) => {
   const { items, injectionText } = props;
+  // eslint-disable-next-line react/no-array-index-key
   const content = items.map((item, i) => <MenuItem key={i} item={item} />);
 
   return (

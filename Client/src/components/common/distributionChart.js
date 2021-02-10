@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 import React, { useState, useEffect } from 'react';
 import { Chart } from 'react-google-charts';
 
@@ -7,13 +8,13 @@ const DistributionChart = (props) => {
   })
 
   const distribution = props.data.reduce((acc, curr) => {
-    const idx = acc.findIndex((item) => item[0] === parseFloat(curr['Meta_MLP']))
-    idx === -1 ? acc = acc.concat([[parseFloat(curr['Meta_MLP']), 1]]) : acc[idx][1] += 1;
+    const idx = acc.findIndex((item) => item[0] === curr['Pathological_probability'])
+    idx === -1 ? acc = acc.concat([[curr['Pathological_probability'], 1]]) : acc[idx][1] += 1;
     return acc;
   }, [])
   // Builds an 2d-array with [score, numOfGenes]. like : [ [2, 21], [6, 15], ...  ]
 
-  const bubblesData = [['geneName', 'score'], ...props.data.map((item) => [item['Symbol'], parseFloat(item['Meta_MLP'])])]
+  const bubblesData = [['geneName', 'Pathological_probability'], ...props.data.map((item) => [item['geneName'], item['Pathological_probability']])]
 
   return (
     <div>

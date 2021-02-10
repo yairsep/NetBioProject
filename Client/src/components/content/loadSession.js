@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Loader } from 'semantic-ui-react';
 import SessionList from '../common/sessionList';
-import { getSessions } from '../common/fetchers';
+//import { getSessions } from '../common/fetchers';
 
 const LoadSession = (props) => {
   const { userName } = localStorage

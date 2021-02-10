@@ -1,8 +1,8 @@
-export default sample = [
+const sample = [
   {
     GeneName: 'TTN',
     GeneID_y: 'ENSG00000155657',
-    '#Chr': '2',
+    Chr: '2',
     Pos: 179639114,
     Ref: 'C',
     Alt: 'G',
@@ -16,7 +16,7 @@ export default sample = [
   {
     GeneName: 'HTT',
     GeneID_y: 'ENSG00000197386',
-    '#Chr': '4',
+    Chr: '4',
     Pos: 3133374,
     Ref: 'C',
     Alt: 'T',
@@ -28,3 +28,5 @@ export default sample = [
     Pathological_probability: 0.32125,
   },
 ];
+
+export default sample;

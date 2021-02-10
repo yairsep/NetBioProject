@@ -15,12 +15,14 @@ const App = (props) => {
   []);
 
   const { children } = props;
-
+  // eslint-disable-next-line react/destructuring-assignment
+  console.log(props.location.pathname);
   return (serverRunning === 1) ? (
     <div>
+    
       <Header headerButtons={headerItems} />
-
-      {props.location.pathname.substring(0, 8) === '/results' || props.location.pathname.substring(0, 7) === '/sample' ? (
+      {/*eslint-disable-next-line react/destructuring-assignment*/}
+      {props.location.pathname.substring(0, 8) === '/results' || props.location.pathname === '/OutputExample' ? (
         <div>
           {children}
         </div>

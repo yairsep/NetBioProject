@@ -1,8 +1,11 @@
-import React from 'react'
+//import React from 'react'
 import axios from 'axios'
+
+const baseUrl = 'https://netbio.bgu.ac.il/pathosearch-api';
 
 export const fetchGene = (props) => (null)
 
-export const fetchSample = () => {
-  const baseUrl = 'http://netbio.bgu.ac.il/chananproject/api/v1/sample'
+export const fetchSample = async () => {
+  const res = await axios.get(`${baseUrl}/sample`)
+  return res.data
 }
