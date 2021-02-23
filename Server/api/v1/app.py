@@ -86,21 +86,26 @@ def genes_and_tissues(tissue):
     return jsonify({'genes': nodes, 'summary': params}), 200
 
 
-@app.route('/api/v1/vcf/<tissue>', methods=['POST'])
+@app.route('/api/genes', methods=['POST'])
 # @use_kwargs(get_vcf_args)
 # @cross_origin()
-def vcf_and_tissues(vcf, tissue):
+def vcf_and_tissues():
     # save_location(request.remote_addr)
+    genes = request.get_json()['genes']
+    genomeVersion = request.get_json()['genomeVersion']
+    inputFormat = request.get_json()['inputFormat']
+    tissue = request.get_json()['tissue']
     from api.v1.service import generate_table_from_vcf
-    nodes, params = generate_table_from_vcf(vcf, tissue)
-
-    return jsonify({'genes': nodes, 'summary': params}), 200
-
+    genes_names = generate_table_from_vcf(genes, tissue)
+    print(genes_names)
+    # return jsonify({'genes': nodes, 'summary': params}), 200
+    return jsonify({'genes': genes})
 
 @app.route('/sample', methods=['GET'])
 # @cross_origin()
 def sample():
     print("HELLO")
+
     from api.v1.service import generate_sample_table
     sample_ans = generate_sample_table()
 
