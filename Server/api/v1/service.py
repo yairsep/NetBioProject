@@ -5,35 +5,42 @@ from sqlalchemy import and_, or_
 # from api.v1.schemas import InteractionsContext
 from api.v1.app import getWorkingVersion
 from .utils import sample_genes, sample
-from api.v1.models import Updates
+# from api.v1.models import Updates
 
 
 def generate_table(genes, tissue):
     print('tissue: %s, genes: %s' % (tissue, str(genes)))
-    from api.v1.models import PredictedScores
+    # from api.v1.models import PredictedScores
     schemas = 'api.v1.schemas'
-    db_schema = getattr(import_module(schemas), 'GeneSchema')
+    # db_schema = getattr(import_module(schemas), 'GeneSchema')
     genesSet = set(handle_genes_names(genes))
-    print(genesSet)
-    q = PredictedScores.query.filter(PredictedScores.Ensembl.in_(genesSet)).all()
-    # print('HERE', PredictedScores.query.join(PredictedScores.Ensembl).filter(PredictedScores.Ensembl.in_(genesSet)).all())
-    data2return = []
-    for gene in q:
-        # print('gene', gene)
-        data2return.append({'Gene': gene.Ensembl,
-                                  'XGB': str(getattr(gene, 'XGB_'+tissue)),
-                                  'RF': str(getattr(gene, 'RF_'+tissue)),
-                                  'LR': str(getattr(gene, 'LR_'+tissue)),
-                                  'LR+GB': str(getattr(gene, 'LR.GB_'+tissue)),
-                                  'MLP': str(getattr(gene, 'MLP_'+tissue)),
-                                  'Meta_MLP': str(getattr(gene, 'meta_MLP_'+tissue)),
-                                  })
+    # print(genesSet)
+    # q = PredictedScores.query.filter(PredictedScores.Ensembl.in_(genesSet)).all()
+    # # print('HERE', PredictedScores.query.join(PredictedScores.Ensembl).filter(PredictedScores.Ensembl.in_(genesSet)).all())
+    # data2return = []
+    # for gene in q:
+    #     # print('gene', gene)
+    #     data2return.append({'Gene': gene.Ensembl,
+    #                               'XGB': str(getattr(gene, 'XGB_'+tissue)),
+    #                               'RF': str(getattr(gene, 'RF_'+tissue)),
+    #                               'LR': str(getattr(gene, 'LR_'+tissue)),
+    #                               'LR+GB': str(getattr(gene, 'LR.GB_'+tissue)),
+    #                               'MLP': str(getattr(gene, 'MLP_'+tissue)),
+    #                               'Meta_MLP': str(getattr(gene, 'meta_MLP_'+tissue)),
+    #                               })
+    #
+    # retGenesSet = set([item['Gene'] for item in data2return])
+    # summary = {'gene_not_in_db': len(genesSet - retGenesSet), 'tissue': tissue}
+    # nodes = db_schema.process_to_object(data2return)
+    # print('nodes', nodes)
+    # return nodes, summary
+    from api.v1.models import Relevant_Benign_GRCh37, Relevant_Benign_GRCh38, Relevant_Pathogenic_GRCh37, Relevant_Pathogenic_GRCh38
+    chrSet = []
+    for gene in genes:
+        chrSet.append(gene.Chr)
+    chrSet = set(chrSet)
+    q = Relevant_Benign_GRCh37.query.filter(Relevant_Benign_GRCh37.Chr.in_(chrSet)).query.filter(posSet)
 
-    retGenesSet = set([item['Gene'] for item in data2return])
-    summary = {'gene_not_in_db': len(genesSet - retGenesSet), 'tissue': tissue}
-    nodes = db_schema.process_to_object(data2return)
-    print('nodes', nodes)
-    return nodes, summary
 
 
 def generate_table_from_vcf(vcf, tissue):
@@ -44,7 +51,7 @@ def generate_table_from_vcf(vcf, tissue):
     s_vcf = vcf.split('\n')
     vars = []
     for line in s_vcf:
-        if not line[0] == '#' and not ('CHR' in line):
+        if len(line) > 0 and not line[0] == '#' and not ('CHR' in line):
             vars.append(line)
     variants = {'variants': vars}
     # print('variants', variants)
@@ -52,7 +59,7 @@ def generate_table_from_vcf(vcf, tissue):
     # f.write(json.dumps(vars))
     headers = {"Content-Type": "application/json", "Accept": "application/json"}
     res = requests.post("https://rest.ensembl.org/vep/homo_sapiens/region", headers=headers, data=json.dumps(variants))
-
+    print(res)
     if not res.ok:
         res.raise_for_status()
         return generate_table([], '')
@@ -66,8 +73,8 @@ def generate_table_from_vcf(vcf, tissue):
                         genes.add(var["gene_id"])
 
     # print(genes)
-
-    return generate_table(list(genes), tissue)
+    return list(genes)
+    # return generate_table(list(genes), tissue)
 
 
 def generate_sample_table():

@@ -6,7 +6,7 @@ DEBUG = False
 SQLALCHEMY_TRACK_MODIFICATIONS = True
 
 # Main database bind URI.
-SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://ms_trace_dbu:bgu2010@netbio.bgu.ac.il:33306/TRACE'
+SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:BiVc18@genomics.bgu.ac.il:33306/netbio1'
 
 # Auxiliary bindings.
 SQLALCHEMY_BINDS = {
