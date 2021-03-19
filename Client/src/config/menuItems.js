@@ -16,6 +16,16 @@ export default [
     title: 'Show Example Output',
     link: '/OutputExample'
   },
+  {
+    name: 'Cadd',
+    title: 'Cadd',
+    link: '/cadd'
+  },
+  {
+    name: 'Trace',
+    title: 'Trace',
+    link: '/trace'
+  },
   // {
   //   name: 'Full Gene List',
   //   href: 'http://netbio.bgu.ac.il/labwebsite/?q=responsenet-webserver-20-interactome-full-gene-lists',

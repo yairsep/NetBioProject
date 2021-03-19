@@ -6,7 +6,9 @@ sys.path.insert(0, '../..')
 
 from flask import Flask, jsonify, send_file, request
 from flask_cors import CORS, cross_origin
-from webargs.flaskparser import use_kwargs
+from flask_sqlalchemy import SQLAlchemy
+
+db = SQLAlchemy()
 
 # initialize flask app
 app = Flask(__name__)
