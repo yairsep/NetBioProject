@@ -1,7 +1,7 @@
 /* eslint-disable react/button-has-type */
 import React, {useEffect, useState} from 'react';
 import {useHistory, withRouter, useLocation} from 'react-router-dom';
-import {fetchCadd} from './genomics_api';
+import {fetchTrace} from './genomics_api';
 
 const Trace = () => {
 
@@ -12,7 +12,7 @@ const Trace = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const data = await fetchCadd();
+            const data = await fetchTrace();
             setTraceData(data)
         }
         fetchData()

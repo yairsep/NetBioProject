@@ -3,6 +3,7 @@ import sys
 from flask import Flask, jsonify, send_file, request
 from flask_cors import CORS, cross_origin
 from flask_sqlalchemy import SQLAlchemy
+from Genomics import Cadd , Trace
 
 sys.path.insert(0, '')
 
@@ -56,25 +57,25 @@ get_genes_args = {
     'tissue': fields.Str(required=True, location='view_args')
 }
 
-#
-# def getWorkingVersion():
-#     from api.v1.models import Updates
-#     q = Updates.query.all()
-#
-#     if q[0].Date > q[1].Date:
-#         return q[0].DBv
-#     else:
-#         return q[1].DBv
-
 @app.route('/cadd', methods=['GET'])
 def caddConnection():
+    """Handeling Cadd flow"""
+
     print("Connected to cadd")
-    return "Cadd Data", 200
+    #TODO - REMOVE Comment
+    Cadd.execute_ssh(request)
+    temp_return_value = ("Cadd Data", 200)
+    return temp_return_value
 
 @app.route('/trace', methods=['GET'])
 def traceConnection():
+    """Handeling Trace flow"""
+
     print("Connected to trace")
-    return "Trace Data", 200
+    #TODO - REMOVE Comment
+    # Trace.generate_csv(request)
+    temp_return_value = ("Trace Data", 200)
+    return temp_return_value
 
 @app.route('/api/genes', methods=['POST'])
 # @use_kwargs(get_vcf_args)
@@ -121,6 +122,16 @@ def save_location(ip):
             writer.writerow(row)
     except:
         print('save_location has failed')
+
+
+# def getWorkingVersion():
+#     from api.v1.models import Updates
+#     q = Updates.query.all()
+#
+#     if q[0].Date > q[1].Date:
+#         return q[0].DBv
+#     else:
+#         return q[1].DBv
 
 
 # API Documentation
