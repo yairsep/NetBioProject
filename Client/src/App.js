@@ -16,7 +16,7 @@ const App = (props) => {
 
   const { children } = props;
   // eslint-disable-next-line react/destructuring-assignment
-  console.log(props.location.pathname);
+  // console.log(props.location.pathname);
   return (serverRunning === 1) ? (
     <div>
     

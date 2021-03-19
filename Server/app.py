@@ -11,7 +11,6 @@ app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}}, headers="Content-Type")
 
 # apply configuration
-
 cfg = os.path.join(os.path.dirname(__file__), 'config/dev.py')
 app.config.from_pyfile(cfg)
 
@@ -39,7 +38,6 @@ if not app.debug:
     '''))
 
 # initialize db engine
-
 db = SQLAlchemy()
 
 db.init_app(app)
@@ -70,21 +68,13 @@ get_genes_args = {
 
 @app.route('/cadd', methods=['GET'])
 def caddConnection():
-    print("HELLO")
-
-    from api.v1.service import generate_sample_table
-    sample_ans = generate_sample_table()
-
-    return jsonify(sample_ans)
+    print("Connected to cadd")
+    return "Cadd Data", 200
 
 @app.route('/trace', methods=['GET'])
 def traceConnection():
-    print("HELLO")
-
-    from api.v1.service import generate_sample_table
-    sample_ans = generate_sample_table()
-
-    return jsonify(sample_ans)
+    print("Connected to trace")
+    return "Trace Data", 200
 
 @app.route('/api/genes', methods=['POST'])
 # @use_kwargs(get_vcf_args)
