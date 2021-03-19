@@ -62,28 +62,15 @@ get_genes_args = {
     'tissue': fields.Str(required=True, location='view_args')
 }
 
-
-def getWorkingVersion():
-    from api.v1.models import Updates
-    q = Updates.query.all()
-
-    if q[0].Date > q[1].Date:
-        return q[0].DBv
-    else:
-        return q[1].DBv
-
-
-@app.route('/api/v1/genes/<tissue>', methods=['POST'])
-# @use_kwargs(get_genes_args)
-# @cross_origin()
-def genes_and_tissues(tissue):
-    # save_location(request.remote_addr)
-    print("TEST", request.json['genes'])
-    genes = request.json['genes']
-    from api.v1.service import generate_table
-    nodes, params = generate_table(genes, tissue)
-
-    return jsonify({'genes': nodes, 'summary': params}), 200
+#
+# def getWorkingVersion():
+#     from api.v1.models import Updates
+#     q = Updates.query.all()
+#
+#     if q[0].Date > q[1].Date:
+#         return q[0].DBv
+#     else:
+#         return q[1].DBv
 
 
 @app.route('/api/genes', methods=['POST'])
@@ -110,6 +97,7 @@ def sample():
     sample_ans = generate_sample_table()
 
     return jsonify(sample_ans)
+
 
 
 def save_location(ip):
