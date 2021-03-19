@@ -1,7 +1,7 @@
 Configuration instructions:
 
-- Log in to VPN 
-- 
+- Log in to VPN
+
 - Setting Up Fornt-End:
   - npm install
   - npm run dev
