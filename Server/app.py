@@ -1,23 +1,18 @@
 import os
-import sys, traceback
-import types
-
-sys.path.insert(0, '../..')
-
+import sys
 from flask import Flask, jsonify, send_file, request
 from flask_cors import CORS, cross_origin
 from flask_sqlalchemy import SQLAlchemy
 
-db = SQLAlchemy()
+sys.path.insert(0, '')
 
 # initialize flask app
 app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}}, headers="Content-Type")
 
 # apply configuration
-# cfg = os.path.join(os.path.dirname(__file__), '../../config/test.py')
-# cfg = os.path.join(os.path.dirname(__file__), '../../config/prod.py')
-cfg = os.path.join(os.path.dirname(__file__), '../../config/dev.py')
+
+cfg = os.path.join(os.path.dirname(__file__), 'config/dev.py')
 app.config.from_pyfile(cfg)
 
 # initialize error logging.
@@ -44,9 +39,8 @@ if not app.debug:
     '''))
 
 # initialize db engine
-from api.v1.database import db
 
-# from api.v1.models import Updates, GenesPositions, PredictedScores, NamesA, NamesB
+db = SQLAlchemy()
 
 db.init_app(app)
 # bind Model to existing tables
@@ -74,6 +68,23 @@ get_genes_args = {
 #     else:
 #         return q[1].DBv
 
+@app.route('/cadd', methods=['GET'])
+def caddConnection():
+    print("HELLO")
+
+    from api.v1.service import generate_sample_table
+    sample_ans = generate_sample_table()
+
+    return jsonify(sample_ans)
+
+@app.route('/trace', methods=['GET'])
+def traceConnection():
+    print("HELLO")
+
+    from api.v1.service import generate_sample_table
+    sample_ans = generate_sample_table()
+
+    return jsonify(sample_ans)
 
 @app.route('/api/genes', methods=['POST'])
 # @use_kwargs(get_vcf_args)
