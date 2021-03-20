@@ -2,16 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4a7ac9b4-068f-4643-aad6-459a5f891426" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Genomics/trace.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Genomics/trace.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/Database/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Genomics/Cadd.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/Database/database.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/Database/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Database/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/Database/schemas.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Database/schemas.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/Utils/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Genomics/Trace.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/Validtations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/Validtations/validators.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Validtations/validators.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Genomics/Cadd.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Genomics/Cadd.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Genomics/Trace.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Genomics/Trace.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Server/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/app.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -101,7 +95,7 @@
       <updated>1585552007004</updated>
       <workItem from="1585552008592" duration="3676000" />
       <workItem from="1615984070232" duration="2740000" />
-      <workItem from="1616183012149" duration="6436000" />
+      <workItem from="1616183012149" duration="7163000" />
     </task>
     <servers />
   </component>
