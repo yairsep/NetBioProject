@@ -7,7 +7,7 @@ SQLALCHEMY_TRACK_MODIFICATIONS = True
 
 # Main database bind URI.
 
-SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:BiVc18@genomics.bgu.ac.il:33306/netbio1'
+SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:BiVc18@genomics.bgu.ac.il:3306/netbio1'
 # SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://username:password@localhost/DifferentialInteractomes'
 
 # Auxiliary bindings.
