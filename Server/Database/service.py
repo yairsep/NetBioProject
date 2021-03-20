@@ -1,10 +1,6 @@
-import random
 from importlib import import_module
-from itertools import chain
-from sqlalchemy import and_, or_
 # from api.v1.schemas import InteractionsContext
-from api.v1.app import getWorkingVersion
-from .utils import sample_genes, sample
+from NetBioProject.Server.Utils.utils import sample
 # from api.v1.models import Updates
 
 
@@ -13,7 +9,6 @@ from .utils import sample_genes, sample
 # 
 def generate_table_from_vcf(vcf, tissue):
     print('tissue: %s, genes: %s' % (tissue, str(vcf)))
-    import requests, json, re
     genes = set([])
 
     s_vcf = vcf.split('\n')

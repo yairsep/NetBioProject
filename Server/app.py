@@ -1,21 +1,18 @@
 import os
-import sys, traceback
-import types
-
-sys.path.insert(0, '../..')
-
+import sys
 from flask import Flask, jsonify, send_file, request
 from flask_cors import CORS, cross_origin
-from webargs.flaskparser import use_kwargs
+from flask_sqlalchemy import SQLAlchemy
+from Genomics import Cadd , Trace
+
+sys.path.insert(0, '')
 
 # initialize flask app
 app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}}, headers="Content-Type")
 
 # apply configuration
-# cfg = os.path.join(os.path.dirname(__file__), '../../config/test.py')
-# cfg = os.path.join(os.path.dirname(__file__), '../../config/prod.py')
-cfg = os.path.join(os.path.dirname(__file__), '../../config/dev.py')
+cfg = os.path.join(os.path.dirname(__file__), 'config/dev.py')
 app.config.from_pyfile(cfg)
 
 # initialize error logging.
@@ -42,13 +39,12 @@ if not app.debug:
     '''))
 
 # initialize db engine
-from api.v1.database import db
-
-# from api.v1.models import Updates, GenesPositions, PredictedScores, NamesA, NamesB
+db = SQLAlchemy()
 
 db.init_app(app)
 # bind Model to existing tables
 db.reflect(app=app)
+
 # Argument schemas
 from webargs import fields, validate, ValidationError
 
@@ -62,16 +58,25 @@ get_genes_args = {
     'tissue': fields.Str(required=True, location='view_args')
 }
 
-#
-# def getWorkingVersion():
-#     from api.v1.models import Updates
-#     q = Updates.query.all()
-#
-#     if q[0].Date > q[1].Date:
-#         return q[0].DBv
-#     else:
-#         return q[1].DBv
+@app.route('/cadd', methods=['GET'])
+def caddConnection():
+    """Handeling Cadd flow"""
 
+    print("Connected to cadd")
+    #TODO - REMOVE Comment
+    Cadd.execute_ssh(request)
+    temp_return_value = ("Cadd Data", 200)
+    return temp_return_value
+
+@app.route('/trace', methods=['GET'])
+def traceConnection():
+    """Handeling Trace flow"""
+
+    print("Connected to trace")
+    #TODO - REMOVE Comment
+    Trace.generate_csv(request)
+    temp_return_value = ("Trace Data", 200)
+    return temp_return_value
 
 @app.route('/api/genes', methods=['POST'])
 # @use_kwargs(get_vcf_args)
@@ -118,6 +123,16 @@ def save_location(ip):
             writer.writerow(row)
     except:
         print('save_location has failed')
+
+
+# def getWorkingVersion():
+#     from api.v1.models import Updates
+#     q = Updates.query.all()
+#
+#     if q[0].Date > q[1].Date:
+#         return q[0].DBv
+#     else:
+#         return q[1].DBv
 
 
 # API Documentation
