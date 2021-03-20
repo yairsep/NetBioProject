@@ -40,9 +40,9 @@ const Home = () => {
   const onSubmit = (e) => {
     e.preventDefault()
     let genes = inputData[1]
-    genes = inputFormat === 'simpleFile'
-      ? genes.split(/\r\n|\n|\r/)
-      : null
+    if (inputFormat === 'simpleFile') {
+      genes = genes.split(/\r\n|\n|\r/)
+    }
     
     history.push({
       pathname: '/results',
