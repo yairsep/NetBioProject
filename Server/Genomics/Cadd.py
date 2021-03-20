@@ -5,16 +5,20 @@ import os, paramiko
 # LOCAL_SESSIONS_DIR = '/media/disk2/users/interactomenetprod/Websites/ClusterSessions/MyProteinNet2Sessions/'
 # CLUSTER_SESSIONS_DIR = '/storage16/users/interactomenetprod/InteractomeNet/Sessions/MyProteinNet2Sessions/'
 # CLUSTER_RUNNER = '/storage16/users/interactomenetprod/MyProteinNet2/RunMyProteinNet.py'
-CLUSTER_HOST = 'genomics.bgu.ac.il'
-CLUSTER_USER = 'estiyl'
-CLUSTER_PASSWORD = 'H!ytfP7eq'
 
+def getConnectiionConfig():
+    CLUSTER_HOST = 'genomics.bgu.ac.il'
+    CLUSTER_USER = 'estiyl'
+    CLUSTER_PASSWORD = 'H!ytfP7eq'
+
+    return CLUSTER_HOST , CLUSTER_USER , CLUSTER_PASSWORD
 
 def execute_ssh(request):
     # Processing the request (all data from submitted file)
     processed_request = process_request(request)
 
     # Initiating a ssh client protocol
+    CLUSTER_HOST , CLUSTER_USER , CLUSTER_PASSWORD = getConnectiionConfig()
 
     client = paramiko.SSHClient()
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())

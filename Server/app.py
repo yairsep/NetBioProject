@@ -44,6 +44,7 @@ db = SQLAlchemy()
 db.init_app(app)
 # bind Model to existing tables
 db.reflect(app=app)
+
 # Argument schemas
 from webargs import fields, validate, ValidationError
 
@@ -73,7 +74,7 @@ def traceConnection():
 
     print("Connected to trace")
     #TODO - REMOVE Comment
-    # Trace.generate_csv(request)
+    Trace.generate_csv(request)
     temp_return_value = ("Trace Data", 200)
     return temp_return_value
 
