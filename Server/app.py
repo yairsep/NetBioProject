@@ -4,6 +4,7 @@ from flask import Flask, jsonify, send_file, request
 from flask_cors import CORS, cross_origin
 from flask_sqlalchemy import SQLAlchemy
 from Genomics import Cadd , Trace
+import paramiko
 
 sys.path.insert(0, '')
 
@@ -87,9 +88,17 @@ def vcf_and_tissues():
     genomeVersion = request.get_json()['genomeVersion']
     inputFormat = request.get_json()['inputFormat']
     tissue = request.get_json()['tissue']
-    from api.v1.service import generate_table_from_vcf
+    #from api.v1.service import generate_table_from_vcf
+    from Database.service import generate_table_from_vcf
     genes_names = generate_table_from_vcf(genes, tissue)
-    print(genes_names)
+
+    #####
+    print("Hello Emi")
+    #Cadd.execute_ssh(request)
+    
+    #####
+    #print("Hello Emi")
+    #print(genes_names)
     # return jsonify({'genes': nodes, 'summary': params}), 200
     return jsonify({'genes': genes})
 
