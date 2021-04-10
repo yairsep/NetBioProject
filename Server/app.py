@@ -94,6 +94,7 @@ def sample():
 @app.route('/vcf', methods=['POST'])
 @cross_origin(supports_credentials=True)
 def process_vcf():
+    print("VCF file recived in Server")
     Trace.process_request(request)
     vcf_string = request.data.decode("utf-8")
     Cadd.send_vcf_to_genomics(vcf_string)
