@@ -78,16 +78,27 @@ def execute_ssh(request):
     print(msg)
     client.close()
 
-def send_vcf(request):
-    print("Sending VCF file...")
+
+def generate_vcf_file(vcf_string):
+    f = open("./Utils/vcf_output.vcf", "a")
+    #TODO: Parse string
+    f.write(vcf_string)
+    f.close()
+
+
+def send_vcf_to_genomics(vcf_string):
+    generate_vcf_file(vcf_string)
+    print("Sending VCF file to CADD...")
     CLUSTER_HOST , CLUSTER_USER , CLUSTER_PASSWORD = getConnectiionConfig()
     client = paramiko.SSHClient()
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     client.load_system_host_keys()
     client.connect(CLUSTER_HOST, username=CLUSTER_USER, password=CLUSTER_PASSWORD)
     scp = SCPClient(client.get_transport())
-    scp.put("./Utils/vcf_test.vcf" , "./PathoSearch")
-    print("VCF file has been sent successfully")
+    # scp.put("./Utils/vcf_test.vcf" , "./PathoSearch")
+    scp.put("./Utils/vcf_output.vcf" , "./PathoSearch")
+
+    print("VCF file has been sent to Cadd successfully")
     client.close()
 
 def process_request(request):

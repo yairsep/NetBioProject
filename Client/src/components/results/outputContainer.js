@@ -42,26 +42,16 @@ const OutputContainer = (props) => {
   }
 
   useEffect(() => {
+    //TODO:Switch to sample from the algorithm run
     const fetchData = async () => {
-      if (pathname.includes('results') && !history.location.data) {
-        setResults(localStorage.getItem('results'))
-        setNewTissue(history.location.data.tissue)
-      } else {
-        if (pathname.includes('results')) {
-          setNewTissue(history.location.data.tissue)
-          localStorage.setItem('tissue', history.location.data.tissue)
-        }
-        console.log(`path:${pathname}`)
-        console.log(history.location.data);
-        const res = await (pathname.includes('results') ? fetchGene(history.location.data) : fetchSample())
-        console.log(res)
-        setResults(res)
-        localStorage.setItem('results', JSON.stringify(res))
-      }
+      console.log(`path:${pathname}`)
+      console.log(history.location.data);
+      const res = await (pathname.includes('results') ? fetchGene() : fetchSample())
+      console.log(res)
+      setResults(res)
       setFetchStatus(true)
-    }    
+    }
     fetchData()
-    console.log('TESTTTTTTTTTT', history)
   }, [pathname, history, selectedTissue]);
   
   return (
@@ -78,24 +68,21 @@ const OutputContainer = (props) => {
             </div>
           </div>
           <div style={{ textAlign: 'center' }}>
-            {pathname.includes(results) 
-              ? (
-                <Label size="big" style={{ lineHeight: '2em' }}>
-                  Switch tissue model
-                  <Label.Detail>
-                    <Dropdown 
-                      name="tissue"
-                      options={tissues}
-                      onChange={changeTissue}
-                      defaultValue={selectedTissue}
-                      labeled
-                      button
-                      icon="exchange"
-                      className="ui black icon"
-                    />
-                  </Label.Detail>
-                </Label>
-              ) : null}
+            <Label size="big" style={{ lineHeight: '2em' }}>
+              Switch tissue model
+              <Label.Detail>
+                <Dropdown 
+                  name="tissue"
+                  options={tissues}
+                  onChange={changeTissue}
+                  defaultValue={selectedTissue}
+                  labeled
+                  button
+                  icon="exchange"
+                  className="ui black icon"
+                />
+              </Label.Detail>
+            </Label>
           </div>
         </div>
 
