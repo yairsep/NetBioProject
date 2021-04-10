@@ -1,20 +1,25 @@
 import os
 import sys
-from flask import Flask, jsonify, send_file, request
+
+import flask_cors
+from flask import Flask, jsonify, send_file, request , session
 from flask_cors import CORS, cross_origin
 from flask_sqlalchemy import SQLAlchemy
+from werkzeug.utils import secure_filename
 from Genomics import Cadd , Trace
 
 sys.path.insert(0, '')
 
 # initialize flask app
 app = Flask(__name__)
-cors = CORS(app, resources={r"/*": {"origins": "*"}}, headers="Content-Type")
+cors = CORS(app, expose_headers='Authorization', support_credentials=True , resources={r"/*": {"origins": "*"}}, headers="Content-Type")
+
 
 # apply configuration
 cfg = os.path.join(os.path.dirname(__file__), 'config/dev.py')
 app.config.from_pyfile(cfg)
-
+UPLOAD_FOLDER = './Data'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 # initialize error logging.
 if not app.debug:
     import logging
@@ -104,6 +109,13 @@ def sample():
     return jsonify(sample_ans)
 
 
+
+@app.route('/vcf', methods=['POST'])
+# @use_kwargs(get_vcf_args)
+@cross_origin(supports_credentials=True)
+def send_vcf_scp():
+    Cadd.send_vcf(request)
+    return "VCF file has been sent successfully"
 
 def save_location(ip):
     import ipinfo

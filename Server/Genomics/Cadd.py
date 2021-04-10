@@ -1,4 +1,5 @@
 import os, paramiko
+from scp import SCPClient
 
 #TODO: Configurations
 
@@ -36,6 +37,19 @@ def execute_ssh(request):
     msg = stderr.readlines()
     print(msg)
     client.close()
+
+def send_vcf(request):
+    print("Sending VCF file...")
+    CLUSTER_HOST , CLUSTER_USER , CLUSTER_PASSWORD = getConnectiionConfig()
+    client = paramiko.SSHClient()
+    client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    client.load_system_host_keys()
+    client.connect(CLUSTER_HOST, username=CLUSTER_USER, password=CLUSTER_PASSWORD)
+    scp = SCPClient(client.get_transport())
+    scp.put("./Utils/vcf_test.vcf" , "./PathoSearch")
+    print("VCF file has been sent successfully")
+    client.close()
+
 
 
 def process_request(request):
