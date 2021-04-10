@@ -4,6 +4,7 @@ import { withRouter, useHistory } from 'react-router-dom';
 import tissues from '../common/tissues';
 import Uploader from '../form/uploader'
 import GeneSearch from '../form/geneSearch'
+import { sendVcfFile } from '../Genomics/genomics_api';
 
 const Home = () => {
   const [selectedTissue, setTissue] = useState('heart')
@@ -29,26 +30,62 @@ const Home = () => {
     setInputData(['', genes])
   }
 
+  //TODO: Change this function (just for testing)
   const onFileUpload = (e) => {
     const file = e.target.files[0]
     const fileName = file.name
-    const reader = new FileReader();
-    reader.onloadend = () => setInputData([fileName, reader.result])
-    reader.readAsText(file)
+    console.log(fileName);
+    const data = new FormData()
+    data.append(fileName, file);
+    sendVcfFile(data);
   }
 
+  // const onFileUpload = (e) => {
+  //   data.append('file', e.target.files[0]);
+  //   data.append('filename', e.target.files[0].name);
+  //   fetch('http://localhost:5000/vcf', {
+  //     method: 'POST',
+  //     body: data,
+  //   }).then((response) => {
+  //     console.log(response.json())
+  //   });
+  // };
+  
   const onSubmit = (e) => {
     e.preventDefault()
     let genes = inputData[1]
+    genes = inputFormat === 'simpleFile'
+      ? genes.split(/\r\n|\n|\r/)
+      : null
     if (inputFormat === 'simpleFile') {
       genes = genes.split(/\r\n|\n|\r/)
     }
-    
     history.push({
       pathname: '/results',
       data: { tissue: selectedTissue, genes, inputFormat, genomeVersion }
     })
   }
+
+  // const onFileUpload = (e) => {
+  //   const file = e.target.files[0]
+  //   const fileName = file.name
+  //   const reader = new FileReader();
+  //   reader.onloadend = () => setInputData([fileName, reader.result])
+  //   reader.readAsText(file)
+  // }
+  //
+  // const onSubmit = (e) => {
+  //   e.preventDefault()
+  //   let genes = inputData[1]
+  //   genes = inputFormat === 'simpleFile'
+  //     ? genes.split(/\r\n|\n|\r/)
+  //     : null
+  //
+  //   history.push({
+  //     pathname: '/results',
+  //     data: { tissue: selectedTissue, genes, inputFormat, genomeVersion }
+  //   })
+  // }
 
   const onGenomeVersionSelect = (e, { value }) => {
     setGenomeVersion(value)
