@@ -1,6 +1,7 @@
 from importlib import import_module
+from Genomics import Cadd , Trace
 # from api.v1.schemas import InteractionsContext
-from NetBioProject.Server.Utils.utils import sample
+#from NetBioProject.Server.Utils.utils import sample
 # from api.v1.models import Updates
 
 
@@ -17,6 +18,8 @@ def generate_table_from_vcf(vcf, tissue):
         if len(line) > 0 and not line[0] == '#' and not ('CHR' in line):
             vars.append(line)
     variants = {'variants': vars}
+    print(variants)
+    Cadd.execute_ssh_and_create_vsf(variants)
 
 
 

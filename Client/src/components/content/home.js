@@ -57,7 +57,9 @@ const Home = () => {
     genes = inputFormat === 'simpleFile'
       ? genes.split(/\r\n|\n|\r/)
       : null
-
+    if (inputFormat === 'simpleFile') {
+      genes = genes.split(/\r\n|\n|\r/)
+    }
     history.push({
       pathname: '/results',
       data: { tissue: selectedTissue, genes, inputFormat, genomeVersion }
