@@ -84,7 +84,7 @@ get_genes_args = {
 def sample():
     print("HELLO")
 
-    from api.v1.service import generate_sample_table
+    from Database.service import generate_sample_table
     sample_ans = generate_sample_table()
 
     return jsonify(sample_ans)
