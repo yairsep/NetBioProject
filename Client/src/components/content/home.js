@@ -4,6 +4,7 @@ import { withRouter, useHistory } from 'react-router-dom';
 import tissues from '../common/tissues';
 import Uploader from '../form/uploader'
 import GeneSearch from '../form/geneSearch'
+import { sendVcfFile } from '../Genomics/genomics_api';
 
 const Home = () => {
   const [selectedTissue, setTissue] = useState('heart')
@@ -29,25 +30,50 @@ const Home = () => {
     setInputData(['', genes])
   }
 
+  // //TODO: Change this function (just for testing)
+  // const onFileUpload = (e) => {
+  //   const file = e.target.files[0]
+  //   const fileName = file.name
+  //   console.log(fileName);
+  //   const data = new FormData()
+  //   data.append(fileName, file);
+  //   sendVcfFile(data);
+  // }
+  //
+  // const onSubmit = (e) => {
+  //   e.preventDefault()
+  //   let genes = inputData[1]
+  //   genes = inputFormat === 'simpleFile'
+  //     ? genes.split(/\r\n|\n|\r/)
+  //     : null
+  //
+  //   history.push({
+  //     pathname: '/results',
+  //     data: { tissue: selectedTissue, genes, inputFormat, genomeVersion }
+  //   })
+  // }
+
   const onFileUpload = (e) => {
     const file = e.target.files[0]
     const fileName = file.name
     const reader = new FileReader();
     reader.onloadend = () => setInputData([fileName, reader.result])
-    reader.readAsText(file)
+    console.log("reader:" , reader.readAsText(file));
   }
 
   const onSubmit = (e) => {
     e.preventDefault()
     let genes = inputData[1]
-    if (inputFormat === 'simpleFile') {
-      genes = genes.split(/\r\n|\n|\r/)
-    }
-    
+    genes = inputFormat === 'VCF'
+      ? genes.split(/\r\n|\n|\r/)
+      : null
+    console.log('genes:' , genes);
     history.push({
       pathname: '/results',
       data: { tissue: selectedTissue, genes, inputFormat, genomeVersion }
     })
+    const vcfData = { tissue: selectedTissue, genes, inputFormat, genomeVersion }
+    sendVcfFile(vcfData);
   }
 
   const onGenomeVersionSelect = (e, { value }) => {
