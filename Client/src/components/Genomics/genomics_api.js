@@ -13,7 +13,7 @@ export const fetchTrace = async () => {
 }
 
 export const sendVcfFile = async (vcfFile) => {
-  const req = await axios.post(`${baseUrl}/vcf`, vcfFile, {headers: {'Access-Control-Allow-Origin': '*'} }).then((response) => {
+  const req = await axios.post(`${baseUrl}/vcf`, vcfFile).then((response) => {
     console.log('Sent vcf file');
   });
 }

@@ -6,7 +6,7 @@ from flask import Flask, jsonify, send_file, request , session
 from flask_cors import CORS, cross_origin
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.utils import secure_filename
-from Genomics import Cadd , Trace
+from Genomics import Cadd , Trace , Learn
 
 sys.path.insert(0, '')
 
@@ -63,40 +63,21 @@ get_genes_args = {
     'tissue': fields.Str(required=True, location='view_args')
 }
 
-@app.route('/cadd', methods=['GET'])
-def caddConnection():
-    """Handeling Cadd flow"""
 
-    print("Connected to cadd")
-    #TODO - REMOVE Comment
-    Cadd.execute_ssh(request)
-    temp_return_value = ("Cadd Data", 200)
-    return temp_return_value
-
-@app.route('/trace', methods=['GET'])
-def traceConnection():
-    """Handeling Trace flow"""
-
-    print("Connected to trace")
-    #TODO - REMOVE Comment
-    Trace.generate_csv(request)
-    temp_return_value = ("Trace Data", 200)
-    return temp_return_value
-
-@app.route('/api/genes', methods=['POST'])
-# @use_kwargs(get_vcf_args)
-# @cross_origin()
-def vcf_and_tissues():
-    # save_location(request.remote_addr)
-    genes = request.get_json()['genes']
-    genomeVersion = request.get_json()['genomeVersion']
-    inputFormat = request.get_json()['inputFormat']
-    tissue = request.get_json()['tissue']
-    from api.v1.service import generate_table_from_vcf
-    genes_names = generate_table_from_vcf(genes, tissue)
-    print(genes_names)
-    # return jsonify({'genes': nodes, 'summary': params}), 200
-    return jsonify({'genes': genes})
+# @app.route('/api/genes', methods=['POST'])
+# # @use_kwargs(get_vcf_args)
+# # @cross_origin()
+# def vcf_and_tissues():
+#     # save_location(request.remote_addr)
+#     genes = request.get_json()['genes']
+#     genomeVersion = request.get_json()['genomeVersion']
+#     inputFormat = request.get_json()['inputFormat']
+#     tissue = request.get_json()['tissue']
+#     from api.v1.service import generate_table_from_vcf
+#     genes_names = generate_table_from_vcf(genes, tissue)
+#     print(genes_names)
+#     # return jsonify({'genes': nodes, 'summary': params}), 200
+#     return jsonify({'genes': genes})
 
 @app.route('/sample', methods=['GET'])
 # @cross_origin()
@@ -111,11 +92,15 @@ def sample():
 
 
 @app.route('/vcf', methods=['POST'])
-# @use_kwargs(get_vcf_args)
 @cross_origin(supports_credentials=True)
-def send_vcf_scp():
-    Cadd.send_vcf(request)
+def process_vcf():
+    Trace.process_request(request)
+    vcf_string = request.data.decode("utf-8")
+    Cadd.send_vcf_to_genomics(vcf_string)
+    #Then Execute ML module
+    # Learn.execute_ML_module()
     return "VCF file has been sent successfully"
+
 
 def save_location(ip):
     import ipinfo
@@ -137,21 +122,6 @@ def save_location(ip):
         print('save_location has failed')
 
 
-# def getWorkingVersion():
-#     from api.v1.models import Updates
-#     q = Updates.query.all()
-#
-#     if q[0].Date > q[1].Date:
-#         return q[0].DBv
-#     else:
-#         return q[1].DBv
-
-
-# API Documentation
-# @app.route('/', methods=['GET'])
-# # @cross_origin()
-# def api_docs():
-#     return send_file(os.path.join(os.path.dirname(__file__), '../../trace-api-spec.html')), 200
 
 @app.errorhandler(422)
 def handle_validation_error(err):
