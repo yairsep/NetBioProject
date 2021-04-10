@@ -84,7 +84,7 @@ get_genes_args = {
 def sample():
     print("HELLO")
 
-    from api.v1.service import generate_sample_table
+    from Database.service import generate_sample_table
     sample_ans = generate_sample_table()
 
     return jsonify(sample_ans)
@@ -97,7 +97,7 @@ def process_vcf():
     print("VCF file recived in Server")
     Trace.process_request(request)
     vcf_string = request.data.decode("utf-8")
-    Cadd.send_vcf_to_genomics(vcf_string)
+    # Cadd.send_vcf_to_genomics(vcf_string)
     #Then Execute ML module
     # Learn.execute_ML_module()
     return "VCF file has been sent successfully"
