@@ -87,7 +87,7 @@ def vcf_and_tissues():
     genomeVersion = request.get_json()['genomeVersion']
     inputFormat = request.get_json()['inputFormat']
     tissue = request.get_json()['tissue']
-    from api.v1.service import generate_table_from_vcf
+    from Database.service import generate_table_from_vcf
     genes_names = generate_table_from_vcf(genes, tissue)
     print(genes_names)
     # return jsonify({'genes': nodes, 'summary': params}), 200
