@@ -1,19 +1,16 @@
 import os
 import sys
-
-import flask_cors
 from flask import Flask, jsonify, send_file, request , session
 from flask_cors import CORS, cross_origin
 from flask_sqlalchemy import SQLAlchemy
-from werkzeug.utils import secure_filename
 from Genomics import Cadd , Trace , Learn
+from Email import emailHandler
 
 sys.path.insert(0, '')
 
 # initialize flask app
 app = Flask(__name__)
 cors = CORS(app, expose_headers='Authorization', support_credentials=True , resources={r"/*": {"origins": "*"}}, headers="Content-Type")
-
 
 # apply configuration
 cfg = os.path.join(os.path.dirname(__file__), 'config/dev.py')
@@ -22,26 +19,7 @@ UPLOAD_FOLDER = './Data'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 # initialize error logging.
 if not app.debug:
-    import logging
-    from logging.handlers import SMTPHandler
-    from logging import Formatter
-
-    mail_handler = SMTPHandler('smtp.bgu.ac.il',
-                               'netbio@post.bgu.ac.il',
-                               ['netbio@post.bgu.ac.il'], 'TRACE has failed')
-    mail_handler.setLevel(logging.ERROR)
-
-    mail_handler.setFormatter(Formatter('''
-    Message type:       %(levelname)s
-    Location:           %(pathname)s:%(lineno)d
-    Module:             %(module)s
-    Function:           %(funcName)s
-    Time:               %(asctime)s
-
-    Message:
-
-    %(message)s
-    '''))
+    emailHandler.sendEmail()
 
 # initialize db engine
 db = SQLAlchemy()
@@ -96,8 +74,7 @@ def sample():
 def process_vcf():
     print("VCF file recived in Server")
     Trace.process_request(request)
-    vcf_string = request.data.decode("utf-8")
-    # Cadd.send_vcf_to_genomics(vcf_string)
+    # Cadd.process_request(request)
     #Then Execute ML module
     # Learn.execute_ML_module()
     return "VCF file has been sent successfully"

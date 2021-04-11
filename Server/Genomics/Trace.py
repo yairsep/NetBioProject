@@ -1,23 +1,6 @@
 import requests
 import json
 
-
-# def generate_csv(request):
-#     print('Genarting Csv')
-#     getFirstRow()
-#     # print(result)
-
-
-# def getFirstRow():
-#     engine = create_engine('mysql+pymysql://root:BiVc18@genomics.bgu.ac.il:3306/netbio1', echo=True)
-#     metadata = MetaData(engine)
-#     Relevant_Benign = Table('Relevant_Benign_GRCh37-v1.6_CADD', metadata, autoload=True)
-#     Session = sessionmaker(bind=engine)
-#     session = Session()
-#     result = session.query(Relevant_Benign).first()
-#     print(result)
-
-
 def process_request(request):
     print('Trace is processing request')
     genes = request.get_json()['genes']
@@ -59,8 +42,8 @@ def generate_table_from_vcf(vcf, tissue):
 def send_query_to_Trace(genes):
     print("Sending Query to Trace")
     #TODO: Send query to Trace
-    from models import Df_Complete_Dataset
-
+    from ..Modles.models import Df_Complete_Dataset
+    
     #TODO: May need to use handle_genes_names function from TRACE
     q = Df_Complete_Dataset.query.filter(Df_Complete_Dataset.ID.in_(genes)).all()
     from sqlalchemy import inspect
