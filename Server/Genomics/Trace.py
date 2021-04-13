@@ -43,7 +43,6 @@ def send_query_to_Trace(genes):
     print("Sending Query to Trace")
     #TODO: Send query to Trace
     from models import Df_Complete_Dataset
-    
     #TODO: May need to use handle_genes_names function from TRACE
     q = Df_Complete_Dataset.query.filter(Df_Complete_Dataset.ID.in_(genes)).all()
     from sqlalchemy import inspect
