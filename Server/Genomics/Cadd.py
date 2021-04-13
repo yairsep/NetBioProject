@@ -18,7 +18,7 @@ def generate_vcf_file(vcf_string):
 
 
 def send_vcf_to_genomics(vcf_string):
-    generate_vcf_file(vcf_string)
+    # generate_vcf_file(vcf_string)
     # Todo: Check what arik tried to do
     # print("****************")
     # vcard = vobject.readOne('\n'.join([f'{k}:{v}' for k, v in vcf_string.items()]))
@@ -36,9 +36,9 @@ def send_vcf_to_genomics(vcf_string):
     client.load_system_host_keys()
     client.connect(CLUSTER_HOST, username=CLUSTER_USER, password=CLUSTER_PASSWORD)
     scp = SCPClient(client.get_transport())
-    # scp.put("./Data/vcf_test.vcf" , "./PathoSearch")
-    scp.put("./Data/vcf_output.vcf", "./PathoSearch")
-    print("VCF file has been sent to Cadd successfully")
+    # scp.put("./Data/input_test.vcf" , "./PathoSearch")
+    scp.put("./Data/test.vcf", "./PathoSearch/Cadd_Input")
+    print("VCF file has been sent to Genomics successfully")
     client.close()
 
 
@@ -48,37 +48,41 @@ def execute_cadd_script():
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     client.load_system_host_keys()
     client.connect(CLUSTER_HOST, username=CLUSTER_USER, password=CLUSTER_PASSWORD)
-    print('Connected to Genomics by SSH')
+    print('Executing CADD script by SSH')
     #TODO: Find cadd script
-    cmd = 'cd PathoSearch && python script.py'
+    cadd_dir = 'cd /mnt/disk1/CADD/CADD-scripts/ &&'
+    cadd_sh = './CADD.sh '
+    genome_build = '-a -g GRCh37 '
+    output_loc = '-o /mnt/disk2/home/estiyl/PathoSearch/Cadd_Output/cadd_output.tsv.gz '
+    input_loc = '/mnt/disk2/home/estiyl/PathoSearch/Cadd_Input/input.vcf'
+    cmd = cadd_dir + cadd_sh + genome_build + output_loc + input_loc
 
     # Executing the command
     stdin, stdout, stderr = client.exec_command(cmd)
-    print('SSH Command Was executed')
+    print('CADD script was executed')
     msg = stderr.readlines()
     print(msg)
     client.close()
 
 def fetch_vcf_output_from_genomics():
-    print("Fetching VCF file to CADD...")
+    print("Fetching VCF Output file from CADD...")
     CLUSTER_HOST, CLUSTER_USER, CLUSTER_PASSWORD = getConnectiionConfig()
     client = paramiko.SSHClient()
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     client.load_system_host_keys()
-    # scp = SCPClient(client.get_transport())
     cadd_output_exist = False
+    #TODO: Fix waiting
     while not cadd_output_exist:
         try:
             client.connect(CLUSTER_HOST, username=CLUSTER_USER, password=CLUSTER_PASSWORD)
             sftp = client.open_sftp()
-            sftp.chdir("/tmp/")
             try:
-                print(sftp.stat('/tmp/cadd_output.csv'))
-                print('File exists')
+                sftp.get('./PathoSearch/Cadd_Output/cadd_output.csv', './Data/Cadd_Output/cadd_output.csv')
+                print('File exists!')
+                print('Copying file from Genomics to Server...')
                 cadd_output_exist = True
             except IOError:
-                print('copying file')
-                sftp.get('/tmp/cadd_output.txt','./Data/cadd_output.csv')
+                sftp.get('./PathoSearch/Cadd_Output/cadd_output.csv', './Data/Cadd_Output/cadd_output.csv')
             client.close()
         except paramiko.SSHException:
             print("Server Couldn't Fetch Cadd CSV Output  Error")
@@ -87,9 +91,9 @@ def fetch_vcf_output_from_genomics():
 
 
 def process_request(request):
-    print('Cadd is processing  request')
-    vcf_string = request.data.decode("utf-8")
-    send_vcf_to_genomics(vcf_string)
+    print('Server is processing request for CADD')
+    # vcf_string = request.data.decode("utf-8")
+    # send_vcf_to_genomics(vcf_string)
     execute_cadd_script()
-    fetch_vcf_output_from_genomics()
+    # fetch_vcf_output_from_genomics()
     return "Cadd process has finished"

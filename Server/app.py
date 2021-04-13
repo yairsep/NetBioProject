@@ -73,8 +73,8 @@ def sample():
 @cross_origin(supports_credentials=True)
 def process_vcf():
     print("VCF file recived in Server")
-    Trace.process_request(request)
-    # Cadd.process_request(request)
+    # Trace.process_request(request)
+    Cadd.process_request(request)
     #Then Execute ML module
     # Learn.execute_ML_module()
     return "VCF file has been sent successfully"
