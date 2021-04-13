@@ -51,11 +51,13 @@ def execute_cadd_script():
     print('Executing CADD script by SSH')
     #TODO: Find cadd script
     cadd_dir = 'cd /mnt/disk1/CADD/CADD-scripts/ &&'
+    conda_env = 'source activate snakemake && '
     cadd_sh = './CADD.sh '
     genome_build = '-a -g GRCh37 '
     output_loc = '-o /mnt/disk2/home/estiyl/PathoSearch/Cadd_Output/cadd_output.tsv.gz '
-    input_loc = '/mnt/disk2/home/estiyl/PathoSearch/Cadd_Input/input.vcf'
-    cmd = cadd_dir + cadd_sh + genome_build + output_loc + input_loc
+    input_loc = '/mnt/disk2/home/estiyl/PathoSearch/Cadd_Input/github_input.vcf'
+    unzip_Output = '&& gunzip /mnt/disk2/home/estiyl/PathoSearch/Cadd_Output/cadd_output.tsv.gz'
+    cmd = cadd_dir + conda_env+ cadd_sh + genome_build + output_loc + input_loc + unzip_Output
 
     # Executing the command
     stdin, stdout, stderr = client.exec_command(cmd)
@@ -77,12 +79,12 @@ def fetch_vcf_output_from_genomics():
             client.connect(CLUSTER_HOST, username=CLUSTER_USER, password=CLUSTER_PASSWORD)
             sftp = client.open_sftp()
             try:
-                sftp.get('./PathoSearch/Cadd_Output/cadd_output.csv', './Data/Cadd_Output/cadd_output.csv')
+                sftp.get('./PathoSearch/Cadd_Output/cadd_output.tsv', './Data/Cadd_Output/cadd_output.tsv')
                 print('File exists!')
                 print('Copying file from Genomics to Server...')
                 cadd_output_exist = True
             except IOError:
-                sftp.get('./PathoSearch/Cadd_Output/cadd_output.csv', './Data/Cadd_Output/cadd_output.csv')
+                sftp.get('./PathoSearch/Cadd_Output/cadd_output.tsv', './Data/Cadd_Output/cadd_output.tsv')
             client.close()
         except paramiko.SSHException:
             print("Server Couldn't Fetch Cadd CSV Output  Error")
@@ -95,5 +97,5 @@ def process_request(request):
     # vcf_string = request.data.decode("utf-8")
     # send_vcf_to_genomics(vcf_string)
     execute_cadd_script()
-    # fetch_vcf_output_from_genomics()
+    fetch_vcf_output_from_genomics()
     return "Cadd process has finished"
