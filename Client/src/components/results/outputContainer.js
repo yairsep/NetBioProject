@@ -2,11 +2,10 @@
 import React, { useEffect, useState } from 'react';
 import { Grid, Label, Dropdown, Placeholder, Loader } from 'semantic-ui-react';
 import { useHistory, withRouter, useLocation } from 'react-router-dom';
-import { fetchGene, fetchSample } from './fetchers';
 import ResultsTable from '../content/resultsTable';
 import tissues from '../common/tissues';
 import Tabs from '../common/tabs';
-import { sendVcfFile } from '../Genomics/genomics_api';
+import { sendVcfFile, fetchSample } from '../Genomics/genomics_api';
 
 const OutputContainer = (props) => {
   const initialTissue = () => {
