@@ -10,12 +10,21 @@ def getConnectiionConfig():
     return CLUSTER_HOST, CLUSTER_USER, CLUSTER_PASSWORD
 
 
-def generate_vcf_file(vcf_string):
-    f = open("./Data/vcf_output.vcf", "a")
-    # TODO: Parse string
-    f.write(vcf_string)
-    f.close()
+# def generate_vcf_file(vcf_string):
+#     f = open("./Data/vcf_output.vcf", "a")
+#     # TODO: Parse string
+#     f.write(vcf_string)
+#     f.close()
 
+def generate_vcf_file(vcf_string):
+    f = open("./Data/vcf_output.vcf", "a") 
+    genes = vcf_string.decode("utf-8").split('\n')[1]
+    genes=genes[12:-2]
+    genes=genes.replace('\\t','    ')
+    genes=genes.replace('\\n','\n')
+
+    f.write(genes)
+    f.close()
 
 def send_vcf_to_genomics(vcf_string):
     # generate_vcf_file(vcf_string)
