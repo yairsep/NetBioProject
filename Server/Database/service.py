@@ -1,6 +1,5 @@
 from importlib import import_module
 # from api.v1.schemas import InteractionsContext
-# from NetBioProject.Server.Utils.utils import sample
 # from api.v1.models import Updates
 
 
@@ -9,8 +8,6 @@ from importlib import import_module
 # 
 def generate_table_from_vcf(vcf, tissue):
     print('tissue: %s, genes: %s' % (tissue, str(vcf)))
-    genes = set([])
-
     s_vcf = vcf.split('\n')
     vars = []
     for line in s_vcf:
@@ -18,11 +15,6 @@ def generate_table_from_vcf(vcf, tissue):
             vars.append(line)
     variants = {'variants': vars}
     print(variants)
-
-
-def generate_sample_table():
-
-    return sample
 
 
 def handle_genes_names(genes):
