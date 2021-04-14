@@ -12,8 +12,14 @@ export const fetchTrace = async () => {
   return res.data
 }
 
+export const fetchSample = async () => {
+  const res = await axios.get(`${baseUrl}/sample`)
+  return res.data
+}
+
 export const sendVcfFile = async (vcfFile) => {
-  const req = await axios.post(`${baseUrl}/vcf`, vcfFile).then((response) => {
-    console.log('Sent vcf file');
-  });
+  console.log('vcfFile:', vcfFile)
+  const req = await axios.post(`${baseUrl}/vcf`, vcfFile)
+  console.log(req)
+  return fetchSample()
 }
