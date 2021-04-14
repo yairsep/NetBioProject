@@ -2,10 +2,10 @@
 import React, { useEffect, useState } from 'react';
 import { Grid, Label, Dropdown, Placeholder, Loader } from 'semantic-ui-react';
 import { useHistory, withRouter, useLocation } from 'react-router-dom';
-import { fetchGene, fetchSample } from './fetchers';
 import ResultsTable from '../content/resultsTable';
 import tissues from '../common/tissues';
 import Tabs from '../common/tabs';
+import { sendVcfFile, fetchSample } from '../Genomics/genomics_api';
 
 const OutputContainer = (props) => {
   const initialTissue = () => {
@@ -44,9 +44,9 @@ const OutputContainer = (props) => {
   useEffect(() => {
     //TODO:Switch to sample from the algorithm run
     const fetchData = async () => {
-      console.log(`path:${pathname}`)
-      console.log(history.location.data);
-      const res = await (pathname.includes('results') ? fetchGene() : fetchSample())
+      const { data } = history.location
+      const vcfData = { genes: data.genes, tissue: data.tissue, inputFormat: data.inputFormat, genomeVersion: data.genomeVersion }
+      const res = await (pathname.includes('results') ? sendVcfFile(vcfData) : fetchSample())
       console.log(res)
       setResults(res)
       setFetchStatus(true)

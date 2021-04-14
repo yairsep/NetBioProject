@@ -3,7 +3,9 @@ import axios from 'axios'
 
 const baseUrl = 'https://netbio.bgu.ac.il/pathosearch-api';
 
-export const fetchGene = (props) => (null)
+export const fetchGene = async (props) => {
+  console.log(props)
+}
 
 export const fetchSample = async () => {
   const res = await axios.get(`${baseUrl}/sample`)

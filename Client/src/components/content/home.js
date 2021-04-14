@@ -4,7 +4,6 @@ import { withRouter, useHistory } from 'react-router-dom';
 import tissues from '../common/tissues';
 import Uploader from '../form/uploader'
 import GeneSearch from '../form/geneSearch'
-import { sendVcfFile } from '../Genomics/genomics_api';
 
 const Home = () => {
   const [selectedTissue, setTissue] = useState('heart')
@@ -12,7 +11,7 @@ const Home = () => {
   // const [userName, setUserName] = useState('')
   const [inputFormat, setInputFormat] = useState('VCF')
   const [inputData, setInputData] = useState(['', []]); //[fileName, Data]
-  const [genomeVersion, setGenomeVersion] = useState('hg38')
+  const [genomeVersion, setGenomeVersion] = useState('GRCh38')
   const history = useHistory()
 
   useEffect(() => {
@@ -23,7 +22,7 @@ const Home = () => {
     setInputFormat(value)
     setInputData(['', []])
 
-    value !== 'VCF' ? setGenomeVersion('') : setGenomeVersion('hg38')
+    value !== 'VCF' ? setGenomeVersion('') : setGenomeVersion('GRCh38')
   }
 
   const onGeneResultSelect = (genes) => {
@@ -58,7 +57,7 @@ const Home = () => {
     const fileName = file.name
     const reader = new FileReader();
     reader.onloadend = () => setInputData([fileName, reader.result])
-    console.log("reader:" , reader.readAsText(file));
+    console.log('reader:', reader.readAsText(file));
   }
 
   const onSubmit = (e) => {
@@ -67,13 +66,11 @@ const Home = () => {
     genes = inputFormat === 'VCF'
       ? genes.split(/\r\n|\n|\r/)
       : null
-    console.log('genes:' , genes);
+    console.log('genes:', genes);
     history.push({
       pathname: '/results',
       data: { tissue: selectedTissue, genes, inputFormat, genomeVersion }
     })
-    const vcfData = { tissue: selectedTissue, genes, inputFormat, genomeVersion }
-    sendVcfFile(vcfData);
   }
 
   const onGenomeVersionSelect = (e, { value }) => {
@@ -135,18 +132,18 @@ const Home = () => {
                 <div>
                   <Checkbox
                     radio
-                    value="hg38"
+                    value="GRCh38"
                     onChange={onGenomeVersionSelect}
-                    checked={genomeVersion === 'hg38'}
-                    label="hg38"
+                    checked={genomeVersion === 'GRCh38'}
+                    label="GRCh38"
                     disabled={inputFormat !== 'VCF'}
                   />
                   <Checkbox
                     radio
-                    value="hg37"
+                    value="GRCh37"
                     onChange={onGenomeVersionSelect}
-                    checked={genomeVersion === 'hg37'}
-                    label="hg37"
+                    checked={genomeVersion === 'GRCh37'}
+                    label="GRCh37"
                     disabled={inputFormat !== 'VCF'}
                   />
                 </div>
