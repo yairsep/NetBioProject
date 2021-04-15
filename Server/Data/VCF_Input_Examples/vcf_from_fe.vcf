@@ -1,0 +1,6 @@
+{
+	"genes": "#CHROM\tPOS\tID\tREF\tALT\n1\t983404\t137965991\tC\tT\n1\t6529186\t\tTCC\t\n1\t11159851\t146839323\t\tG\tA",
+	"genomeVersion": 37,
+	"tissue": "heart",
+	"inputFormat": "VCF"
+}

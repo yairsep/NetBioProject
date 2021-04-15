@@ -1,6 +1,10 @@
 from scp import SCPClient
 import os, paramiko, vobject
+import pandas as pd
 import getpass
+import io
+import re
+
 
 def getConnectiionConfig():
     CLUSTER_HOST = 'genomics.bgu.ac.il'
@@ -25,7 +29,7 @@ def send_vcf_to_genomics(vcf_string):
     # vcard.name = 'VCARD'
     # #vcard.useBegin = True
     # vcard.prettyPrint()
-    # with open('./test.vcf', 'w', newline='') as f:
+    # with open('./vcf_from_fe.vcf', 'w', newline='') as f:
     #     f.write(vcard.serialize())
     # print("****************")
 
@@ -37,7 +41,7 @@ def send_vcf_to_genomics(vcf_string):
     client.connect(CLUSTER_HOST, username=CLUSTER_USER, password=CLUSTER_PASSWORD)
     scp = SCPClient(client.get_transport())
     # scp.put("./Data/input_test.vcf" , "./PathoSearch")
-    scp.put("./Data/test.vcf", "./PathoSearch/Cadd_Input")
+    scp.put("./Data/vcf_from_fe.vcf", "./PathoSearch/Cadd_Input")
     print("VCF file has been sent to Genomics successfully")
     client.close()
 
@@ -91,11 +95,24 @@ def fetch_vcf_output_from_genomics():
     print("VCF file has been been sent to Server successfully")
     client.close()
 
+def convert_tsv_to_csv():
+    print("Converting tsv file to csv...")
+    # tsv_file = './Data/Cadd_Output/cadd_output.tsv'
+    # csv_table = pd.read_table(tsv_file, sep='\t')
+    # csv_table.to_csv('./Data/Cadd_Output/cadd_output.csv', index=False)
+    # Open csv file
+    csv = io.open("./Data/Cadd_Output/cadd_output.csv", mode="w", encoding="utf-8")
+    # Convert file_name.tsv to file_name.csv
+    with io.open("./Data/Cadd_Output/cadd_output.tsv", mode="r", encoding="utf-8") as tsv:
+        for line in tsv:
+            csv.write(re.sub('\t', ',', re.sub('(^|[\t])([^\t]*\,[^\t\n]*)', r'\1"\2"', line)))
+    print("Converting tsv to csv Finished!")
 
 def process_request(request):
     print('Server is processing request for CADD')
     # vcf_string = request.data.decode("utf-8")
     # send_vcf_to_genomics(vcf_string)
-    execute_cadd_script()
-    fetch_vcf_output_from_genomics()
+    # execute_cadd_script()
+    # fetch_vcf_output_from_genomics()
+    convert_tsv_to_csv()
     return "Cadd process has finished"
