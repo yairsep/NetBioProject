@@ -17,7 +17,7 @@ def getConnectiionConfig():
 #     f.close()
 
 def generate_vcf_file(vcf_string, date_time):
-    f = open("./Data/{}.vcf".format(date_time), "a") 
+    f = open("./Data/Cadd_Input/{}.vcf".format(date_time), "a") 
     # f = open("./Data/vcf_output.vcf", "a") 
     # genes = vcf_string.split('\n')[1]
     # genes=genes[12:-2]
@@ -50,7 +50,7 @@ def send_vcf_to_genomics(vcf_string, date_time):
     client.connect(CLUSTER_HOST, username=CLUSTER_USER, password=CLUSTER_PASSWORD)
     scp = SCPClient(client.get_transport())
     # scp.put("./Data/input_test.vcf" , "./PathoSearch")
-    scp.put("./Data/{}.vcf".format(date_time), "./PathoSearch/Cadd_Input")
+    scp.put("./Data/Cadd_Input/{}.vcf".format(date_time), "./PathoSearch/Cadd_Input")
     # scp.put("./Data/vcf_output.vcf", "./PathoSearch/Cadd_Input")
     print("VCF file has been sent to Genomics successfully")
     client.close()

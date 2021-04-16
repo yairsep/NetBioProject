@@ -70,12 +70,11 @@ def sample():
 @app.route('/vcf', methods=['POST'])
 @cross_origin(supports_credentials=True)
 def process_vcf():
-    print(request.data.decode("utf-8"))
     print("VCF file recived in Server")
     date_time = datetime.datetime.now()
     date_time = str(date_time.replace(microsecond=0)).replace(" ",  "__").replace(':', '_')
-    # Trace.process_request(request)
     Cadd.process_request(request, date_time)
+    Trace.process_request(request, date_time)
     #Then Execute ML module
     # Learn.execute_ML_module()
     return "VCF file has been sent successfully"
