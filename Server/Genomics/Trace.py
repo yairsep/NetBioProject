@@ -1,57 +1,69 @@
 import requests
 import json
+import csv
 
-def process_request(request):
+def process_request(request, date_time):
     print('Trace is processing request')
     genes = request.get_json()['genes']
     genomeVersion = request.get_json()['genomeVersion']
     inputFormat = request.get_json()['inputFormat']
     tissue = request.get_json()['tissue']
-    genes_names = generate_table_from_vcf(genes, tissue)
+    generate_table_from_vcf(genes, tissue, date_time)
 
 
 # TODO: Make a csv file from the variations, inside Genomics
 #  Filter from the db the variations from trace(df_fulldataset), put inside csv.
-def generate_table_from_vcf(vcf, tissue):
-    # print('tissue: %s, genes: %s' % (tissue, str(vcf)))
+def generate_table_from_vcf(vcf, tissue, date_time):
+    print('generating TRACE data from GeneIDs')
     genes = set([])
 
-    s_vcf = vcf.split('\n')
-    vars = []
-    for line in s_vcf:
-        if len(line) > 0 and not line[0] == '#' and not ('CHR' in line):
-            vars.append(line)
-    variants = {'variants': vars}
-    headers = {"Content-Type": "application/json", "Accept": "application/json"}
-    res = requests.post("https://rest.ensembl.org/vep/homo_sapiens/region", headers=headers, data=json.dumps(variants))
+    #TODO: This is for getting the GeneIDs from the api
+    # s_vcf = vcf.split('\n')
+    # vars = []
+    # for line in s_vcf:
+    #     if len(line) > 0 and not line[0] == '#' and not ('CHR' in line):
+    #         vars.append(line)
+    # variants = {'variants': vars}
+    # headers = {"Content-Type": "application/json", "Accept": "application/json"}
+    # res = requests.post("https://rest.ensembl.org/vep/homo_sapiens/region", headers=headers, data=json.dumps(variants))
 
-    if not res.ok:
-        print('Error getting genes names for TRACE')
-    else:
-        print('res', res.json())
-        res_data = res.json()
-        for item in res_data:
-            if "transcript_consequences" in item:
-                for var in item["transcript_consequences"]:
-                    if "gene_id" in var:
-                        genes.add(var["gene_id"])
-                        
+    # if not res.ok:
+    #     print('Error getting genes names for TRACE')
+    # else:
+    #     print('res', res.json())
+    #     res_data = res.json()
+    #     for item in res_data:
+    #         if "transcript_consequences" in item:
+    #             for var in item["transcript_consequences"]:
+    #                 if "gene_id" in var:
+    #                     genes.add(var["gene_id"])
+
+    with open("./Data/Cadd_Output/{}_output.tsv".format(date_time)) as in_file:
+      line_count = 0
+      for line in in_file:
+          if line_count > 1:
+            columns = line.split("\t")
+            gene_name = columns[18]
+            if gene_name != 'NA':
+              genes.add(gene_name)
+          line_count += 1
     print(genes)
-    send_query_to_Trace(list(genes))
+    send_query_to_Trace(list(genes), date_time)
 
-def send_query_to_Trace(genes):
+def send_query_to_Trace(genes, date_time):
     print("Sending Query to Trace")
     #TODO: Send query to Trace
     from models import Df_Complete_Dataset
-    #TODO: May need to use handle_genes_names function from TRACE
     q = Df_Complete_Dataset.query.filter(Df_Complete_Dataset.ID.in_(genes)).all()
     from sqlalchemy import inspect
     inst = inspect(Df_Complete_Dataset)
     attr_names = [c_attr.key for c_attr in inst.mapper.column_attrs]
-    print(attr_names)
+    values_for_csv = list()
+    values_for_csv.append(attr_names)
     for row in q:
-        for attr in attr_names:
-            print(row.ID + " " + attr + " " + str(getattr(row, attr)))
+        values_for_csv.append(multi_getattr(row, attr_names))
+      
+    generate_csv_file(values_for_csv, date_time)
 
     # engine = create_engine('mysql+pymysql://root:BiVc18@genomics.bgu.ac.il:3306/netbio1', echo=True)
     # metadata = MetaData(engine)
@@ -60,3 +72,30 @@ def send_query_to_Trace(genes):
     # session = Session()
     # result = session.query(Relevant_Benign).first()
     # print(result)
+
+def generate_csv_file(values_for_csv, date_time):
+  print('generating csv file from TRACE data')
+  with open('./data/TRACE_Output/{}.csv'.format(date_time), 'w', newline='') as csvfile:
+      spamwriter = csv.writer(csvfile, delimiter=',')
+      for value in values_for_csv:
+        spamwriter.writerow(value)
+
+def multi_getattr(row, attr, default = None):
+    """
+    Get a named attribute from an object; multi_getattr(x, 'a.b.c.d') is
+    equivalent to x.a.b.c.d. When a default argument is given, it is
+    returned when any attribute in the chain doesn't exist; without
+    it, an exception is raised when a missing attribute is encountered.
+
+    """
+    sol = list()
+    for i in attr:
+        try:
+            obj = getattr(row, i)
+            sol.append(obj)
+        except AttributeError:
+            if default:
+                return default
+            else:
+                raise
+    return sol
