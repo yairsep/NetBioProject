@@ -21,9 +21,13 @@ def generate_vcf_file(vcf_string, date_time):
     # f = open("./Data/vcf_output.vcf", "a") 
     # genes = vcf_string.split('\n')[1]
     # genes=genes[12:-2]
+    # print(vcf_string)
     genes = '\n'.join(vcf_string)
+    genes=genes.replace('\t\t', '\t.\t')
+    genes=genes.replace('\t\n', '\t.\n')
     genes=genes.replace('\\t','    ')
     genes=genes.replace('\\n','\n')
+    print(genes)
     print(genes)
 
     f.write(genes)
