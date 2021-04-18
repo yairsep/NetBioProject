@@ -44,4 +44,16 @@ def execute_ML_module(date_time):
     print('SSH Command in Cluster Was executed')
     msg = stderr.readlines()
     print(msg)
+
+    # Coping Hanan algo output to server
+    hanan_output_csv = "./Data/Hanan_Output"
+    scp.put(cluster_output_path, hanan_output_csv)
+
     client.close()
+
+
+def getOutput(date_time):
+    json_output = {}
+    with open("./Data/Hanan_Output/{}_hanan_output.tsv".format(date_time)) as input_file:
+        print(input_file)
+    return json_output

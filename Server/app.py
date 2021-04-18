@@ -61,6 +61,8 @@ def process_vcf():
     Trace.process_request(request, date_time)
     # Then Execute ML module
     # Learn.execute_ML_module(date_time)
+    # hanan_output = Learn.getOutput(date_time)
+    # return hanan_output
     return "VCF file has been sent successfully"
 
 
