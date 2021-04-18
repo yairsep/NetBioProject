@@ -9,9 +9,11 @@ def getConnectionConfig():
 
     return CLUSTER_HOST, CLUSTER_USER, CLUSTER_PASSWORD
 
-
+#TODO: Fix this function
 def generate_vcf_file(vcf_string, date_time):
     f = open("./Data/Cadd_Input/{}.vcf".format(date_time), "a")
+    # if ("#CHROM" in vcf_string[0]):
+    #     vcf_string = vcf_string[1:]
     genes = '\n'.join(vcf_string)
     genes = genes.replace('\t\t', '\t.\t')
     genes = genes.replace('\t\n', '\t.\n')
@@ -21,8 +23,7 @@ def generate_vcf_file(vcf_string, date_time):
     f.close()
 
 
-def send_vcf_to_genomics(vcf_string, date_time):
-    generate_vcf_file(vcf_string, date_time)
+def send_vcf_to_genomics(date_time):
     print("Sending VCF file to CADD...")
     CLUSTER_HOST, CLUSTER_USER, CLUSTER_PASSWORD = getConnectionConfig()
     client = paramiko.SSHClient()
@@ -88,7 +89,8 @@ def process_request(request, date_time):
     print('Server is processing request for CADD')
     vcf_string = request.get_json()["genes"]
     genomeVersion = request.get_json()["genomeVersion"]
-    send_vcf_to_genomics(vcf_string, date_time)
+    generate_vcf_file(vcf_string, date_time)
+    send_vcf_to_genomics(date_time)
     execute_cadd_script(date_time, genomeVersion)
     fetch_vcf_output_from_genomics(date_time)
     return "Cadd process has finished"
