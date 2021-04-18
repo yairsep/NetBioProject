@@ -1,4 +1,4 @@
-import paramiko
+import paramiko , os , time
 from scp import SCPClient
 
 
@@ -46,9 +46,18 @@ def execute_ML_module(date_time):
     print(msg)
 
     # Coping Hanan algo output to server
+    
+    server_hanan_output_path = './Data/Hanan_Output/{}_output.tsv'.format(date_time)
+    sftp = client.open_sftp()
     hanan_output_csv = "./Data/Hanan_Output"
-    scp.put(cluster_output_path, hanan_output_csv)
-
+    while not os.path.exists(server_hanan_output_path):
+        try:
+            print('Trying to copy file from Genomics to Server...')
+            sftp.get(cluster_output_path, hanan_output_csv)
+        except IOError or paramiko.SSHException:
+            time.sleep(5)
+            print('Waiting 5 secs for re-copying')
+            break
     client.close()
 
 
