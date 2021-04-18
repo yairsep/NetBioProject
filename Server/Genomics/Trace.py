@@ -44,7 +44,7 @@ def send_query_to_Trace(genes, date_time):
 
 def generate_csv_file(values_for_csv, date_time):
   print('generating csv file from TRACE data')
-  with open('./data/TRACE_Output/{}.csv'.format(date_time), 'w', newline='') as csvfile:
+  with open('./Data/TRACE_Output/{}.csv'.format(date_time), 'w', newline='') as csvfile:
       spamwriter = csv.writer(csvfile, delimiter=',')
       for value in values_for_csv:
         spamwriter.writerow(value)
