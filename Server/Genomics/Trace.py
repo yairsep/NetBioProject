@@ -11,32 +11,9 @@ def process_request(request, date_time):
     generate_table_from_vcf(genes, tissue, date_time)
 
 
-# TODO: Make a csv file from the variations, inside Genomics
-#  Filter from the db the variations from trace(df_fulldataset), put inside csv.
 def generate_table_from_vcf(vcf, tissue, date_time):
     print('generating TRACE data from GeneIDs')
     genes = set([])
-
-    #TODO: This is for getting the GeneIDs from the api
-    # s_vcf = vcf.split('\n')
-    # vars = []
-    # for line in s_vcf:
-    #     if len(line) > 0 and not line[0] == '#' and not ('CHR' in line):
-    #         vars.append(line)
-    # variants = {'variants': vars}
-    # headers = {"Content-Type": "application/json", "Accept": "application/json"}
-    # res = requests.post("https://rest.ensembl.org/vep/homo_sapiens/region", headers=headers, data=json.dumps(variants))
-
-    # if not res.ok:
-    #     print('Error getting genes names for TRACE')
-    # else:
-    #     print('res', res.json())
-    #     res_data = res.json()
-    #     for item in res_data:
-    #         if "transcript_consequences" in item:
-    #             for var in item["transcript_consequences"]:
-    #                 if "gene_id" in var:
-    #                     genes.add(var["gene_id"])
 
     with open("./Data/Cadd_Output/{}_output.tsv".format(date_time)) as in_file:
       line_count = 0

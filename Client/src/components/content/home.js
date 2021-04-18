@@ -29,29 +29,6 @@ const Home = () => {
     setInputData(['', genes])
   }
 
-  // //TODO: Change this function (just for testing)
-  // const onFileUpload = (e) => {
-  //   const file = e.target.files[0]
-  //   const fileName = file.name
-  //   console.log(fileName);
-  //   const data = new FormData()
-  //   data.append(fileName, file);
-  //   sendVcfFile(data);
-  // }
-  //
-  // const onSubmit = (e) => {
-  //   e.preventDefault()
-  //   let genes = inputData[1]
-  //   genes = inputFormat === 'simpleFile'
-  //     ? genes.split(/\r\n|\n|\r/)
-  //     : null
-  //
-  //   history.push({
-  //     pathname: '/results',
-  //     data: { tissue: selectedTissue, genes, inputFormat, genomeVersion }
-  //   })
-  // }
-
   const onFileUpload = (e) => {
     const file = e.target.files[0]
     const fileName = file.name

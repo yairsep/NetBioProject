@@ -16,8 +16,6 @@ cors = CORS(app, expose_headers='Authorization', support_credentials=True , reso
 # apply configuration
 cfg = os.path.join(os.path.dirname(__file__), 'config/dev.py')
 app.config.from_pyfile(cfg)
-UPLOAD_FOLDER = './Data'
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 # initialize error logging.
 if not app.debug:
     emailHandler.sendEmail()
@@ -43,21 +41,6 @@ get_genes_args = {
 }
 
 
-# @app.route('/api/genes', methods=['POST'])
-# # @use_kwargs(get_vcf_args)
-# # @cross_origin()
-# def vcf_and_tissues():
-#     # save_location(request.remote_addr)
-#     genes = request.get_json()['genes']
-#     genomeVersion = request.get_json()['genomeVersion']
-#     inputFormat = request.get_json()['inputFormat']
-#     tissue = request.get_json()['tissue']
-#     from api.v1.service import generate_table_from_vcf
-#     genes_names = generate_table_from_vcf(genes, tissue)
-#     print(genes_names)
-#     # return jsonify({'genes': nodes, 'summary': params}), 200
-#     return jsonify({'genes': genes})
-
 @app.route('/sample', methods=['GET'])
 # @cross_origin()
 def sample():
@@ -70,7 +53,7 @@ def sample():
 @app.route('/vcf', methods=['POST'])
 @cross_origin(supports_credentials=True)
 def process_vcf():
-    print("VCF file recived in Server")
+    print("VCF file received in Server")
     date_time = datetime.datetime.now()
     date_time = str(date_time.replace(microsecond=0)).replace(" ",  "__").replace(':', '_')
     Cadd.process_request(request, date_time)

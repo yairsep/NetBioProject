@@ -1,6 +1,5 @@
 from scp import SCPClient
 import os, paramiko, vobject
-import getpass
 
 def getConnectiionConfig():
     CLUSTER_HOST = 'genomics.bgu.ac.il'
@@ -9,19 +8,8 @@ def getConnectiionConfig():
 
     return CLUSTER_HOST, CLUSTER_USER, CLUSTER_PASSWORD
 
-
-# def generate_vcf_file(vcf_string):
-#     f = open("./Data/vcf_output.vcf", "a")
-#     # TODO: Parse string
-#     f.write(vcf_string)
-#     f.close()
-
 def generate_vcf_file(vcf_string, date_time):
-    f = open("./Data/Cadd_Input/{}.vcf".format(date_time), "a") 
-    # f = open("./Data/vcf_output.vcf", "a") 
-    # genes = vcf_string.split('\n')[1]
-    # genes=genes[12:-2]
-    # print(vcf_string)
+    f = open("./Data/Cadd_Input/{}.vcf".format(date_time), "a")
     genes = '\n'.join(vcf_string)
     genes=genes.replace('\t\t', '\t.\t')
     genes=genes.replace('\t\n', '\t.\n')
@@ -34,17 +22,6 @@ def generate_vcf_file(vcf_string, date_time):
     f.close()
 
 def send_vcf_to_genomics(vcf_string, date_time):
-    # generate_vcf_file(vcf_string)
-    # Todo: Check what arik tried to do
-    # print("****************")
-    # vcard = vobject.readOne('\n'.join([f'{k}:{v}' for k, v in vcf_string.items()]))
-    # vcard.name = 'VCARD'
-    # #vcard.useBegin = True
-    # vcard.prettyPrint()
-    # with open('./test.vcf', 'w', newline='') as f:
-    #     f.write(vcard.serialize())
-    # print("****************")
-
     generate_vcf_file(vcf_string, date_time)
     print("Sending VCF file to CADD...")
     CLUSTER_HOST, CLUSTER_USER, CLUSTER_PASSWORD = getConnectiionConfig()
@@ -53,9 +30,7 @@ def send_vcf_to_genomics(vcf_string, date_time):
     client.load_system_host_keys()
     client.connect(CLUSTER_HOST, username=CLUSTER_USER, password=CLUSTER_PASSWORD)
     scp = SCPClient(client.get_transport())
-    # scp.put("./Data/input_test.vcf" , "./PathoSearch")
     scp.put("./Data/Cadd_Input/{}.vcf".format(date_time), "./PathoSearch/Cadd_Input")
-    # scp.put("./Data/vcf_output.vcf", "./PathoSearch/Cadd_Input")
     print("VCF file has been sent to Genomics successfully")
     client.close()
 
@@ -113,7 +88,6 @@ def fetch_vcf_output_from_genomics(date_time):
 
 def process_request(request, date_time):
     print('Server is processing request for CADD')
-    # vcf_string = request.data.decode("utf-8")
     vcf_string = request.get_json()["genes"]
     genomeVersion = request.get_json()["genomeVersion"]
     send_vcf_to_genomics(vcf_string, date_time)
