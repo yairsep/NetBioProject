@@ -7,7 +7,7 @@ def getConnectiionConfig():
 
     return CLUSTER_HOST , CLUSTER_USER , CLUSTER_PASSWORD
 
-def execute_ML_module():
+def execute_ML_module(date_time):
     #Send cadd & trace output to ML Module
     print("Execute ML Module")
     # Initiating a ssh client protocol

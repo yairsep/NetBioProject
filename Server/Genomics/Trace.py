@@ -42,14 +42,6 @@ def send_query_to_Trace(genes, date_time):
       
     generate_csv_file(values_for_csv, date_time)
 
-    # engine = create_engine('mysql+pymysql://root:BiVc18@genomics.bgu.ac.il:3306/netbio1', echo=True)
-    # metadata = MetaData(engine)
-    # Relevant_Benign = Table('Relevant_Benign_GRCh37-v1.6_CADD', metadata, autoload=True)
-    # Session = sessionmaker(bind=engine)
-    # session = Session()
-    # result = session.query(Relevant_Benign).first()
-    # print(result)
-
 def generate_csv_file(values_for_csv, date_time):
   print('generating csv file from TRACE data')
   with open('./data/TRACE_Output/{}.csv'.format(date_time), 'w', newline='') as csvfile:

@@ -1,9 +1,9 @@
 import os
 import sys
-from flask import Flask, jsonify, send_file, request , session
+from flask import Flask, jsonify, request
 from flask_cors import CORS, cross_origin
 from flask_sqlalchemy import SQLAlchemy
-from Genomics import Cadd , Trace , Learn
+from Genomics import Cadd, Trace, Learn
 from Email import emailHandler
 import datetime
 
@@ -11,7 +11,8 @@ sys.path.insert(0, '')
 
 # initialize flask app
 app = Flask(__name__)
-cors = CORS(app, expose_headers='Authorization', support_credentials=True , resources={r"/*": {"origins": "*"}}, headers="Content-Type")
+cors = CORS(app, expose_headers='Authorization', support_credentials=True, resources={r"/*": {"origins": "*"}},
+            headers="Content-Type")
 
 # apply configuration
 cfg = os.path.join(os.path.dirname(__file__), 'config/dev.py')
@@ -55,33 +56,12 @@ def sample():
 def process_vcf():
     print("VCF file received in Server")
     date_time = datetime.datetime.now()
-    date_time = str(date_time.replace(microsecond=0)).replace(" ",  "__").replace(':', '_')
+    date_time = str(date_time.replace(microsecond=0)).replace(" ", "__").replace(':', '_')
     Cadd.process_request(request, date_time)
     Trace.process_request(request, date_time)
-    #Then Execute ML module
-    # Learn.execute_ML_module()
+    # Then Execute ML module
+    # Learn.execute_ML_module(date_time)
     return "VCF file has been sent successfully"
-
-
-def save_location(ip):
-    import ipinfo
-    access_token = '38497bee5db942'
-    handler = ipinfo.getHandler(access_token)
-    res = handler.getDetails(ip)
-
-    import datetime
-    date_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
-    row = ['TRACE', date_time, res.latitude, res.longitude, res.country_name, res.city]
-
-    import csv
-    try:
-        with open(r'/media/disk2/users/trace/Websites/Server/users_locations.csv', 'a', encoding='utf-8') as f:
-            writer = csv.writer(f)
-            writer.writerow(row)
-    except:
-        print('save_location has failed')
-
 
 
 @app.errorhandler(422)

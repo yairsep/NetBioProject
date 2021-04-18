@@ -1,5 +1,5 @@
 from scp import SCPClient
-import os, paramiko, vobject
+import os, paramiko, vobject, time
 
 def getConnectiionConfig():
     CLUSTER_HOST = 'genomics.bgu.ac.il'
@@ -15,9 +15,6 @@ def generate_vcf_file(vcf_string, date_time):
     genes=genes.replace('\t\n', '\t.\n')
     genes=genes.replace('\\t','    ')
     genes=genes.replace('\\n','\n')
-    print(genes)
-    print(genes)
-
     f.write(genes)
     f.close()
 
@@ -42,7 +39,6 @@ def execute_cadd_script(date_time, genomeVersion):
     client.load_system_host_keys()
     client.connect(CLUSTER_HOST, username=CLUSTER_USER, password=CLUSTER_PASSWORD)
     print('Executing CADD script by SSH')
-    #TODO: Find cadd script
     cadd_dir = 'cd /mnt/disk1/CADD/CADD-scripts/ &&'
     conda_env = 'source activate snakemake && '
     cadd_sh = './CADD.sh '
@@ -66,22 +62,20 @@ def fetch_vcf_output_from_genomics(date_time):
     client = paramiko.SSHClient()
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     client.load_system_host_keys()
-    cadd_output_exist = False
-    #TODO: Fix waiting
-    while not cadd_output_exist:
+    client.connect(CLUSTER_HOST, username=CLUSTER_USER, password=CLUSTER_PASSWORD)
+    sftp = client.open_sftp()
+    genomics_cadd_output_path = './PathoSearch/Cadd_Output/{}_output.tsv'.format(date_time)
+    server_cadd_output_path = './Data/Cadd_Output/{}_output.tsv'.format(date_time)
+    while not os.path.exists(server_cadd_output_path):
         try:
-            client.connect(CLUSTER_HOST, username=CLUSTER_USER, password=CLUSTER_PASSWORD)
-            sftp = client.open_sftp()
-            try:
-                sftp.get('./PathoSearch/Cadd_Output/{}_output.tsv'.format(date_time), './Data/Cadd_Output/{}_output.tsv'.format(date_time))
-                print('File exists!')
-                print('Copying file from Genomics to Server...')
-                cadd_output_exist = True
-            except IOError:
-                sftp.get('./PathoSearch/Cadd_Output/{}_output.tsv'.format(date_time), './Data/Cadd_Output/{}_output.tsv'.format(date_time))
-            client.close()
-        except paramiko.SSHException:
-            print("Server Couldn't Fetch Cadd CSV Output  Error")
+            print('Trying to copy file from Genomics to Server...')
+            sftp.get(genomics_cadd_output_path, server_cadd_output_path)
+        except IOError or paramiko.SSHException:
+            time.sleep(5)
+            print('Waiting 5 secs for re-copying')
+            break
+
+    client.close()
     print("VCF file has been been sent to Server successfully")
     client.close()
 

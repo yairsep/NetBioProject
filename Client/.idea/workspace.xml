@@ -2,11 +2,97 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4a7ac9b4-068f-4643-aad6-459a5f891426" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Input/2021-04-14__16_47_19.vcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Input/2021-04-14__16_51_34.vcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Input/2021-04-14__16_58_14.vcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Input/2021-04-14__17_00_11.vcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Input/2021-04-14__17_00_29.vcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Input/2021-04-14__17_08_43.vcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Input/2021-04-14__17_14_09.vcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Input/2021-04-14__17_16_09.vcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Input/2021-04-14__17_18_04.vcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Input/2021-04-14__17_21_33.vcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Input/2021-04-14__17_21_54.vcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Input/2021-04-14__17_23_44.vcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Input/2021-04-14__17_24_47.vcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Input/2021-04-14__17_25_45.vcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Input/2021-04-14__17_26_09.vcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Input/2021-04-14__17_26_21.vcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Input/2021-04-14__17_27_40.vcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Input/2021-04-14__17_28_03.vcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Input/2021-04-14__17_28_39.vcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Input/2021-04-14__17_28_59.vcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Input/2021-04-14__17_29_51.vcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Input/2021-04-14__17_36_51.vcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Input/2021-04-14__17_38_06.vcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Input/2021-04-14__17_38_34.vcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Input/2021-04-14__18_03_26.vcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Input/2021-04-14__18_15_47.vcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Input/2021-04-14__18_17_52.vcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Input/2021-04-14__19_54_16.vcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Input/2021-04-14__19_54_33.vcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Input/2021-04-14__19_55_59.vcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Input/2021-04-14__19_58_05.vcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Input/2021-04-14__19_59_07.vcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Input/2021-04-16__03_53_05.vcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Input/2021-04-16__03_55_04.vcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Input/2021-04-16__03_56_13.vcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Input/2021-04-16__04_00_14.vcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Input/2021-04-16__04_08_19.vcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Input/2021-04-16__04_13_30.vcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Input/2021-04-16__04_16_51.vcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Input/2021-04-16__04_17_53.vcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Input/2021-04-16__04_30_52.vcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Input/2021-04-16__18_01_44.vcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Input/2021-04-16__18_04_27.vcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Input/2021-04-16__18_06_30.vcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Input/2021-04-16__18_08_35.vcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Input/2021-04-16__18_12_37.vcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Input/2021-04-16__18_13_57.vcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Input/date.vcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Input/test.vcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Output/2021-04-14__16_51_34_output.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Output/2021-04-14__17_21_33_output.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Output/2021-04-14__17_28_03_output.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Output/2021-04-14__17_28_39_output.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Output/2021-04-14__17_28_59_output.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Output/2021-04-14__17_29_51_output.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Output/2021-04-14__17_36_51_output.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Output/2021-04-14__17_38_06_output.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Output/2021-04-14__17_38_34_output.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Output/2021-04-14__18_03_26_output.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Output/2021-04-14__18_15_47_output.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Output/2021-04-14__18_17_52_output.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Output/2021-04-14__19_54_16_output.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Output/2021-04-14__19_54_33_output.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Output/2021-04-14__19_55_59_output.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Output/2021-04-14__19_58_05_output.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Output/2021-04-14__19_59_07_output.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Output/2021-04-16__03_52_06_output.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Output/2021-04-16__03_53_05_output.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Output/2021-04-16__03_55_04_output.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Output/2021-04-16__03_56_13_output.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Output/2021-04-16__03_59_47_output.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Output/2021-04-16__04_00_14_output.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Output/2021-04-16__04_08_19_output.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Output/2021-04-16__04_13_30_output.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Output/2021-04-16__04_16_51_output.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Output/2021-04-16__04_17_53_output.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Output/2021-04-16__04_30_52_output.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Output/2021-04-16__18_01_44_output.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Output/2021-04-16__18_08_35_output.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Output/2021-04-16__18_12_37_output.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Output/2021-04-16__18_13_57_output.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/Cadd_Output/cadd_output.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/TRACE_Output/2021-04-16__04_08_19.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/TRACE_Output/2021-04-16__04_16_51.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/TRACE_Output/2021-04-16__04_17_53.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/TRACE_Output/2021-04-16__04_30_52.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/TRACE_Output/2021-04-16__18_13_57.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Data/vcf_output.vcf" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Server/Genomics/Cadd.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Genomics/Cadd.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/Genomics/Trace.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Genomics/Trace.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Utils/vcf_output.vcf" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,6 +182,7 @@
       <workItem from="1585552008592" duration="3676000" />
       <workItem from="1615984070232" duration="2740000" />
       <workItem from="1616183012149" duration="7163000" />
+      <workItem from="1618729975439" duration="1475000" />
     </task>
     <servers />
   </component>
