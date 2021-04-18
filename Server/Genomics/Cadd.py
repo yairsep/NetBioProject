@@ -1,27 +1,30 @@
 from scp import SCPClient
-import os, paramiko, vobject, time
+import os, paramiko, time
 
-def getConnectiionConfig():
+
+def getConnectionConfig():
     CLUSTER_HOST = 'genomics.bgu.ac.il'
     CLUSTER_USER = 'estiyl'
     CLUSTER_PASSWORD = 'H!ytfP7eq'
 
     return CLUSTER_HOST, CLUSTER_USER, CLUSTER_PASSWORD
 
+
 def generate_vcf_file(vcf_string, date_time):
     f = open("./Data/Cadd_Input/{}.vcf".format(date_time), "a")
     genes = '\n'.join(vcf_string)
-    genes=genes.replace('\t\t', '\t.\t')
-    genes=genes.replace('\t\n', '\t.\n')
-    genes=genes.replace('\\t','    ')
-    genes=genes.replace('\\n','\n')
+    genes = genes.replace('\t\t', '\t.\t')
+    genes = genes.replace('\t\n', '\t.\n')
+    genes = genes.replace('\\t', '    ')
+    genes = genes.replace('\\n', '\n')
     f.write(genes)
     f.close()
+
 
 def send_vcf_to_genomics(vcf_string, date_time):
     generate_vcf_file(vcf_string, date_time)
     print("Sending VCF file to CADD...")
-    CLUSTER_HOST, CLUSTER_USER, CLUSTER_PASSWORD = getConnectiionConfig()
+    CLUSTER_HOST, CLUSTER_USER, CLUSTER_PASSWORD = getConnectionConfig()
     client = paramiko.SSHClient()
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     client.load_system_host_keys()
@@ -33,7 +36,7 @@ def send_vcf_to_genomics(vcf_string, date_time):
 
 
 def execute_cadd_script(date_time, genomeVersion):
-    CLUSTER_HOST, CLUSTER_USER, CLUSTER_PASSWORD = getConnectiionConfig()
+    CLUSTER_HOST, CLUSTER_USER, CLUSTER_PASSWORD = getConnectionConfig()
     client = paramiko.SSHClient()
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     client.load_system_host_keys()
@@ -46,7 +49,7 @@ def execute_cadd_script(date_time, genomeVersion):
     output_loc = '-o /mnt/disk2/home/estiyl/PathoSearch/Cadd_Output/{}_output.tsv.gz '.format(date_time)
     input_loc = '/mnt/disk2/home/estiyl/PathoSearch/Cadd_Input/{}.vcf'.format(date_time)
     unzip_Output = '&& gunzip /mnt/disk2/home/estiyl/PathoSearch/Cadd_Output/{}_output.tsv.gz'.format(date_time)
-    cmd = cadd_dir + conda_env+ cadd_sh + genome_build + output_loc + input_loc + unzip_Output
+    cmd = cadd_dir + conda_env + cadd_sh + genome_build + output_loc + input_loc + unzip_Output
 
     # Executing the command
     stdin, stdout, stderr = client.exec_command(cmd)
@@ -55,10 +58,11 @@ def execute_cadd_script(date_time, genomeVersion):
     print(msg)
     client.close()
 
+
 def fetch_vcf_output_from_genomics(date_time):
-    #TODO: Fetch the right output based on date_time as part the name of the output
+    # TODO: Fetch the right output based on date_time as part the name of the output
     print("Fetching VCF Output file from CADD...")
-    CLUSTER_HOST, CLUSTER_USER, CLUSTER_PASSWORD = getConnectiionConfig()
+    CLUSTER_HOST, CLUSTER_USER, CLUSTER_PASSWORD = getConnectionConfig()
     client = paramiko.SSHClient()
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     client.load_system_host_keys()
