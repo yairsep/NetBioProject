@@ -14,7 +14,7 @@ def generate_table_from_vcf(vcf, tissue, date_time):
     print('generating TRACE data from GeneIDs')
     genes = set([])
 
-    with open("./Data/Cadd_Output/{}_output.tsv".format(date_time)) as in_file:
+    with open("./Data/Cadd_Output/{}.tsv".format(date_time)) as in_file:
         line_count = 0
         for line in in_file:
             if line_count > 1:
@@ -25,6 +25,7 @@ def generate_table_from_vcf(vcf, tissue, date_time):
             line_count += 1
     print(genes)
     send_query_to_Trace(list(genes), date_time)
+    in_file.close()
 
 
 def send_query_to_Trace(genes, date_time):
@@ -49,6 +50,7 @@ def generate_csv_file(values_for_csv, date_time):
         spamwriter = csv.writer(csvfile, delimiter=',')
         for value in values_for_csv:
             spamwriter.writerow(value)
+    csvfile.close()
 
 
 def multi_getattr(row, attr, default=None):

@@ -47,9 +47,9 @@ def execute_cadd_script(date_time, genomeVersion):
     conda_env = 'source activate snakemake && '
     cadd_sh = './CADD.sh '
     genome_build = '-a -g {} '.format(genomeVersion)
-    output_loc = '-o /mnt/disk2/home/estiyl/PathoSearch/Cadd_Output/{}_output.tsv.gz '.format(date_time)
+    output_loc = '-o /mnt/disk2/home/estiyl/PathoSearch/Cadd_Output/{}.tsv.gz '.format(date_time)
     input_loc = '/mnt/disk2/home/estiyl/PathoSearch/Cadd_Input/{}.vcf'.format(date_time)
-    unzip_Output = '&& gunzip /mnt/disk2/home/estiyl/PathoSearch/Cadd_Output/{}_output.tsv.gz'.format(date_time)
+    unzip_Output = '&& gunzip /mnt/disk2/home/estiyl/PathoSearch/Cadd_Output/{}.tsv.gz'.format(date_time)
     cmd = cadd_dir + conda_env + cadd_sh + genome_build + output_loc + input_loc + unzip_Output
 
     # Executing the command
@@ -69,8 +69,9 @@ def fetch_vcf_output_from_genomics(date_time):
     client.load_system_host_keys()
     client.connect(CLUSTER_HOST, username=CLUSTER_USER, password=CLUSTER_PASSWORD)
     sftp = client.open_sftp()
-    genomics_cadd_output_path = './PathoSearch/Cadd_Output/{}_output.tsv'.format(date_time)
-    server_cadd_output_path = './Data/Cadd_Output/{}_output.tsv'.format(date_time)
+    genomics_cadd_output_path = './PathoSearch/Cadd_Output/{}.tsv'.format(date_time)
+    server_cadd_output_path = './Data/Cadd_Output/{}.tsv'.format(date_time)
+
     while not os.path.exists(server_cadd_output_path):
         try:
             print('Trying to copy file from Genomics to Server...')
@@ -79,9 +80,8 @@ def fetch_vcf_output_from_genomics(date_time):
             time.sleep(5)
             print('Waiting 5 secs for re-copying')
             break
-
-    client.close()
     print("VCF file has been been sent to Server successfully")
+    sftp.close()
     client.close()
 
 
