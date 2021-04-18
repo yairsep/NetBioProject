@@ -1,12 +1,10 @@
 import paramiko , os , time
 from scp import SCPClient
 
-
-# TODO: Change to Cluster configuration
 def getConnectionConfig():
-    CLUSTER_HOST = 'genomics.bgu.ac.il'
-    CLUSTER_USER = 'estiyl'
-    CLUSTER_PASSWORD = 'H!ytfP7eq'
+    CLUSTER_HOST = 'sge180.bgu.ac.il'
+    CLUSTER_USER = 'interactomenetprod'
+    CLUSTER_PASSWORD = 'bgu2010'
     return CLUSTER_HOST, CLUSTER_USER, CLUSTER_PASSWORD
 
 
@@ -26,7 +24,7 @@ def execute_ML_module(date_time):
     cadd_output_csv = "./Data/Cadd_Output/{}.tsv".format(date_time)
     trace_output_csv = "./Data/Trace_Output/{}.csv".format(date_time)
     # TODO: Complete path here
-    cluster_output_path = "Some Path here"
+    cluster_output_path = "./PathoSearch/ML-Scripts/DataInput"
     scp = SCPClient(client.get_transport())
     print("Coping CADD output to Cluster...")
     scp.put(cadd_output_csv, cluster_output_path)
@@ -35,9 +33,12 @@ def execute_ML_module(date_time):
 
     # Executing Hanan Algorithem
     print("Executing Hanan algorithem...")
-    cadd_cluster_path = "/cluster/{}.tsv".format(date_time)
-    trace_cluster_path = "/cluster/{}.csv".format(date_time)
-    hanan_cluster_path = "cd /cluster/... && "
+    cadd_cluster_path = "./PathoSearch/ML-Scripts/DataInput/{}.tsv".format(date_time)
+    trace_cluster_path = "./PathoSearch/ML-Scripts/DataInput/{}.csv".format(date_time)
+    hanan_cluster_path = "cd PathoSearch/ML-Scripts && "
+
+    # TODO: Check Hanan execute configuration
+    
     exec_command = "python script.py" + cadd_cluster_path + trace_cluster_path
     cmd = hanan_cluster_path + exec_command
     stdin, stdout, stderr = client.exec_command(cmd)
@@ -46,7 +47,7 @@ def execute_ML_module(date_time):
     print(msg)
 
     # Coping Hanan algo output to server
-    
+
     server_hanan_output_path = './Data/Hanan_Output/{}_output.tsv'.format(date_time)
     sftp = client.open_sftp()
     hanan_output_csv = "./Data/Hanan_Output"
@@ -60,7 +61,7 @@ def execute_ML_module(date_time):
             break
     client.close()
 
-
+# TODO: Complete parsing CSV to Json
 def getOutput(date_time):
     json_output = {}
     with open("./Data/Hanan_Output/{}_hanan_output.tsv".format(date_time)) as input_file:

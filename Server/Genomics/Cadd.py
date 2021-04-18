@@ -12,8 +12,8 @@ def getConnectionConfig():
 #TODO: Fix this function
 def generate_vcf_file(vcf_string, date_time):
     f = open("./Data/Cadd_Input/{}.vcf".format(date_time), "a")
-    # if ("#CHROM" in vcf_string[0]):
-    #     vcf_string = vcf_string[1:]
+    if ("#CHROM" in vcf_string[0]):
+        vcf_string = vcf_string[1:]
     genes = '\n'.join(vcf_string)
     genes = genes.replace('\t\t', '\t.\t')
     genes = genes.replace('\t\n', '\t.\n')
