@@ -6,16 +6,17 @@ import pickle
 from sklearn.ensemble import RandomForestClassifier
 
 "---------------------------- Load Data ------------------------------"
-file_name = 'CardiomyopathyOtB0551_CADD_GRCh37-v1.6.csv' #TODO: Get the name from args[0]
+file_name = 'CardiomyopathyOtB0551_CADD_GRCh37-v1.6.csv' #TODO: Change to the filename of CADD
 short_name = file_name.split('_')[0]
-patient_cadd_path = os.path.join('..', 'Data', file_name)
+patient_cadd_path = os.path.join('..', 'Data', file_name) #TODO: Change to the path where the file is in the cluster
 Patient_CADD_data = pd.read_csv(patient_cadd_path)
 
-trace_features_path = os.path.join('..', 'Data', 'df_complete_dataset.csv') #TODO: Get the name from args[1]
+trace_features_path = os.path.join('..', 'Data', 'df_complete_dataset.csv') #TODO: Change to filename of the filtered data of TRACE from netbio, send name in args
 TRACE_data = pd.read_csv(trace_features_path)
+#TODO: TRACE_data.rename(columns=names_dict, inplace=True) when names_dict is {changedColumnName: correctColumnName}
 
-tissue = 'Heart - Left Ventricle' #TODO: Get the tissue from args[2]
-relevant_model_path = os.path.join('..', 'Prediction_Models', tissue.strip() + '_RF_Model.pkl') #TODO: Add the folder to the cluster
+tissue = 'Heart - Left Ventricle' #TODO: Change to the choosen tissue from args
+relevant_model_path = os.path.join('..', 'Prediction_Models', tissue.strip() + '_RF_Model.pkl') #TODO: Place the Prediction_Models folder from the drive
 with open(relevant_model_path, 'rb') as handle:
     model = pickle.load(handle)
 
