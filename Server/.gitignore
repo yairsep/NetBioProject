@@ -2,3 +2,4 @@
 .idea
 *.vcf
 *.csv
+__pycache__
