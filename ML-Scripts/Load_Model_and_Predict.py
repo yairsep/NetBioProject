@@ -6,16 +6,16 @@ import pickle
 from sklearn.ensemble import RandomForestClassifier
 
 "---------------------------- Load Data ------------------------------"
-file_name = 'CardiomyopathyOtB0551_CADD_GRCh37-v1.6.csv'
+file_name = 'CardiomyopathyOtB0551_CADD_GRCh37-v1.6.csv' #TODO: Get the name from args[0]
 short_name = file_name.split('_')[0]
 patient_cadd_path = os.path.join('..', 'Data', file_name)
 Patient_CADD_data = pd.read_csv(patient_cadd_path)
 
-trace_features_path = os.path.join('..', 'Data', 'df_complete_dataset.csv')
+trace_features_path = os.path.join('..', 'Data', 'df_complete_dataset.csv') #TODO: Get the name from args[1]
 TRACE_data = pd.read_csv(trace_features_path)
 
-tissue = 'Heart - Left Ventricle'
-relevant_model_path = os.path.join('..', 'Prediction_Models', tissue.strip() + '_RF_Model.pkl')
+tissue = 'Heart - Left Ventricle' #TODO: Get the tissue from args[2]
+relevant_model_path = os.path.join('..', 'Prediction_Models', tissue.strip() + '_RF_Model.pkl') #TODO: Add the folder to the cluster
 with open(relevant_model_path, 'rb') as handle:
     model = pickle.load(handle)
 
