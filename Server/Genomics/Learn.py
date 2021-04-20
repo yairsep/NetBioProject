@@ -9,7 +9,7 @@ def getConnectionConfig():
     return CLUSTER_HOST, CLUSTER_USER, CLUSTER_PASSWORD
 
 
-def execute_ML_module(date_time):
+def execute_ML_module(date_time, tissue):
     # Send cadd & trace output to ML Module
     print("Initiating Connection with Cluster")
 
@@ -35,13 +35,13 @@ def execute_ML_module(date_time):
 
     # Executing Hanan Algorithem
     print("Executing Hanan algorithem...")
-    cadd_cluster_path = "./PathoSearch/ML-Scripts/DataInput/{}_cadd.csv".format(date_time)
-    trace_cluster_path = "./PathoSearch/ML-Scripts/DataInput/{}_trace.csv".format(date_time)
+    cadd_cluster_path = "./PathoSearch/ML-Scripts/DataInput/{}_cadd.csv ".format(date_time)
+    trace_cluster_path = "./PathoSearch/ML-Scripts/DataInput/{}_trace.csv ".format(date_time)
     hanan_cluster_path = "cd PathoSearch/ML-Scripts && "
 
     # TODO: Check Hanan execute configuration
-
-    exec_command = "python script.py" + cadd_cluster_path + trace_cluster_path
+    #TODO: add tisuue argument
+    exec_command = "python script.py " + cadd_cluster_path + trace_cluster_path + tissue
     cmd = hanan_cluster_path + exec_command
     stdin, stdout, stderr = client.exec_command(cmd)
     print('Hanan Algo in Cluster Was executed')

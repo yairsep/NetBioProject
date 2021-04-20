@@ -55,12 +55,13 @@ def sample():
 @cross_origin(supports_credentials=True)
 def process_vcf():
     print("VCF file received in Server")
+    tissue = request.get_json()['tissue']
     date_time = datetime.datetime.now()
     date_time = str(date_time.replace(microsecond=0)).replace(" ", "__").replace(':', '_')
     Cadd.process_request(request, date_time)
-    Trace.process_request(request, date_time)
+    Trace.process_request(request, date_time, tissue)
     # Then Execute ML module
-    Learn.execute_ML_module(date_time)
+    Learn.execute_ML_module(date_time, tissue)
     # hanan_output = Learn.getOutput(date_time)
     # return hanan_output
     return "VCF file has been sent successfully"

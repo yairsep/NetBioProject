@@ -1,12 +1,11 @@
 import csv
 
 
-def process_request(request, date_time):
+def process_request(request, date_time , tissue):
     print('Trace is processing request')
     genes = request.get_json()['genes']
     genomeVersion = request.get_json()['genomeVersion']
     inputFormat = request.get_json()['inputFormat']
-    tissue = request.get_json()['tissue']
     generate_table_from_vcf(genes, tissue, date_time)
 
 
