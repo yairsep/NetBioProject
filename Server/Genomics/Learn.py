@@ -22,8 +22,8 @@ def execute_ML_module(date_time):
 
     # Moving Outputs from CADD & Trace to Cluster
     # TODO: Check about tsv output file
-    cadd_input_tsv = "./Data/Cadd_Output/{}.tsv".format(date_time)
-    trace_input_csv = "./Data/Trace_Output/{}.csv".format(date_time)
+    cadd_input_tsv = "./Data/Cadd_Output/{}_cadd.csv".format(date_time)
+    trace_input_csv = "./Data/Trace_Output/{}_trace.csv".format(date_time)
 
     cluster_input_path = "./PathoSearch/ML-Scripts/DataInput"
     scp = SCPClient(client.get_transport())
@@ -35,8 +35,8 @@ def execute_ML_module(date_time):
 
     # Executing Hanan Algorithem
     print("Executing Hanan algorithem...")
-    cadd_cluster_path = "./PathoSearch/ML-Scripts/DataInput/{}.tsv".format(date_time)
-    trace_cluster_path = "./PathoSearch/ML-Scripts/DataInput/{}.csv".format(date_time)
+    cadd_cluster_path = "./PathoSearch/ML-Scripts/DataInput/{}_cadd.csv".format(date_time)
+    trace_cluster_path = "./PathoSearch/ML-Scripts/DataInput/{}_trace.csv".format(date_time)
     hanan_cluster_path = "cd PathoSearch/ML-Scripts && "
 
     # TODO: Check Hanan execute configuration
@@ -49,7 +49,7 @@ def execute_ML_module(date_time):
     print(msg)
 
     # Coping Hanan algo output to server
-    server_hanan_output_path = './Data/Hanan_Output/{}_output.csv'.format(date_time)
+    server_hanan_output_path = './Data/Hanan_Output/{}.csv'.format(date_time)
     sftp = client.open_sftp()
     cluster_output_path = "./PathoSearch/ML-Scripts/DataOutput/{}.csv".format(date_time)
     while not os.path.exists(server_hanan_output_path):
@@ -66,6 +66,6 @@ def execute_ML_module(date_time):
 # TODO: Complete parsing CSV to Json
 def getOutput(date_time):
     json_output = {}
-    with open("./Data/Hanan_Output/{}_hanan_output.tsv".format(date_time)) as input_file:
+    with open("./Data/Hanan_Output/{}_hanan_output.csv".format(date_time)) as input_file:
         print(input_file)
     return json_output
