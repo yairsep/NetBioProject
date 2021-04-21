@@ -1,11 +1,9 @@
-import os
-import sys
+import os , sys , datetime
 from flask import Flask, jsonify, request
 from flask_cors import CORS, cross_origin
 from flask_sqlalchemy import SQLAlchemy
 from Genomics import Cadd, Trace, Learn
 from Email import emailHandler
-import datetime
 
 sys.path.insert(0, '')
 
@@ -27,19 +25,6 @@ db = SQLAlchemy()
 db.init_app(app)
 # bind Model to existing tables
 db.reflect(app=app)
-
-# Argument schemas
-from webargs import fields, validate, ValidationError
-
-get_vcf_args = {
-    'vcf': fields.Str(required=True),
-    'tissue': fields.Str(required=True, location='view_args')
-}
-
-get_genes_args = {
-    'genes': fields.List(fields.Str(required=True)),
-    'tissue': fields.Str(required=True, location='view_args')
-}
 
 
 @app.route('/sample', methods=['GET'])

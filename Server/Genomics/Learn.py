@@ -1,7 +1,6 @@
 import paramiko, os, time
 from scp import SCPClient
 
-
 def getConnectionConfig():
     CLUSTER_HOST = 'sge180.bgu.ac.il'
     CLUSTER_USER = 'interactomenetprod'
@@ -21,7 +20,6 @@ def execute_ML_module(date_time, tissue):
     client.connect(CLUSTER_HOST, username=CLUSTER_USER, password=CLUSTER_PASSWORD)
 
     # Moving Outputs from CADD & Trace to Cluster
-    # TODO: Check about tsv output file
     cadd_input_tsv = "./Data/Cadd_Output/{}_cadd.csv".format(date_time)
     trace_input_csv = "./Data/Trace_Output/{}_trace.csv".format(date_time)
 
@@ -39,9 +37,7 @@ def execute_ML_module(date_time, tissue):
     trace_cluster_path = "./PathoSearch/ML-Scripts/DataInput/{}_trace.csv ".format(date_time)
     hanan_cluster_path = "cd PathoSearch/ML-Scripts && "
 
-    # TODO: Check Hanan execute configuration
-    #TODO: add tisuue argument
-    exec_command = "python script.py " + cadd_cluster_path + trace_cluster_path + tissue
+    exec_command = "python Load_Model_and_Predict.py " + cadd_cluster_path + trace_cluster_path + tissue
     cmd = hanan_cluster_path + exec_command
     stdin, stdout, stderr = client.exec_command(cmd)
     print('Hanan Algo in Cluster Was executed')

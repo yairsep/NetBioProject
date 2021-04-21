@@ -56,13 +56,13 @@ def execute_cadd_script(date_time, genomeVersion):
     stdin, stdout, stderr = client.exec_command(cmd)
     print('CADD script was executed')
     msg = stderr.readlines()
-    print(msg)
+    # print(msg)
     client.close()
 
 
 def fetch_tsv_output_from_genomics(date_time):
     # TODO: Fetch the right output based on date_time as part the name of the output
-    print("Fetching VCF Output file from CADD...")
+    print("Fetching TSV Output file from CADD...")
     CLUSTER_HOST, CLUSTER_USER, CLUSTER_PASSWORD = getConnectionConfig()
     client = paramiko.SSHClient()
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -80,13 +80,13 @@ def fetch_tsv_output_from_genomics(date_time):
             time.sleep(5)
             print('Waiting 5 secs for re-copying')
             break
-    print("VCF file has been been sent to Server successfully")
+        print("TSV file has been been sent to Server successfully")
     sftp.close()
     client.close()
 
 def convert_tsv_to_csv(date_time):
 
-    print("Converting tsv file to CSV...")
+    print("Converting TSV file to CSV...")
     "----------------------------------- Load Data --------------------------------------------------"
 
     path = os.path.join("./Data/Cadd_Output/{}_cadd.tsv".format(date_time))
@@ -148,7 +148,7 @@ def convert_tsv_to_csv(date_time):
 
     path = os.path.join("./Data/Cadd_Output/{}_cadd.csv".format(date_time))
     pd.DataFrame.to_csv(Variants_data, path, index=False)
-    print("Converting tsv file to CSV Completed!")
+    print("Converting TSV file to CSV Completed!")
 
 def process_request(request, date_time):
     print('Server is processing request for CADD')
