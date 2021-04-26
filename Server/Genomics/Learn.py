@@ -3,8 +3,8 @@ from scp import SCPClient
 
 def getConnectionConfig():
     CLUSTER_HOST = 'sge180.bgu.ac.il'
-    CLUSTER_USER = 'interactomenetprod'
-    CLUSTER_PASSWORD = 'bgu2010'
+    CLUSTER_USER = 'chanana'
+    CLUSTER_PASSWORD = 'pilpI108'
     return CLUSTER_HOST, CLUSTER_USER, CLUSTER_PASSWORD
 
 
@@ -33,11 +33,21 @@ def execute_ML_module(date_time, tissue):
 
     # Executing Hanan Algorithem
     print("Executing Hanan algorithem...")
-    cadd_cluster_path = "./PathoSearch/ML-Scripts/DataInput/{}_cadd.csv ".format(date_time)
-    trace_cluster_path = "./PathoSearch/ML-Scripts/DataInput/{}_trace.csv ".format(date_time)
+    # cadd_cluster_path = "./PathoSearch/ML-Scripts/DataInput/{}_cadd.csv ".format(date_time)
+
+    cadd_cluster_path = "CardiomyopathyOtB0551_CADD_GRCh37-v1.6.csv "
+
+    # trace_cluster_path = "./PathoSearch/ML-Scripts/DataInput/{}_trace.csv ".format(date_time)
+
+    trace_cluster_path = "Trace_Sample_CardiomyopathyOtB0551.csv "
+
+    # tissue = tissue + " "
+    tissue = "Heart-Left-Ventricle "
+
     hanan_cluster_path = "cd PathoSearch/ML-Scripts && "
 
-    exec_command = "python Load_Model_and_Predict.py " + cadd_cluster_path + trace_cluster_path + tissue
+
+    exec_command = "run_script_yair.sh " + cadd_cluster_path + trace_cluster_path + tissue + date_time
     cmd = hanan_cluster_path + exec_command
     stdin, stdout, stderr = client.exec_command(cmd)
     print('Hanan Algo in Cluster Was executed')

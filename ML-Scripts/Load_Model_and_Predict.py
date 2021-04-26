@@ -5,8 +5,8 @@ import pandas as pd
 pd.options.mode.chained_assignment = None
 
 "---------------------------- Load Data ------------------------------"
-# cadd_csv_path = sys.argv[0]
-# short_name = cadd_csv_path.split('_')[0]
+cadd_csv_path = sys.argv[0]
+short_name = cadd_csv_path.split('_')[0]
 # patient_cadd_path = os.path.join('..', 'Data', cadd_csv_path)
 patient_cadd_path = sys.argv[0]
 Patient_CADD_data = pd.read_csv(patient_cadd_path)
@@ -18,7 +18,7 @@ TRACE_data = pd.read_csv(trace_features_path)
 # tissue = 'Heart - Left Ventricle'
 tissue = sys.argv[2]
 relevant_model_path = os.path.join('..', 'Prediction_Models_ALL',
-                                   tissue.strip() + '_RF_Model.pkl')  # TODO: Place the Prediction_Models folder from the drive
+                                   tissue.strip() + '_RF_Model.pkl')
 with open(relevant_model_path, 'rb') as handle:
     model = pickle.load(handle)
 
@@ -90,7 +90,8 @@ Model_input = Model_input[relevant_input_cols]
 
 "--------------------- Deal with Missed Features ----------------------------------"
 
-model_features = [*model_features_dict]
+# model_features = [*model_features_dict]
+model_features = [model_features_dict]
 print(model_features)
 missed_features_in_patient = [x for x in model_features if x not in list(Model_input)]
 print('missed_features_in_patient', missed_features_in_patient)
@@ -112,5 +113,6 @@ Relevant_Results = Results_df[
      'Pathological_probability']]
 Relevant_Results = Relevant_Results.sort_values('Pathological_probability', ascending=False)
 print(Relevant_Results)
-out_put_path = os.path.join('..', 'Data', short_name + '_' + tissue + '_Prediction_output2.csv')
+# out_put_path = os.path.join('..', 'Data', short_name + '_' + tissue + '_Prediction_output2.csv')
+out_put_path = os.path.join('DataOutput/', short_name + '_' + tissue + '_Prediction_output2.csv')
 Relevant_Results.to_csv(out_put_path, index=False)
