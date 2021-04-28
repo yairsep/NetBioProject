@@ -35,16 +35,16 @@ def execute_ML_module(date_time, tissue):
 
     # Executing Hanan Algorithem
     print("Executing Hanan algorithem...")
-    # cadd_cluster_path = "./PathoSearch/ML-Scripts/DataInput/{}_cadd.csv ".format(date_time)
+    cadd_cluster_path = "./PathoSearch/ML-Scripts/DataInput/{}_cadd.csv ".format(date_time)
 
-    cadd_cluster_path = "CardiomyopathyOtB0551_CADD_GRCh37-v1.6.csv "
+    # cadd_cluster_path = "CardiomyopathyOtB0551_CADD_GRCh37-v1.6.csv "
 
-    # trace_cluster_path = "./PathoSearch/ML-Scripts/DataInput/{}_trace.csv ".format(date_time)
+    trace_cluster_path = "./PathoSearch/ML-Scripts/DataInput/{}_trace.csv ".format(date_time)
 
-    trace_cluster_path = "Trace_Sample_CardiomyopathyOtB0551.csv "
+    # trace_cluster_path = "Trace_Sample_CardiomyopathyOtB0551.csv "
 
-    # tissue = tissue + " "
-    tissue = "Heart-Left-Ventricle "
+    tissue = tissue + " "
+    # tissue = "Heart-Left-Ventricle "
 
     hanan_cluster_path = "cd PathoSearch/ML-Scripts && "
 

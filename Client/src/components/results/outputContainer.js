@@ -45,7 +45,9 @@ const OutputContainer = (props) => {
     //TODO:Switch to sample from the algorithm run
     const fetchData = async () => {
       const { data } = history.location
-      const vcfData = { genes: data.genes, tissue: data.tissue, inputFormat: data.inputFormat, genomeVersion: data.genomeVersion }
+      let vcfData = {}
+      if (data)
+        vcfData = { genes: data.genes, tissue: data.tissue, inputFormat: data.inputFormat, genomeVersion: data.genomeVersion }
       const res = await (pathname.includes('results') ? sendVcfFile(vcfData) : fetchSample())
       console.log(res)
       setResults(res)

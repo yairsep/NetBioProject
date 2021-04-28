@@ -67,18 +67,18 @@ const ResultsTable = (props) => {
 
         <Table.Body>
           {sortStatus.data.slice(getSliceRng(), (getSliceRng() + 16))
-            .map(({ GeneName, GeneID, Chr, Pos, Ref, Alt, Type, Length, SITFval, PolyPhenVal, PHRED, Pathological_probability }) => (
+            .map(({ GeneName, GeneID_y, Chr, Pos, Ref, Alt, Type, Length, SITFval, PolyPhenVal, PHRED, Pathological_probability }) => (
               <Table.Row positive={GeneName === props.selectedRow} onClick={props.onRowSelect} key={`${GeneName}_${Math.random()}`}>
                 <Table.Cell id={GeneName}>{GeneName}</Table.Cell>
-                <Table.Cell id={GeneName}>{GeneID}</Table.Cell>
+                <Table.Cell id={GeneName}>{GeneID_y}</Table.Cell>
                 <Table.Cell id={GeneName}>{Chr}</Table.Cell>
                 <Table.Cell id={GeneName}>{Pos}</Table.Cell>
                 <Table.Cell id={GeneName}>{Ref}</Table.Cell>
                 <Table.Cell id={GeneName}>{Alt}</Table.Cell>
                 <Table.Cell id={GeneName}>{Type}</Table.Cell>
                 <Table.Cell id={GeneName}>{Length}</Table.Cell>
-                <Table.Cell id={GeneName}>{ SITFval || 'none' }</Table.Cell>
-                <Table.Cell id={GeneName}>{ PolyPhenVal || 'none'}</Table.Cell>
+                <Table.Cell id={GeneName}>{SITFval || 'none' }</Table.Cell>
+                <Table.Cell id={GeneName}>{PolyPhenVal || 'none'}</Table.Cell>
                 <Table.Cell id={GeneName}>{PHRED}</Table.Cell>
                 <Table.Cell id={GeneName}>{Pathological_probability}</Table.Cell>
               </Table.Row>

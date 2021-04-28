@@ -30,8 +30,8 @@ db.reflect(app=app)
 @app.route('/sample', methods=['GET'])
 # @cross_origin()
 def sample():
-    from Utils.utils import sample
-    return jsonify(sample)
+    from Utils.sample import sample_json
+    return jsonify(sample_json)
     # from Database.service import generate_sample_table
     # sample_ans = generate_sample_table()
 

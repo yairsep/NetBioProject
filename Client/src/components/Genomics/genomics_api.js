@@ -13,6 +13,7 @@ export const fetchTrace = async () => {
 }
 
 export const fetchSample = async () => {
+  console.log('FetchSample')
   const res = await axios.get(`${baseUrl}/sample`)
   return res.data
 }

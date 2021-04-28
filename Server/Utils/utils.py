@@ -1,5 +1,5 @@
 from toolz import keyfilter, dissoc
-
+from sample import sample_json
 
 def pick(whitelist, d):
     return keyfilter(lambda k: k in whitelist, d)
@@ -102,7 +102,7 @@ sample_genes = [
 ]
 
 sample = [{
-        'GeneName': 'TTN',
+        'GeneName_y': 'TTN',
         'GeneID': 'ENSG00000155657',
         'Chr': '2',
         'Pos': 179639114,
@@ -116,7 +116,7 @@ sample = [{
         'Pathological_probability': 0.323333333,
     },
     {
-        'GeneName': 'HTT',
+        'GeneName_y': 'HTT',
         'GeneID': 'ENSG00000197386',
         'Chr': '4',
         'Pos': 3133374,
