@@ -78,7 +78,6 @@ def getOutput(date_time):
         # print(input_file)
         csvReader = csv.DictReader(input_file)
         for rows in csvReader:
-            key = rows['GeneName']
             json_output.append(rows)
             # print(input_file)
     return json_output
