@@ -73,12 +73,12 @@ def execute_ML_module(date_time, tissue):
 
 # TODO: Complete parsing CSV to Json
 def getOutput(date_time):
-    json_output = {}
+    json_output = []
     with open("./Data/Hanan_Output/{}_hanan_output.csv".format(date_time)) as input_file:
-        print(input_file)
+        # print(input_file)
         csvReader = csv.DictReader(input_file)
         for rows in csvReader:
             key = rows['GeneName']
-            data[key] = rows
-            print(input_file)
+            json_output.append(rows)
+            # print(input_file)
     return json_output
