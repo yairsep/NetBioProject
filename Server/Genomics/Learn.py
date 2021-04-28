@@ -1,5 +1,7 @@
 import paramiko, os, time
 from scp import SCPClient
+import csv
+import json
 
 def getConnectionConfig():
     CLUSTER_HOST = 'sge180.bgu.ac.il'
@@ -74,4 +76,9 @@ def getOutput(date_time):
     json_output = {}
     with open("./Data/Hanan_Output/{}_hanan_output.csv".format(date_time)) as input_file:
         print(input_file)
+        csvReader = csv.DictReader(input_file)
+        for rows in csvReader:
+            key = rows['GeneName']
+            data[key] = rows
+            print(input_file)
     return json_output
