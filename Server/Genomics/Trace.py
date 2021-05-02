@@ -29,14 +29,14 @@ def generate_table_from_vcf(vcf, tissue, date_time):
 
 def send_query_to_Trace(genes, date_time):
     print("Sending Query to Trace")
-    # TODO: Send query to Trace
     from models import Df_Complete_Dataset
     q = Df_Complete_Dataset.query.filter(Df_Complete_Dataset.ID.in_(genes)).all()
     from sqlalchemy import inspect
     inst = inspect(Df_Complete_Dataset)
+    from Utils.attr_names import attr_names_csv
     attr_names = [c_attr.key for c_attr in inst.mapper.column_attrs]
     values_for_csv = list()
-    values_for_csv.append(attr_names)
+    values_for_csv.append(attr_names_csv)
     for row in q:
         values_for_csv.append(multi_getattr(row, attr_names))
 

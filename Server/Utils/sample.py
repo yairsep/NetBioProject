@@ -2,7 +2,7 @@ sample_json = [
     {
         "GeneName": "TTN",
         "GeneID_y": "ENSG00000155657",
-        "Chr": "2",
+        "#Chr": "2",
         "Pos": "179639114",
         "Ref": "C",
         "Alt": "G",
@@ -16,7 +16,7 @@ sample_json = [
     {
         "GeneName": "HTT",
         "GeneID_y": "ENSG00000197386",
-        "Chr": "4",
+        "#Chr": "4",
         "Pos": "3133374",
         "Ref": "C",
         "Alt": "T",
@@ -30,7 +30,7 @@ sample_json = [
     {
         "GeneName": "TTN",
         "GeneID_y": "ENSG00000155657",
-        "Chr": "2",
+        "#Chr": "2",
         "Pos": "179554549",
         "Ref": "G",
         "Alt": "C",
@@ -44,7 +44,7 @@ sample_json = [
     {
         "GeneName": "CDH2",
         "GeneID_y": "ENSG00000170558",
-        "Chr": "18",
+        "#Chr": "18",
         "Pos": "25593663",
         "Ref": "G",
         "Alt": "A",
@@ -58,7 +58,7 @@ sample_json = [
     {
         "GeneName": "CPSF1",
         "GeneID_y": "ENSG00000071894",
-        "Chr": "8",
+        "#Chr": "8",
         "Pos": "145622991",
         "Ref": "ACCACTGC",
         "Alt": "A",
@@ -72,7 +72,7 @@ sample_json = [
     {
         "GeneName": "ANK2",
         "GeneID_y": "ENSG00000145362",
-        "Chr": "4",
+        "#Chr": "4",
         "Pos": "114294537",
         "Ref": "G",
         "Alt": "A",
@@ -86,7 +86,7 @@ sample_json = [
     {
         "GeneName": "LIPE",
         "GeneID_y": "ENSG00000079435",
-        "Chr": "19",
+        "#Chr": "19",
         "Pos": "42912175",
         "Ref": "G",
         "Alt": "A",
@@ -100,7 +100,7 @@ sample_json = [
     {
         "GeneName": "DLG1",
         "GeneID_y": "ENSG00000075711",
-        "Chr": "3",
+        "#Chr": "3",
         "Pos": "196793589",
         "Ref": "A",
         "Alt": "G",
@@ -114,7 +114,7 @@ sample_json = [
     {
         "GeneName": "ZNF738",
         "GeneID_y": "ENSG00000172687",
-        "Chr": "19",
+        "#Chr": "19",
         "Pos": "21565893",
         "Ref": "T",
         "Alt": "G",
@@ -128,7 +128,7 @@ sample_json = [
     {
         "GeneName": "DLG1",
         "GeneID_y": "ENSG00000075711",
-        "Chr": "3",
+        "#Chr": "3",
         "Pos": "196863495",
         "Ref": "T",
         "Alt": "C",
@@ -142,7 +142,7 @@ sample_json = [
     {
         "GeneName": "ZFPM1",
         "GeneID_y": "ENSG00000179588",
-        "Chr": "16",
+        "#Chr": "16",
         "Pos": "88599697",
         "Ref": "A",
         "Alt": "C",
@@ -156,7 +156,7 @@ sample_json = [
     {
         "GeneName": "PET112",
         "GeneID_y": "ENSG00000059691",
-        "Chr": "4",
+        "#Chr": "4",
         "Pos": "152637229",
         "Ref": "G",
         "Alt": "A",
@@ -170,7 +170,7 @@ sample_json = [
     {
         "GeneName": "MITF",
         "GeneID_y": "ENSG00000187098",
-        "Chr": "3",
+        "#Chr": "3",
         "Pos": "69928509",
         "Ref": "C",
         "Alt": "T",
@@ -184,7 +184,7 @@ sample_json = [
     {
         "GeneName": "ZNF738",
         "GeneID_y": "ENSG00000172687",
-        "Chr": "19",
+        "#Chr": "19",
         "Pos": "21565889",
         "Ref": "T",
         "Alt": "G",
@@ -198,7 +198,7 @@ sample_json = [
     {
         "GeneName": "ECE1",
         "GeneID_y": "ENSG00000117298",
-        "Chr": "1",
+        "#Chr": "1",
         "Pos": "21562354",
         "Ref": "C",
         "Alt": "A",
@@ -212,7 +212,7 @@ sample_json = [
     {
         "GeneName": "KIF1A",
         "GeneID_y": "ENSG00000130294",
-        "Chr": "2",
+        "#Chr": "2",
         "Pos": "241696844",
         "Ref": "ATCC",
         "Alt": "A",
@@ -226,7 +226,7 @@ sample_json = [
     {
         "GeneName": "APBB3",
         "GeneID_y": "ENSG00000113108",
-        "Chr": "5",
+        "#Chr": "5",
         "Pos": "139938303",
         "Ref": "G",
         "Alt": "A",
@@ -240,7 +240,7 @@ sample_json = [
     {
         "GeneName": "FOXC1",
         "GeneID_y": "ENSG00000054598",
-        "Chr": "6",
+        "#Chr": "6",
         "Pos": "1612016",
         "Ref": "A",
         "Alt": "AACGGCG",
@@ -254,7 +254,7 @@ sample_json = [
     {
         "GeneName": "SIRT1",
         "GeneID_y": "ENSG00000096717",
-        "Chr": "10",
+        "#Chr": "10",
         "Pos": "69644519",
         "Ref": "T",
         "Alt": "C",
@@ -268,7 +268,7 @@ sample_json = [
     {
         "GeneName": "CPSF1",
         "GeneID_y": "ENSG00000071894",
-        "Chr": "8",
+        "#Chr": "8",
         "Pos": "145623004",
         "Ref": "ACG",
         "Alt": "A",
@@ -282,7 +282,7 @@ sample_json = [
     {
         "GeneName": "FANCD2",
         "GeneID_y": "ENSG00000144554",
-        "Chr": "3",
+        "#Chr": "3",
         "Pos": "10088412",
         "Ref": "G",
         "Alt": "T",
@@ -296,7 +296,7 @@ sample_json = [
     {
         "GeneName": "PCDH19",
         "GeneID_y": "ENSG00000165194",
-        "Chr": "X",
+        "#Chr": "X",
         "Pos": "99551402",
         "Ref": "C",
         "Alt": "G",
@@ -310,7 +310,7 @@ sample_json = [
     {
         "GeneName": "NPC1L1",
         "GeneID_y": "ENSG00000015520",
-        "Chr": "7",
+        "#Chr": "7",
         "Pos": "44556303",
         "Ref": "G",
         "Alt": "A",
@@ -324,7 +324,7 @@ sample_json = [
     {
         "GeneName": "ZNF738",
         "GeneID_y": "ENSG00000172687",
-        "Chr": "19",
+        "#Chr": "19",
         "Pos": "21565914",
         "Ref": "T",
         "Alt": "C",
@@ -338,7 +338,7 @@ sample_json = [
     {
         "GeneName": "LRP1B",
         "GeneID_y": "ENSG00000168702",
-        "Chr": "2",
+        "#Chr": "2",
         "Pos": "140995843",
         "Ref": "G",
         "Alt": "A",
@@ -352,7 +352,7 @@ sample_json = [
     {
         "GeneName": "SHH",
         "GeneID_y": "ENSG00000164690",
-        "Chr": "7",
+        "#Chr": "7",
         "Pos": "155595704",
         "Ref": "C",
         "Alt": "A",
@@ -366,7 +366,7 @@ sample_json = [
     {
         "GeneName": "GOLGA2",
         "GeneID_y": "ENSG00000167110",
-        "Chr": "9",
+        "#Chr": "9",
         "Pos": "131020799",
         "Ref": "ACCT",
         "Alt": "A",
@@ -380,7 +380,7 @@ sample_json = [
     {
         "GeneName": "CEP76",
         "GeneID_y": "ENSG00000101624",
-        "Chr": "18",
+        "#Chr": "18",
         "Pos": "12697321",
         "Ref": "C",
         "Alt": "G",
@@ -394,7 +394,7 @@ sample_json = [
     {
         "GeneName": "RFX8",
         "GeneID_y": "ENSG00000196460",
-        "Chr": "2",
+        "#Chr": "2",
         "Pos": "102034092",
         "Ref": "AG",
         "Alt": "A",
@@ -408,7 +408,7 @@ sample_json = [
     {
         "GeneName": "RANBP3L",
         "GeneID_y": "ENSG00000164188",
-        "Chr": "5",
+        "#Chr": "5",
         "Pos": "36271383",
         "Ref": "A",
         "Alt": "T",
@@ -422,7 +422,7 @@ sample_json = [
     {
         "GeneName": "RANBP3L",
         "GeneID_y": "ENSG00000164188",
-        "Chr": "5",
+        "#Chr": "5",
         "Pos": "36271381",
         "Ref": "A",
         "Alt": "T",
@@ -436,7 +436,7 @@ sample_json = [
     {
         "GeneName": "TBP",
         "GeneID_y": "ENSG00000112592",
-        "Chr": "6",
+        "#Chr": "6",
         "Pos": "170871056",
         "Ref": "ACAG",
         "Alt": "A",
@@ -450,7 +450,7 @@ sample_json = [
     {
         "GeneName": "TOP3A",
         "GeneID_y": "ENSG00000177302",
-        "Chr": "17",
+        "#Chr": "17",
         "Pos": "18205745",
         "Ref": "G",
         "Alt": "C",
@@ -464,7 +464,7 @@ sample_json = [
     {
         "GeneName": "LMO7",
         "GeneID_y": "ENSG00000136153",
-        "Chr": "13",
+        "#Chr": "13",
         "Pos": "76379849",
         "Ref": "A",
         "Alt": "G",
@@ -478,7 +478,7 @@ sample_json = [
     {
         "GeneName": "MUC5B",
         "GeneID_y": "ENSG00000117983",
-        "Chr": "11",
+        "#Chr": "11",
         "Pos": "1263605",
         "Ref": "C",
         "Alt": "T",
@@ -492,7 +492,7 @@ sample_json = [
     {
         "GeneName": "SLC4A7",
         "GeneID_y": "ENSG00000033867",
-        "Chr": "3",
+        "#Chr": "3",
         "Pos": "27473139",
         "Ref": "C",
         "Alt": "T",
@@ -506,7 +506,7 @@ sample_json = [
     {
         "GeneName": "FANCD2",
         "GeneID_y": "ENSG00000144554",
-        "Chr": "3",
+        "#Chr": "3",
         "Pos": "10088407",
         "Ref": "AAGTA",
         "Alt": "A",
@@ -520,7 +520,7 @@ sample_json = [
     {
         "GeneName": "ZNF738",
         "GeneID_y": "ENSG00000172687",
-        "Chr": "19",
+        "#Chr": "19",
         "Pos": "21565993",
         "Ref": "G",
         "Alt": "A",
@@ -534,7 +534,7 @@ sample_json = [
     {
         "GeneName": "PLEKHM2",
         "GeneID_y": "ENSG00000116786",
-        "Chr": "1",
+        "#Chr": "1",
         "Pos": "16055171",
         "Ref": "AAG",
         "Alt": "A",
@@ -548,7 +548,7 @@ sample_json = [
     {
         "GeneName": "ALMS1",
         "GeneID_y": "ENSG00000116127",
-        "Chr": "2",
+        "#Chr": "2",
         "Pos": "73613040",
         "Ref": "A",
         "Alt": "AGGA",
@@ -562,7 +562,7 @@ sample_json = [
     {
         "GeneName": "CEP192",
         "GeneID_y": "ENSG00000101639",
-        "Chr": "18",
+        "#Chr": "18",
         "Pos": "13073117",
         "Ref": "C",
         "Alt": "G",
@@ -576,7 +576,7 @@ sample_json = [
     {
         "GeneName": "ZNF384",
         "GeneID_y": "ENSG00000126746",
-        "Chr": "12",
+        "#Chr": "12",
         "Pos": "6777085",
         "Ref": "ATGC",
         "Alt": "A",
@@ -590,7 +590,7 @@ sample_json = [
     {
         "GeneName": "XDH",
         "GeneID_y": "ENSG00000158125",
-        "Chr": "2",
+        "#Chr": "2",
         "Pos": "31620548",
         "Ref": "G",
         "Alt": "A",
@@ -604,7 +604,7 @@ sample_json = [
     {
         "GeneName": "DHX38",
         "GeneID_y": "ENSG00000140829",
-        "Chr": "16",
+        "#Chr": "16",
         "Pos": "72144914",
         "Ref": "C",
         "Alt": "T",
@@ -618,7 +618,7 @@ sample_json = [
     {
         "GeneName": "FLT4",
         "GeneID_y": "ENSG00000037280",
-        "Chr": "5",
+        "#Chr": "5",
         "Pos": "180055897",
         "Ref": "G",
         "Alt": "A",
@@ -632,7 +632,7 @@ sample_json = [
     {
         "GeneName": "ZNF559",
         "GeneID_y": "ENSG00000188321",
-        "Chr": "19",
+        "#Chr": "19",
         "Pos": "9452669",
         "Ref": "AAA",
         "Alt": "A",
@@ -646,7 +646,7 @@ sample_json = [
     {
         "GeneName": "XXYLT1",
         "GeneID_y": "ENSG00000173950",
-        "Chr": "3",
+        "#Chr": "3",
         "Pos": "194947440",
         "Ref": "T",
         "Alt": "A",
@@ -660,7 +660,7 @@ sample_json = [
     {
         "GeneName": "AGRN",
         "GeneID_y": "ENSG00000188157",
-        "Chr": "1",
+        "#Chr": "1",
         "Pos": "983404",
         "Ref": "C",
         "Alt": "T",
@@ -674,7 +674,7 @@ sample_json = [
     {
         "GeneName": "BTAF1",
         "GeneID_y": "ENSG00000095564",
-        "Chr": "10",
+        "#Chr": "10",
         "Pos": "93683829",
         "Ref": "C",
         "Alt": "T",
@@ -688,7 +688,7 @@ sample_json = [
     {
         "GeneName": "MAP3K1",
         "GeneID_y": "ENSG00000095015",
-        "Chr": "5",
+        "#Chr": "5",
         "Pos": "56177852",
         "Ref": "ACAA",
         "Alt": "A",
@@ -702,7 +702,7 @@ sample_json = [
     {
         "GeneName": "KIF4A",
         "GeneID_y": "ENSG00000090889",
-        "Chr": "X",
+        "#Chr": "X",
         "Pos": "69626776",
         "Ref": "G",
         "Alt": "A",
@@ -716,7 +716,7 @@ sample_json = [
     {
         "GeneName": "PROSC",
         "GeneID_y": "ENSG00000147471",
-        "Chr": "8",
+        "#Chr": "8",
         "Pos": "37623101",
         "Ref": "A",
         "Alt": "G",
@@ -730,7 +730,7 @@ sample_json = [
     {
         "GeneName": "CD99L2",
         "GeneID_y": "ENSG00000102181",
-        "Chr": "X",
+        "#Chr": "X",
         "Pos": "149963926",
         "Ref": "C",
         "Alt": "T",
@@ -744,7 +744,7 @@ sample_json = [
     {
         "GeneName": "ZFPM1",
         "GeneID_y": "ENSG00000179588",
-        "Chr": "16",
+        "#Chr": "16",
         "Pos": "88599700",
         "Ref": "ACTCTGG",
         "Alt": "A",
@@ -758,7 +758,7 @@ sample_json = [
     {
         "GeneName": "MYOM2",
         "GeneID_y": "ENSG00000036448",
-        "Chr": "8",
+        "#Chr": "8",
         "Pos": "2088632",
         "Ref": "T",
         "Alt": "G",
@@ -772,7 +772,7 @@ sample_json = [
     {
         "GeneName": "ZNF738",
         "GeneID_y": "ENSG00000172687",
-        "Chr": "19",
+        "#Chr": "19",
         "Pos": "21565871",
         "Ref": "A",
         "Alt": "C",
@@ -786,7 +786,7 @@ sample_json = [
     {
         "GeneName": "LPCAT1",
         "GeneID_y": "ENSG00000153395",
-        "Chr": "5",
+        "#Chr": "5",
         "Pos": "1501670",
         "Ref": "C",
         "Alt": "T",
@@ -800,7 +800,7 @@ sample_json = [
     {
         "GeneName": "MUC16",
         "GeneID_y": "ENSG00000181143",
-        "Chr": "19",
+        "#Chr": "19",
         "Pos": "8996341",
         "Ref": "T",
         "Alt": "C",
@@ -814,7 +814,7 @@ sample_json = [
     {
         "GeneName": "EXOSC10",
         "GeneID_y": "ENSG00000171824",
-        "Chr": "1",
+        "#Chr": "1",
         "Pos": "11159851",
         "Ref": "G",
         "Alt": "A",
@@ -828,7 +828,7 @@ sample_json = [
     {
         "GeneName": "ZNF738",
         "GeneID_y": "ENSG00000172687",
-        "Chr": "19",
+        "#Chr": "19",
         "Pos": "21565883",
         "Ref": "G",
         "Alt": "A",
@@ -842,7 +842,7 @@ sample_json = [
     {
         "GeneName": "ZNF738",
         "GeneID_y": "ENSG00000172687",
-        "Chr": "19",
+        "#Chr": "19",
         "Pos": "21565970",
         "Ref": "A",
         "Alt": "G",
@@ -856,7 +856,7 @@ sample_json = [
     {
         "GeneName": "TOM1L1",
         "GeneID_y": "ENSG00000141198",
-        "Chr": "17",
+        "#Chr": "17",
         "Pos": "53038702",
         "Ref": "A",
         "Alt": "T",
@@ -870,7 +870,7 @@ sample_json = [
     {
         "GeneName": "MAML3",
         "GeneID_y": "ENSG00000196782",
-        "Chr": "4",
+        "#Chr": "4",
         "Pos": "140651588",
         "Ref": "ACTG",
         "Alt": "A",
@@ -884,7 +884,7 @@ sample_json = [
     {
         "GeneName": "MYO18B",
         "GeneID_y": "ENSG00000133454",
-        "Chr": "22",
+        "#Chr": "22",
         "Pos": "26176101",
         "Ref": "G",
         "Alt": "A",
@@ -898,7 +898,7 @@ sample_json = [
     {
         "GeneName": "PRDM15",
         "GeneID_y": "ENSG00000141956",
-        "Chr": "21",
+        "#Chr": "21",
         "Pos": "43221426",
         "Ref": "AGCTGCTCCGCCTGCACCTGGG",
         "Alt": "A",
@@ -912,7 +912,7 @@ sample_json = [
     {
         "GeneName": "KIAA2018",
         "GeneID_y": "ENSG00000176542",
-        "Chr": "3",
+        "#Chr": "3",
         "Pos": "113376117",
         "Ref": "ATGCTGCTGC",
         "Alt": "A",
@@ -926,7 +926,7 @@ sample_json = [
     {
         "GeneName": "OR6Y1",
         "GeneID_y": "ENSG00000197532",
-        "Chr": "1",
+        "#Chr": "1",
         "Pos": "158517366",
         "Ref": "G",
         "Alt": "A",
@@ -940,7 +940,7 @@ sample_json = [
     {
         "GeneName": "POLR3H",
         "GeneID_y": "ENSG00000100413",
-        "Chr": "22",
+        "#Chr": "22",
         "Pos": "41926756",
         "Ref": "T",
         "Alt": "C",
@@ -954,7 +954,7 @@ sample_json = [
     {
         "GeneName": "CTSA",
         "GeneID_y": "ENSG00000064601",
-        "Chr": "20",
+        "#Chr": "20",
         "Pos": "44520241",
         "Ref": "ACTG",
         "Alt": "A",
@@ -968,7 +968,7 @@ sample_json = [
     {
         "GeneName": "FPGT",
         "GeneID_y": "ENSG00000254685",
-        "Chr": "1",
+        "#Chr": "1",
         "Pos": "74670889",
         "Ref": "ATAG",
         "Alt": "A",
@@ -982,7 +982,7 @@ sample_json = [
     {
         "GeneName": "PDE4DIP",
         "GeneID_y": "ENSG00000178104",
-        "Chr": "1",
+        "#Chr": "1",
         "Pos": "145014188",
         "Ref": "AA",
         "Alt": "A",
@@ -996,7 +996,7 @@ sample_json = [
     {
         "GeneName": "WWOX",
         "GeneID_y": "ENSG00000186153",
-        "Chr": "16",
+        "#Chr": "16",
         "Pos": "79245645",
         "Ref": "G",
         "Alt": "A",
@@ -1010,7 +1010,7 @@ sample_json = [
     {
         "GeneName": "ARHGAP23",
         "GeneID_y": "ENSG00000225485",
-        "Chr": "17",
+        "#Chr": "17",
         "Pos": "36626090",
         "Ref": "G",
         "Alt": "A",
@@ -1024,7 +1024,7 @@ sample_json = [
     {
         "GeneName": "FGFR2",
         "GeneID_y": "ENSG00000066468",
-        "Chr": "10",
+        "#Chr": "10",
         "Pos": "123325169",
         "Ref": "C",
         "Alt": "T",
@@ -1038,7 +1038,7 @@ sample_json = [
     {
         "GeneName": "RRBP1",
         "GeneID_y": "ENSG00000125844",
-        "Chr": "20",
+        "#Chr": "20",
         "Pos": "17639441",
         "Ref": "T",
         "Alt": "C",
@@ -1052,7 +1052,7 @@ sample_json = [
     {
         "GeneName": "HRC",
         "GeneID_y": "ENSG00000130528",
-        "Chr": "19",
+        "#Chr": "19",
         "Pos": "49657717",
         "Ref": "ACAT",
         "Alt": "A",
@@ -1066,7 +1066,7 @@ sample_json = [
     {
         "GeneName": "HRC",
         "GeneID_y": "ENSG00000130528",
-        "Chr": "19",
+        "#Chr": "19",
         "Pos": "49657892",
         "Ref": "A",
         "Alt": "ATCC",
@@ -1080,7 +1080,7 @@ sample_json = [
     {
         "GeneName": "OR2AP1",
         "GeneID_y": "ENSG00000179615",
-        "Chr": "12",
+        "#Chr": "12",
         "Pos": "55968388",
         "Ref": "T",
         "Alt": "A",
@@ -1094,7 +1094,7 @@ sample_json = [
     {
         "GeneName": "KIAA0040",
         "GeneID_y": "ENSG00000235750",
-        "Chr": "1",
+        "#Chr": "1",
         "Pos": "175129933",
         "Ref": "A",
         "Alt": "ACTT",
@@ -1108,7 +1108,7 @@ sample_json = [
     {
         "GeneName": "ATXN7L1",
         "GeneID_y": "ENSG00000146776",
-        "Chr": "7",
+        "#Chr": "7",
         "Pos": "105254709",
         "Ref": "G",
         "Alt": "A",
@@ -1122,7 +1122,7 @@ sample_json = [
     {
         "GeneName": "AC010642.1",
         "GeneID_y": "ENSG00000267216",
-        "Chr": "19",
+        "#Chr": "19",
         "Pos": "58790589",
         "Ref": "C",
         "Alt": "T",
@@ -1136,7 +1136,7 @@ sample_json = [
     {
         "GeneName": "ERN1",
         "GeneID_y": "ENSG00000178607",
-        "Chr": "17",
+        "#Chr": "17",
         "Pos": "62121356",
         "Ref": "C",
         "Alt": "T",
@@ -1150,7 +1150,7 @@ sample_json = [
     {
         "GeneName": "WDR52",
         "GeneID_y": "ENSG00000206530",
-        "Chr": "3",
+        "#Chr": "3",
         "Pos": "113063525",
         "Ref": "C",
         "Alt": "T",
@@ -1164,7 +1164,7 @@ sample_json = [
     {
         "GeneName": "RRBP1",
         "GeneID_y": "ENSG00000125844",
-        "Chr": "20",
+        "#Chr": "20",
         "Pos": "17639846",
         "Ref": "T",
         "Alt": "G",
@@ -1178,7 +1178,7 @@ sample_json = [
     {
         "GeneName": "YEATS2",
         "GeneID_y": "ENSG00000163872",
-        "Chr": "3",
+        "#Chr": "3",
         "Pos": "183493747",
         "Ref": "AGGA",
         "Alt": "A",
@@ -1192,7 +1192,7 @@ sample_json = [
     {
         "GeneName": "PTGES3L-AARSD1",
         "GeneID_y": "ENSG00000108825",
-        "Chr": "17",
+        "#Chr": "17",
         "Pos": "41121208",
         "Ref": "G",
         "Alt": "C",
@@ -1206,7 +1206,7 @@ sample_json = [
     {
         "GeneName": "GPR101",
         "GeneID_y": "ENSG00000165370",
-        "Chr": "X",
+        "#Chr": "X",
         "Pos": "136113743",
         "Ref": "C",
         "Alt": "T",
@@ -1220,7 +1220,7 @@ sample_json = [
     {
         "GeneName": "MAGEC1",
         "GeneID_y": "ENSG00000155495",
-        "Chr": "X",
+        "#Chr": "X",
         "Pos": "140995472",
         "Ref": "AAGAGTCCTC",
         "Alt": "A",
@@ -1234,7 +1234,7 @@ sample_json = [
     {
         "GeneName": "MMP28",
         "GeneID_y": "ENSG00000129270",
-        "Chr": "17",
+        "#Chr": "17",
         "Pos": "34094853",
         "Ref": "C",
         "Alt": "T",
@@ -1248,7 +1248,7 @@ sample_json = [
     {
         "GeneName": "MAGEC1",
         "GeneID_y": "ENSG00000155495",
-        "Chr": "X",
+        "#Chr": "X",
         "Pos": "140994647",
         "Ref": "C",
         "Alt": "T",
@@ -1262,7 +1262,7 @@ sample_json = [
     {
         "GeneName": "PZP",
         "GeneID_y": "ENSG00000126838",
-        "Chr": "12",
+        "#Chr": "12",
         "Pos": "9318693",
         "Ref": "C",
         "Alt": "T",
@@ -1276,7 +1276,7 @@ sample_json = [
     {
         "GeneName": "PLEKHG5",
         "GeneID_y": "ENSG00000171680",
-        "Chr": "1",
+        "#Chr": "1",
         "Pos": "6529186",
         "Ref": "ATCC",
         "Alt": "A",
@@ -1290,7 +1290,7 @@ sample_json = [
     {
         "GeneName": "ASPN",
         "GeneID_y": "ENSG00000106819",
-        "Chr": "9",
+        "#Chr": "9",
         "Pos": "95237030",
         "Ref": "A",
         "Alt": "ATCA",
@@ -1304,7 +1304,7 @@ sample_json = [
     {
         "GeneName": "NUP133",
         "GeneID_y": "ENSG00000069248",
-        "Chr": "1",
+        "#Chr": "1",
         "Pos": "229588305",
         "Ref": "C",
         "Alt": "T",
@@ -1318,7 +1318,7 @@ sample_json = [
     {
         "GeneName": "TRIO",
         "GeneID_y": "ENSG00000038382",
-        "Chr": "5",
+        "#Chr": "5",
         "Pos": "14509543",
         "Ref": "G",
         "Alt": "A",
@@ -1332,7 +1332,7 @@ sample_json = [
     {
         "GeneName": "MAGEC1",
         "GeneID_y": "ENSG00000155495",
-        "Chr": "X",
+        "#Chr": "X",
         "Pos": "140994610",
         "Ref": "C",
         "Alt": "G",
@@ -1346,7 +1346,7 @@ sample_json = [
     {
         "GeneName": "ZDHHC11",
         "GeneID_y": "ENSG00000188818",
-        "Chr": "5",
+        "#Chr": "5",
         "Pos": "796054",
         "Ref": "ACT",
         "Alt": "A",
@@ -1360,7 +1360,7 @@ sample_json = [
     {
         "GeneName": "MAML2",
         "GeneID_y": "ENSG00000184384",
-        "Chr": "11",
+        "#Chr": "11",
         "Pos": "95825378",
         "Ref": "ATGCTGCTGC",
         "Alt": "A",
@@ -1374,7 +1374,7 @@ sample_json = [
     {
         "GeneName": "MUC3A",
         "GeneID_y": "ENSG00000169894",
-        "Chr": "7",
+        "#Chr": "7",
         "Pos": "100608738",
         "Ref": "G",
         "Alt": "A",
@@ -1388,7 +1388,7 @@ sample_json = [
     {
         "GeneName": "TEKT3",
         "GeneID_y": "ENSG00000125409",
-        "Chr": "17",
+        "#Chr": "17",
         "Pos": "15217535",
         "Ref": "C",
         "Alt": "T",
@@ -1402,7 +1402,7 @@ sample_json = [
     {
         "GeneName": "WDR17",
         "GeneID_y": "ENSG00000150627",
-        "Chr": "4",
+        "#Chr": "4",
         "Pos": "177084447",
         "Ref": "A",
         "Alt": "G",
@@ -1416,7 +1416,7 @@ sample_json = [
     {
         "GeneName": "ABCA4",
         "GeneID_y": "ENSG00000198691",
-        "Chr": "1",
+        "#Chr": "1",
         "Pos": "94568686",
         "Ref": "C",
         "Alt": "T",
@@ -1430,7 +1430,7 @@ sample_json = [
     {
         "GeneName": "FBLL1",
         "GeneID_y": "ENSG00000188573",
-        "Chr": "5",
+        "#Chr": "5",
         "Pos": "167957124",
         "Ref": "C",
         "Alt": "T",
@@ -1444,7 +1444,7 @@ sample_json = [
     {
         "GeneName": "PCYT1B",
         "GeneID_y": "ENSG00000102230",
-        "Chr": "X",
+        "#Chr": "X",
         "Pos": "24597532",
         "Ref": "C",
         "Alt": "T",
@@ -1458,7 +1458,7 @@ sample_json = [
     {
         "GeneName": "PHLDA1",
         "GeneID_y": "ENSG00000139289",
-        "Chr": "12",
+        "#Chr": "12",
         "Pos": "76424941",
         "Ref": "ATGC",
         "Alt": "A",
@@ -1472,7 +1472,7 @@ sample_json = [
     {
         "GeneName": "FAM83G",
         "GeneID_y": "ENSG00000188522",
-        "Chr": "17",
+        "#Chr": "17",
         "Pos": "18881427",
         "Ref": "G",
         "Alt": "A",
@@ -1486,7 +1486,7 @@ sample_json = [
     {
         "GeneName": "MUC3A",
         "GeneID_y": "ENSG00000169894",
-        "Chr": "7",
+        "#Chr": "7",
         "Pos": "100551272",
         "Ref": "C",
         "Alt": "A",
@@ -1500,7 +1500,7 @@ sample_json = [
     {
         "GeneName": "KDM6B",
         "GeneID_y": "ENSG00000132510",
-        "Chr": "17",
+        "#Chr": "17",
         "Pos": "7750195",
         "Ref": "A",
         "Alt": "AACCACC",
@@ -1514,7 +1514,7 @@ sample_json = [
     {
         "GeneName": "RFX8",
         "GeneID_y": "ENSG00000196460",
-        "Chr": "2",
+        "#Chr": "2",
         "Pos": "102083318",
         "Ref": "C",
         "Alt": "A",
@@ -1528,7 +1528,7 @@ sample_json = [
     {
         "GeneName": "PHF6",
         "GeneID_y": "ENSG00000156531",
-        "Chr": "X",
+        "#Chr": "X",
         "Pos": "133527978",
         "Ref": "C",
         "Alt": "T",
@@ -1542,7 +1542,7 @@ sample_json = [
     {
         "GeneName": "ZDHHC11",
         "GeneID_y": "ENSG00000188818",
-        "Chr": "5",
+        "#Chr": "5",
         "Pos": "796051",
         "Ref": "G",
         "Alt": "A",
@@ -1556,7 +1556,7 @@ sample_json = [
     {
         "GeneName": "ZNF738",
         "GeneID_y": "ENSG00000172687",
-        "Chr": "19",
+        "#Chr": "19",
         "Pos": "21565920",
         "Ref": "C",
         "Alt": "T",
@@ -1570,7 +1570,7 @@ sample_json = [
     {
         "GeneName": "CNTNAP3B",
         "GeneID_y": "ENSG00000154529",
-        "Chr": "9",
+        "#Chr": "9",
         "Pos": "43816637",
         "Ref": "G",
         "Alt": "A",
@@ -1584,7 +1584,7 @@ sample_json = [
     {
         "GeneName": "DCHS2",
         "GeneID_y": "ENSG00000197410",
-        "Chr": "4",
+        "#Chr": "4",
         "Pos": "155226021",
         "Ref": "C",
         "Alt": "T",
@@ -1598,7 +1598,7 @@ sample_json = [
     {
         "GeneName": "ZDHHC11",
         "GeneID_y": "ENSG00000188818",
-        "Chr": "5",
+        "#Chr": "5",
         "Pos": "796064",
         "Ref": "T",
         "Alt": "C",
@@ -1612,7 +1612,7 @@ sample_json = [
     {
         "GeneName": "RRM2B",
         "GeneID_y": "ENSG00000048392",
-        "Chr": "8",
+        "#Chr": "8",
         "Pos": "103250875",
         "Ref": "C",
         "Alt": "T",
@@ -1626,7 +1626,7 @@ sample_json = [
     {
         "GeneName": "KIAA2018",
         "GeneID_y": "ENSG00000176542",
-        "Chr": "3",
+        "#Chr": "3",
         "Pos": "113376123",
         "Ref": "ATGC",
         "Alt": "A",
@@ -1640,7 +1640,7 @@ sample_json = [
     {
         "GeneName": "ANKLE1",
         "GeneID_y": "ENSG00000160117",
-        "Chr": "19",
+        "#Chr": "19",
         "Pos": "17397498",
         "Ref": "ATGTTTG",
         "Alt": "A",
@@ -1654,7 +1654,7 @@ sample_json = [
     {
         "GeneName": "FRMPD3",
         "GeneID_y": "ENSG00000147234",
-        "Chr": "X",
+        "#Chr": "X",
         "Pos": "106765683",
         "Ref": "G",
         "Alt": "A",
@@ -1668,7 +1668,7 @@ sample_json = [
     {
         "GeneName": "ZDHHC11",
         "GeneID_y": "ENSG00000188818",
-        "Chr": "5",
+        "#Chr": "5",
         "Pos": "796041",
         "Ref": "C",
         "Alt": "T",
@@ -1682,7 +1682,7 @@ sample_json = [
     {
         "GeneName": "ZNF738",
         "GeneID_y": "ENSG00000172687",
-        "Chr": "19",
+        "#Chr": "19",
         "Pos": "21565875",
         "Ref": "T",
         "Alt": "A",
@@ -1696,7 +1696,7 @@ sample_json = [
     {
         "GeneName": "ZNF595",
         "GeneID_y": "ENSG00000197701",
-        "Chr": "4",
+        "#Chr": "4",
         "Pos": "86033",
         "Ref": "AAT",
         "Alt": "A",
@@ -1710,7 +1710,7 @@ sample_json = [
     {
         "GeneName": "DDX52",
         "GeneID_y": "ENSG00000141141",
-        "Chr": "17",
+        "#Chr": "17",
         "Pos": "36002175",
         "Ref": "A",
         "Alt": "ACCT",
@@ -1724,7 +1724,7 @@ sample_json = [
     {
         "GeneName": "MUC2",
         "GeneID_y": "ENSG00000198788",
-        "Chr": "11",
+        "#Chr": "11",
         "Pos": "1093061",
         "Ref": "C",
         "Alt": "T",
@@ -1738,7 +1738,7 @@ sample_json = [
     {
         "GeneName": "C2orf16",
         "GeneID_y": "ENSG00000221843",
-        "Chr": "2",
+        "#Chr": "2",
         "Pos": "27799936",
         "Ref": "G",
         "Alt": "T",
@@ -1752,7 +1752,7 @@ sample_json = [
     {
         "GeneName": "FAM47A",
         "GeneID_y": "ENSG00000185448",
-        "Chr": "X",
+        "#Chr": "X",
         "Pos": "34148427",
         "Ref": "T",
         "Alt": "A",
@@ -1766,7 +1766,7 @@ sample_json = [
     {
         "GeneName": "ANKRD36",
         "GeneID_y": "ENSG00000135976",
-        "Chr": "2",
+        "#Chr": "2",
         "Pos": "97818262",
         "Ref": "C",
         "Alt": "G",
@@ -1780,7 +1780,7 @@ sample_json = [
     {
         "GeneName": "ZNF738",
         "GeneID_y": "ENSG00000172687",
-        "Chr": "19",
+        "#Chr": "19",
         "Pos": "21565886",
         "Ref": "A",
         "Alt": "G",
@@ -1794,7 +1794,7 @@ sample_json = [
     {
         "GeneName": "MUC2",
         "GeneID_y": "ENSG00000198788",
-        "Chr": "11",
+        "#Chr": "11",
         "Pos": "1093022",
         "Ref": "C",
         "Alt": "T",
@@ -1808,7 +1808,7 @@ sample_json = [
     {
         "GeneName": "ANKRD36",
         "GeneID_y": "ENSG00000135976",
-        "Chr": "2",
+        "#Chr": "2",
         "Pos": "97818264",
         "Ref": "G",
         "Alt": "T",
@@ -1822,7 +1822,7 @@ sample_json = [
     {
         "GeneName": "ZNF738",
         "GeneID_y": "ENSG00000172687",
-        "Chr": "19",
+        "#Chr": "19",
         "Pos": "21565998",
         "Ref": "T",
         "Alt": "C",
@@ -1836,7 +1836,7 @@ sample_json = [
     {
         "GeneName": "GOLGA6L2",
         "GeneID_y": "ENSG00000174450",
-        "Chr": "15",
+        "#Chr": "15",
         "Pos": "23686089",
         "Ref": "ACTC",
         "Alt": "A",
@@ -1850,7 +1850,7 @@ sample_json = [
     {
         "GeneName": "CD300C",
         "GeneID_y": "ENSG00000167850",
-        "Chr": "17",
+        "#Chr": "17",
         "Pos": "72541018",
         "Ref": "G",
         "Alt": "A",
@@ -1864,7 +1864,7 @@ sample_json = [
     {
         "GeneName": "NSRP1",
         "GeneID_y": "ENSG00000126653",
-        "Chr": "17",
+        "#Chr": "17",
         "Pos": "28512591",
         "Ref": "C",
         "Alt": "T",
@@ -1878,7 +1878,7 @@ sample_json = [
     {
         "GeneName": "",
         "GeneID_y": "",
-        "Chr": "14",
+        "#Chr": "14",
         "Pos": "23574108",
         "Ref": "AGCA",
         "Alt": "A",
@@ -1892,7 +1892,7 @@ sample_json = [
     {
         "GeneName": "MPRIP",
         "GeneID_y": "ENSG00000133030",
-        "Chr": "17",
+        "#Chr": "17",
         "Pos": "17039571",
         "Ref": "ACAG",
         "Alt": "A",
@@ -1906,7 +1906,7 @@ sample_json = [
     {
         "GeneName": "SUPT20HL1",
         "GeneID_y": "ENSG00000223731",
-        "Chr": "X",
+        "#Chr": "X",
         "Pos": "24382435",
         "Ref": "ACCTGCTCTA",
         "Alt": "A",
@@ -1920,7 +1920,7 @@ sample_json = [
     {
         "GeneName": "FLG",
         "GeneID_y": "ENSG00000143631",
-        "Chr": "1",
+        "#Chr": "1",
         "Pos": "152277524",
         "Ref": "C",
         "Alt": "G",
@@ -1934,7 +1934,7 @@ sample_json = [
     {
         "GeneName": "DCAF8L2",
         "GeneID_y": "ENSG00000189186",
-        "Chr": "X",
+        "#Chr": "X",
         "Pos": "27765205",
         "Ref": "G",
         "Alt": "T",
@@ -1948,7 +1948,7 @@ sample_json = [
     {
         "GeneName": "HOMEZ",
         "GeneID_y": "ENSG00000215271",
-        "Chr": "14",
+        "#Chr": "14",
         "Pos": "23744804",
         "Ref": "ACAT",
         "Alt": "A",
@@ -1962,7 +1962,7 @@ sample_json = [
     {
         "GeneName": "MROH7-TTC4",
         "GeneID_y": "ENSG00000271723",
-        "Chr": "1",
+        "#Chr": "1",
         "Pos": "55181276",
         "Ref": "A",
         "Alt": "G",
@@ -1976,7 +1976,7 @@ sample_json = [
     {
         "GeneName": "MUC5B",
         "GeneID_y": "ENSG00000117983",
-        "Chr": "11",
+        "#Chr": "11",
         "Pos": "1272122",
         "Ref": "C",
         "Alt": "T",
@@ -1990,7 +1990,7 @@ sample_json = [
     {
         "GeneName": "HEATR4",
         "GeneID_y": "ENSG00000187105",
-        "Chr": "14",
+        "#Chr": "14",
         "Pos": "73958723",
         "Ref": "G",
         "Alt": "T",
@@ -2004,7 +2004,7 @@ sample_json = [
     {
         "GeneName": "ESR2",
         "GeneID_y": "ENSG00000140009",
-        "Chr": "14",
+        "#Chr": "14",
         "Pos": "64682960",
         "Ref": "T",
         "Alt": "G",
@@ -2018,7 +2018,7 @@ sample_json = [
     {
         "GeneName": "ANKRD36C",
         "GeneID_y": "ENSG00000174501",
-        "Chr": "2",
+        "#Chr": "2",
         "Pos": "96576131",
         "Ref": "T",
         "Alt": "A",
@@ -2032,7 +2032,7 @@ sample_json = [
     {
         "GeneName": "",
         "GeneID_y": "",
-        "Chr": "16",
+        "#Chr": "16",
         "Pos": "838163",
         "Ref": "A",
         "Alt": "G",
@@ -2046,7 +2046,7 @@ sample_json = [
     {
         "GeneName": "ACSM3",
         "GeneID_y": "ENSG00000005187",
-        "Chr": "16",
+        "#Chr": "16",
         "Pos": "20635543",
         "Ref": "G",
         "Alt": "T",
@@ -2060,7 +2060,7 @@ sample_json = [
     {
         "GeneName": "MUC5B",
         "GeneID_y": "ENSG00000117983",
-        "Chr": "11",
+        "#Chr": "11",
         "Pos": "1266047",
         "Ref": "C",
         "Alt": "T",
@@ -2074,7 +2074,7 @@ sample_json = [
     {
         "GeneName": "NEMF",
         "GeneID_y": "ENSG00000165525",
-        "Chr": "14",
+        "#Chr": "14",
         "Pos": "50318286",
         "Ref": "T",
         "Alt": "C",
@@ -2088,7 +2088,7 @@ sample_json = [
     {
         "GeneName": "THBS1",
         "GeneID_y": "ENSG00000137801",
-        "Chr": "15",
+        "#Chr": "15",
         "Pos": "39877710",
         "Ref": "A",
         "Alt": "G",
@@ -2102,7 +2102,7 @@ sample_json = [
     {
         "GeneName": "GALC",
         "GeneID_y": "ENSG00000054983",
-        "Chr": "14",
+        "#Chr": "14",
         "Pos": "88417097",
         "Ref": "AA",
         "Alt": "A",
@@ -2116,7 +2116,7 @@ sample_json = [
     {
         "GeneName": "ANKRD30A",
         "GeneID_y": "ENSG00000148513",
-        "Chr": "10",
+        "#Chr": "10",
         "Pos": "37433904",
         "Ref": "T",
         "Alt": "G",
@@ -2130,7 +2130,7 @@ sample_json = [
     {
         "GeneName": "NOP9",
         "GeneID_y": "ENSG00000196943",
-        "Chr": "14",
+        "#Chr": "14",
         "Pos": "24769852",
         "Ref": "A",
         "Alt": "AGAGGAG",
@@ -2144,7 +2144,7 @@ sample_json = [
     {
         "GeneName": "INO80",
         "GeneID_y": "ENSG00000128908",
-        "Chr": "15",
+        "#Chr": "15",
         "Pos": "41337207",
         "Ref": "C",
         "Alt": "T",
@@ -2158,7 +2158,7 @@ sample_json = [
     {
         "GeneName": "RAI1",
         "GeneID_y": "ENSG00000108557",
-        "Chr": "17",
+        "#Chr": "17",
         "Pos": "17697106",
         "Ref": "ACAG",
         "Alt": "A",
@@ -2172,7 +2172,7 @@ sample_json = [
     {
         "GeneName": "IGFALS",
         "GeneID_y": "ENSG00000099769",
-        "Chr": "16",
+        "#Chr": "16",
         "Pos": "1842354",
         "Ref": "G",
         "Alt": "A",
@@ -2186,7 +2186,7 @@ sample_json = [
     {
         "GeneName": "GOLGA6L2",
         "GeneID_y": "ENSG00000174450",
-        "Chr": "15",
+        "#Chr": "15",
         "Pos": "23686113",
         "Ref": "C",
         "Alt": "G",
@@ -2200,7 +2200,7 @@ sample_json = [
     {
         "GeneName": "ANKRD36C",
         "GeneID_y": "ENSG00000174501",
-        "Chr": "2",
+        "#Chr": "2",
         "Pos": "96616506",
         "Ref": "G",
         "Alt": "C",
@@ -2214,7 +2214,7 @@ sample_json = [
     {
         "GeneName": "ANKRD30A",
         "GeneID_y": "ENSG00000148513",
-        "Chr": "10",
+        "#Chr": "10",
         "Pos": "37433914",
         "Ref": "T",
         "Alt": "C",
@@ -2228,7 +2228,7 @@ sample_json = [
     {
         "GeneName": "ZNF721",
         "GeneID_y": "ENSG00000182903",
-        "Chr": "4",
+        "#Chr": "4",
         "Pos": "466474",
         "Ref": "C",
         "Alt": "T",
@@ -2242,7 +2242,7 @@ sample_json = [
     {
         "GeneName": "ERGIC1",
         "GeneID_y": "ENSG00000113719",
-        "Chr": "5",
+        "#Chr": "5",
         "Pos": "172342079",
         "Ref": "T",
         "Alt": "C",
@@ -2256,7 +2256,7 @@ sample_json = [
     {
         "GeneName": "ANKRD36C",
         "GeneID_y": "ENSG00000174501",
-        "Chr": "2",
+        "#Chr": "2",
         "Pos": "96616507",
         "Ref": "C",
         "Alt": "A",
@@ -2270,7 +2270,7 @@ sample_json = [
     {
         "GeneName": "ANKRD30A",
         "GeneID_y": "ENSG00000148513",
-        "Chr": "10",
+        "#Chr": "10",
         "Pos": "37433903",
         "Ref": "C",
         "Alt": "T",
@@ -2284,7 +2284,7 @@ sample_json = [
     {
         "GeneName": "SPRN",
         "GeneID_y": "ENSG00000203772",
-        "Chr": "10",
+        "#Chr": "10",
         "Pos": "135278843",
         "Ref": "C",
         "Alt": "A",
@@ -2298,7 +2298,7 @@ sample_json = [
     {
         "GeneName": "TTC37",
         "GeneID_y": "ENSG00000198677",
-        "Chr": "5",
+        "#Chr": "5",
         "Pos": "94852123",
         "Ref": "A",
         "Alt": "G",
@@ -2312,7 +2312,7 @@ sample_json = [
     {
         "GeneName": "ZNF177",
         "GeneID_y": "ENSG00000188629",
-        "Chr": "19",
+        "#Chr": "19",
         "Pos": "9492071",
         "Ref": "T",
         "Alt": "G",
@@ -2326,7 +2326,7 @@ sample_json = [
     {
         "GeneName": "ANKRD36C",
         "GeneID_y": "ENSG00000174501",
-        "Chr": "2",
+        "#Chr": "2",
         "Pos": "96616504",
         "Ref": "C",
         "Alt": "A",
@@ -2340,7 +2340,7 @@ sample_json = [
     {
         "GeneName": "OR8U1",
         "GeneID_y": "ENSG00000172199",
-        "Chr": "11",
+        "#Chr": "11",
         "Pos": "56143260",
         "Ref": "G",
         "Alt": "A",
@@ -2354,7 +2354,7 @@ sample_json = [
     {
         "GeneName": "RBMXL3",
         "GeneID_y": "ENSG00000175718",
-        "Chr": "X",
+        "#Chr": "X",
         "Pos": "114426006",
         "Ref": "C",
         "Alt": "T",
@@ -2368,7 +2368,7 @@ sample_json = [
     {
         "GeneName": "RP11-156E8.1",
         "GeneID_y": "ENSG00000272195",
-        "Chr": "1",
+        "#Chr": "1",
         "Pos": "245133576",
         "Ref": "C",
         "Alt": "T",
@@ -2382,7 +2382,7 @@ sample_json = [
     {
         "GeneName": "SUPT20HL1",
         "GeneID_y": "ENSG00000223731",
-        "Chr": "X",
+        "#Chr": "X",
         "Pos": "24382429",
         "Ref": "C",
         "Alt": "G",
@@ -2396,7 +2396,7 @@ sample_json = [
     {
         "GeneName": "RBMXL3",
         "GeneID_y": "ENSG00000175718",
-        "Chr": "X",
+        "#Chr": "X",
         "Pos": "114426631",
         "Ref": "G",
         "Alt": "A",
@@ -2410,7 +2410,7 @@ sample_json = [
     {
         "GeneName": "GPR50",
         "GeneID_y": "ENSG00000102195",
-        "Chr": "X",
+        "#Chr": "X",
         "Pos": "150349401",
         "Ref": "A",
         "Alt": "C",
@@ -2424,7 +2424,7 @@ sample_json = [
     {
         "GeneName": "SUPT20HL1",
         "GeneID_y": "ENSG00000223731",
-        "Chr": "X",
+        "#Chr": "X",
         "Pos": "24382453",
         "Ref": "G",
         "Alt": "C",
@@ -2438,7 +2438,7 @@ sample_json = [
     {
         "GeneName": "MUC3A",
         "GeneID_y": "ENSG00000228273",
-        "Chr": "7",
+        "#Chr": "7",
         "Pos": "100550995",
         "Ref": "A",
         "Alt": "G",
@@ -2452,7 +2452,7 @@ sample_json = [
     {
         "GeneName": "ZNF738",
         "GeneID_y": "ENSG00000172687",
-        "Chr": "19",
+        "#Chr": "19",
         "Pos": "21565874",
         "Ref": "T",
         "Alt": "C",
@@ -2466,7 +2466,7 @@ sample_json = [
     {
         "GeneName": "MUC3A",
         "GeneID_y": "ENSG00000228273",
-        "Chr": "7",
+        "#Chr": "7",
         "Pos": "100550530",
         "Ref": "T",
         "Alt": "A",
@@ -2480,7 +2480,7 @@ sample_json = [
     {
         "GeneName": "MUC3A",
         "GeneID_y": "ENSG00000228273",
-        "Chr": "7",
+        "#Chr": "7",
         "Pos": "100550513",
         "Ref": "C",
         "Alt": "T",

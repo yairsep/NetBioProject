@@ -67,7 +67,7 @@ const ResultsTable = (props) => {
 
         <Table.Body>
           {sortStatus.data.slice(getSliceRng(), (getSliceRng() + 16))
-            .map(({ GeneName, GeneID_y, Chr, Pos, Ref, Alt, Type, Length, SITFval, PolyPhenVal, PHRED, Pathological_probability }) => (
+            .map(({ GeneName, GeneID_y, "#Chr": Chr, Pos, Ref, Alt, Type, Length, SITFval, PolyPhenVal, PHRED, Pathological_probability }) => (
               <Table.Row positive={GeneName === props.selectedRow} onClick={props.onRowSelect} key={`${GeneName}_${Math.random()}`}>
                 <Table.Cell id={GeneName}>{GeneName}</Table.Cell>
                 <Table.Cell id={GeneName}>{GeneID_y}</Table.Cell>
