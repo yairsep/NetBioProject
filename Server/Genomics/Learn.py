@@ -35,21 +35,22 @@ def execute_ML_module(date_time, tissue):
 
     # Executing Hanan Algorithem
     print("Executing Hanan algorithem...")
-    cadd_cluster_path = "./PathoSearch/ML-Scripts/DataInput/{}_cadd.csv ".format(date_time)
+    cadd_cluster_path = "./DataInput/{}_cadd.csv ".format(date_time)
 
     # cadd_cluster_path = "CardiomyopathyOtB0551_CADD_GRCh37-v1.6.csv "
 
-    trace_cluster_path = "./PathoSearch/ML-Scripts/DataInput/{}_trace.csv ".format(date_time)
+    trace_cluster_path = "./DataInput/{}_trace.csv ".format(date_time)
 
     # trace_cluster_path = "Trace_Sample_CardiomyopathyOtB0551.csv "
 
-    tissue = tissue + " "
-    # tissue = "Heart-Left-Ventricle "
+    # tissue = tissue + " "
+    tissue = "Heart-Left-Ventricle "
 
     hanan_cluster_path = "cd PathoSearch/ML-Scripts && "
 
 
     exec_command = "run_script_yair.sh " + cadd_cluster_path + trace_cluster_path + tissue + date_time
+    print("tissue is:", tissue)
     cmd = hanan_cluster_path + exec_command
     stdin, stdout, stderr = client.exec_command(cmd)
     print('Hanan Algo in Cluster Was executed')
@@ -57,7 +58,7 @@ def execute_ML_module(date_time, tissue):
     print(msg)
 
     # Coping Hanan algo output to server
-    server_hanan_output_path = './Data/Hanan_Output/{}.csv'.format(date_time)
+    server_hanan_output_path = './Data/Hanan_Output/{}_hanan_output.csv'.format(date_time)
     sftp = client.open_sftp()
     cluster_output_path = "./PathoSearch/ML-Scripts/DataOutput/{}.csv".format(date_time)
     while not os.path.exists(server_hanan_output_path):
