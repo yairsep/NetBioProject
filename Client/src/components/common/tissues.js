@@ -1,4 +1,5 @@
 export default [
+  { key: 'Heart Left Ventricle', text: 'Heart Left Ventricle', value: 'Heart-Left-Ventricle' },
   { key: 'Heart', text: 'Heart', value: 'heart' },
   { key: 'Muscle', text: 'Muscle', value: 'muscle_skeletal' },
   { key: 'Skin', text: 'Skin', value: 'skin' },

@@ -77,8 +77,8 @@ const Home = () => {
                 placeholder="Choose an organism"
                 fluid
                 selection
-                defaultSearchQuery="heart"
-                defaultValue="heart"
+                defaultSearchQuery="Heart-Left-Ventricle"
+                defaultValue="Heart-Left-Ventricle"
                 style={{ zIndex: '12' }}
               />
             </Grid.Column>

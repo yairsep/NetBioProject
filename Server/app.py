@@ -47,9 +47,9 @@ def process_vcf():
     Trace.process_request(request, date_time, tissue)
     # Then Execute ML module
     Learn.execute_ML_module(date_time, tissue)
-    # hanan_output = Learn.getOutput(date_time)
-    # return hanan_output
-    return "VCF file has been sent successfully"
+    hanan_output = Learn.getOutput(date_time)
+    return jsonify(hanan_output)
+    # return "VCF file has been sent successfully"
 
 
 @app.errorhandler(422)

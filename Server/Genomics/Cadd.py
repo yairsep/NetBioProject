@@ -80,7 +80,7 @@ def fetch_tsv_output_from_genomics(date_time):
             time.sleep(5)
             print('Waiting 5 secs for re-copying')
             break
-        print("TSV file has been been sent to Server successfully")
+    print("TSV file has been been sent to Server successfully")
     sftp.close()
     client.close()
 

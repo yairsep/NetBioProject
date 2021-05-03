@@ -20,7 +20,6 @@ export const fetchSample = async () => {
 
 export const sendVcfFile = async (vcfFile) => {
   console.log('vcfFile:', vcfFile)
-  const req = await axios.post(`${baseUrl}/vcf`, vcfFile)
-  console.log(req)
-  return fetchSample()
+  const res = await axios.post(`${baseUrl}/vcf`, vcfFile)
+  return res.data
 }

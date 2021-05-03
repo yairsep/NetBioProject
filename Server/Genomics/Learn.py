@@ -22,7 +22,7 @@ def execute_ML_module(date_time, tissue):
     client.connect(CLUSTER_HOST, username=CLUSTER_USER, password=CLUSTER_PASSWORD)
 
     # Moving Outputs from CADD & Trace to Cluster
-    cadd_input_tsv = "./Data/Cadd_Output/{}_cadd.tsv".format(date_time)
+    cadd_input_tsv = "./Data/Cadd_Output/{}_cadd.csv".format(date_time)
     trace_input_csv = "./Data/Trace_Output/{}_trace.csv".format(date_time)
 
     cluster_input_path = "./PathoSearch/ML-Scripts/DataInput"
@@ -35,7 +35,7 @@ def execute_ML_module(date_time, tissue):
 
     # Executing Hanan Algorithem
     print("Executing Hanan algorithem...")
-    cadd_cluster_path = "./DataInput/{}_cadd.tsv ".format(date_time)
+    cadd_cluster_path = "./DataInput/{}_cadd.csv ".format(date_time)
 
     # cadd_cluster_path = "CardiomyopathyOtB0551_CADD_GRCh37-v1.6.csv "
 
