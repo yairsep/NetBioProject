@@ -14,8 +14,8 @@ const DistributionChart = (props) => {
   }, [])
   // Builds an 2d-array with [score, numOfGenes]. like : [ [2, 21], [6, 15], ...  ]
 
-  const bubblesData = [['geneName', 'Pathological_probability'], ...props.data.map((item) => [item['GeneName'], item['Pathological_probability']])]
-
+  const bubblesData = [['geneName', 'Pathological_probability'], ...props.data.map((item) => [item['GeneName'], parseFloat(item['Pathological_probability'])])]
+  console.log(bubblesData)
   return (
     <div>
       <Chart
@@ -29,9 +29,9 @@ const DistributionChart = (props) => {
           hAxis: { title: 'Score',
             viewWindow: {
               min: 0,
-              max: 10
+              max: 1  
             },
-            ticks: [0, 2, 4, 6, 8, 10] },
+            ticks: [0.1, 0.2, 0.4, 0.6, 0.8, 1] },
           vAxis: { title: '#Genes' },
           // series: {0: { curveType: 'function' },},
           legend: 'none',
@@ -51,7 +51,7 @@ const DistributionChart = (props) => {
         options={{
           title: 'Scattering Chart',
           hAxis: { title: 'Genes', textPosition: 'none' },
-          vAxis: { title: 'Score', minValue: 0, maxValue: 10 },
+          vAxis: { title: 'Score', minValue: 0, maxValue: 1 },
           legend: 'none',
           animation: {
             startup: true,

@@ -8,6 +8,11 @@ import Tabs from '../common/tabs';
 import { sendVcfFile, fetchSample } from '../Genomics/genomics_api';
 
 const OutputContainer = (props) => {
+
+  const location = useLocation()
+  const { pathname } = location
+
+  
   const initialTissue = () => {
     // eslint-disable-next-line no-use-before-define
     if (pathname.includes('Example')) {
@@ -18,8 +23,7 @@ const OutputContainer = (props) => {
     } else return localStorage.getItem('tissuePathoSearch');
   }
 
-  const location = useLocation()
-  const { pathname } = location
+
   const history = useHistory();
   const [selectedRow, selectRow] = useState(null)
   const [isFetched, setFetchStatus] = useState(false)
