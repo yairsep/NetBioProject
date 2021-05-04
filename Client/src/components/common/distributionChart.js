@@ -14,7 +14,7 @@ const DistributionChart = (props) => {
   }, [])
   // Builds an 2d-array with [score, numOfGenes]. like : [ [2, 21], [6, 15], ...  ]
 
-  const bubblesData = [['geneName', 'Pathological_probability'], ...props.data.map((item) => [item['geneName'], item['Pathological_probability']])]
+  const bubblesData = [['geneName', 'Pathological_probability'], ...props.data.map((item) => [item['GeneName'], item['Pathological_probability']])]
 
   return (
     <div>

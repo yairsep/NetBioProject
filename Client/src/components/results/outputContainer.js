@@ -6,7 +6,6 @@ import ResultsTable from '../content/resultsTable';
 import tissues from '../common/tissues';
 import Tabs from '../common/tabs';
 import { sendVcfFile, fetchSample } from '../Genomics/genomics_api';
-import historyFake from './historyFake'
 
 const OutputContainer = (props) => {
   const initialTissue = () => {
@@ -29,12 +28,13 @@ const OutputContainer = (props) => {
   const [time, setTime] = useState()
   console.log("THIS IS OUTSIDE");
   let { data } = history.location
-  if (!data) JSON.parse(localStorage.getItem('pathoSearchData'))
+  if (!data && pathname.includes('results')) JSON.parse(localStorage.getItem('pathoSearchData'))
 
   const summary = {
     tissue: data?.tissue || selectedTissue,
     gene_not_in_db: 'test'
   }
+
   const onRowSelect = (e) => selectRow(e.target.id)
 
   const changeTissue = (e, { value }) => {
@@ -43,7 +43,7 @@ const OutputContainer = (props) => {
     // if (props.location.state === 'sample') location = undefined;
     setFetchStatus(false)
     setNewTissue(value)
-    console.log(data)
+    // console.log(data)
     if (!data) {
       data = JSON.parse(localStorage.getItem('pathoSearchData'))
     }
@@ -61,6 +61,7 @@ const OutputContainer = (props) => {
     }
   }
 
+
   useEffect(() => {
     const fetchData = async () => {
       console.log("THIS IS INSIDE")
@@ -71,18 +72,23 @@ const OutputContainer = (props) => {
       }
 
       const fullRes = await (pathname.includes('results') ? sendVcfFile(vcfData) : fetchSample())
-      const res = fullRes[0]
-      setTime(fullRes[1].time)
-      // if (pathname.includes('results'))
-        // historyFake.push(`results/${time}`)
-      console.log(res)
+      let res
+      pathname.includes('results') ? res = fullRes[0] : res = fullRes
+
+      pathname.includes('results') && setTime(fullRes[1].time)
+
+      console.log('res', res)
       setResults(res)
       setFetchStatus(true)
-      localStorage.setItem('gene', JSON.stringify(res))
-      localStorage.setItem('tissuePathoSearch', selectedTissue)
-      localStorage.setItem('timeSig', fullRes[1].time)
+
+      if (pathname.includes('results')) {
+        localStorage.setItem('gene', JSON.stringify(res))
+        localStorage.setItem('tissuePathoSearch', selectedTissue)
+        localStorage.setItem('timeSig', fullRes[1].time)
+      }
     }
-    if (localStorage.getItem('gene')) {
+
+    if (localStorage.getItem('gene') && pathname.includes('results')) {
       setResults(JSON.parse(localStorage.getItem('gene')))
       console.log(results)
       setFetchStatus(true)
@@ -103,7 +109,7 @@ const OutputContainer = (props) => {
 
           <div className="ui basic segment">
             <div className="ui center aligned segment" style={{ overflow: 'auto' }}>
-              {time && <p>You can come back to your results in https://netbio.bgu.ac.il/PathoSearch/findResult/{time}</p>}
+              {time && pathname.includes('results') && <p>You can come back to your results in https://netbio.bgu.ac.il/PathoSearch/findResult/{time}</p>}
               <ResultsTable tableData={results} onRowSelect={onRowSelect} selectedRow={selectedRow} />
             </div>
           </div>
