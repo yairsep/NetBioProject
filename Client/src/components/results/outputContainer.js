@@ -6,16 +6,17 @@ import ResultsTable from '../content/resultsTable';
 import tissues from '../common/tissues';
 import Tabs from '../common/tabs';
 import { sendVcfFile, fetchSample } from '../Genomics/genomics_api';
+import historyFake from './historyFake'
 
 const OutputContainer = (props) => {
   const initialTissue = () => {
     // eslint-disable-next-line no-use-before-define
     if (pathname.includes('Example')) {
-      return 'heart';
+      return 'Heart-Left-Ventricle';
     // eslint-disable-next-line no-else-return
     } else if (props.location.data) {
       return props.location.data.tissue;
-    } else return localStorage.tissue;
+    } else return localStorage.getItem('tissuePathoSearch');
   }
 
   const location = useLocation()
@@ -24,11 +25,14 @@ const OutputContainer = (props) => {
   const [selectedRow, selectRow] = useState(null)
   const [isFetched, setFetchStatus] = useState(false)
   const [selectedTissue, setNewTissue] = useState(initialTissue())
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState([])
+  const [time, setTime] = useState()
+  console.log("THIS IS OUTSIDE");
+  let { data } = history.location
+  if (!data) JSON.parse(localStorage.getItem('pathoSearchData'))
+
   const summary = {
-    tissue: {
-      text: 'test'
-    },
+    tissue: data?.tissue || selectedTissue,
     gene_not_in_db: 'test'
   }
   const onRowSelect = (e) => selectRow(e.target.id)
@@ -39,21 +43,54 @@ const OutputContainer = (props) => {
     // if (props.location.state === 'sample') location = undefined;
     setFetchStatus(false)
     setNewTissue(value)
+    console.log(data)
+    if (!data) {
+      data = JSON.parse(localStorage.getItem('pathoSearchData'))
+    }
+    if (data) {
+      console.log("Start removing from localStorage")
+      localStorage.removeItem('gene')
+      localStorage.removeItem('tissuePathoSearch')
+      localStorage.removeItem('timeSig')
+      localStorage.removeItem('pathoSearchData')
+
+      history.push({
+        pathname: `/results/${value}`,
+        data: { tissue: value, genes: data.genes, inputFormat: data.inputFormat, genomeVersion:data.genomeVersion }
+      })
+    }
   }
 
   useEffect(() => {
-    //TODO:Switch to sample from the algorithm run
     const fetchData = async () => {
-      const { data } = history.location
+      console.log("THIS IS INSIDE")
       let vcfData = {}
-      if (data)
+      if (data) {
         vcfData = { genes: data.genes, tissue: data.tissue, inputFormat: data.inputFormat, genomeVersion: data.genomeVersion }
-      const res = await (pathname.includes('results') ? sendVcfFile(vcfData) : fetchSample())
+        localStorage.setItem('pathoSearchData', JSON.stringify(data))
+      }
+
+      const fullRes = await (pathname.includes('results') ? sendVcfFile(vcfData) : fetchSample())
+      const res = fullRes[0]
+      setTime(fullRes[1].time)
+      // if (pathname.includes('results'))
+        // historyFake.push(`results/${time}`)
       console.log(res)
       setResults(res)
       setFetchStatus(true)
+      localStorage.setItem('gene', JSON.stringify(res))
+      localStorage.setItem('tissuePathoSearch', selectedTissue)
+      localStorage.setItem('timeSig', fullRes[1].time)
     }
-    fetchData()
+    if (localStorage.getItem('gene')) {
+      setResults(JSON.parse(localStorage.getItem('gene')))
+      console.log(results)
+      setFetchStatus(true)
+      setTime(localStorage.getItem('timeSig'))
+      data = JSON.parse(localStorage.getItem('pathoSearchData'))
+    } else {
+      fetchData()
+    }
   }, [pathname, history, selectedTissue]);
   
   return (
@@ -66,6 +103,7 @@ const OutputContainer = (props) => {
 
           <div className="ui basic segment">
             <div className="ui center aligned segment" style={{ overflow: 'auto' }}>
+              {time && <p>You can come back to your results in https://netbio.bgu.ac.il/PathoSearch/findResult/{time}</p>}
               <ResultsTable tableData={results} onRowSelect={onRowSelect} selectedRow={selectedRow} />
             </div>
           </div>

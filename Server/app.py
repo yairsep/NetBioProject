@@ -48,7 +48,7 @@ def process_vcf():
     # Then Execute ML module
     Learn.execute_ML_module(date_time, tissue)
     hanan_output = Learn.getOutput(date_time)
-    return jsonify(hanan_output)
+    return jsonify([hanan_output, {'time': date_time}])
     # return "VCF file has been sent successfully"
 
 

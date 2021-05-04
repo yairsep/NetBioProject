@@ -6,14 +6,14 @@ import Uploader from '../form/uploader'
 import GeneSearch from '../form/geneSearch'
 
 const Home = () => {
-  const [selectedTissue, setTissue] = useState('heart')
+  const [selectedTissue, setTissue] = useState('Heart-Left-Ventricle')
   const [submissionPerm, setSubmissionPerm] = useState(false)
   // const [userName, setUserName] = useState('')
   const [inputFormat, setInputFormat] = useState('VCF')
   const [inputData, setInputData] = useState(['', []]); //[fileName, Data]
   const [genomeVersion, setGenomeVersion] = useState('GRCh38')
   const history = useHistory()
-
+  
   useEffect(() => {
     setSubmissionPerm(inputData[1].length > 0)
   }, [inputData])
@@ -44,6 +44,12 @@ const Home = () => {
       ? genes.split(/\r\n|\n|\r/)
       : null
     console.log('genes:', genes);
+
+    localStorage.removeItem('gene')
+    localStorage.removeItem('tissuePathoSearch')
+    localStorage.removeItem('timeSig')
+    localStorage.removeItem('pathoSearchData')
+    
     history.push({
       pathname: '/results',
       data: { tissue: selectedTissue, genes, inputFormat, genomeVersion }

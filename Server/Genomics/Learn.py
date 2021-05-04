@@ -44,7 +44,7 @@ def execute_ML_module(date_time, tissue):
     # trace_cluster_path = "Trace_Sample_CardiomyopathyOtB0551.csv "
 
     # tissue = tissue + " "
-    tissue = "Heart-Left-Ventricle "
+    tissue = tissue + " "
 
     hanan_cluster_path = "cd PathoSearch/ML-Scripts && "
 
