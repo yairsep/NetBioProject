@@ -2,7 +2,7 @@ import os , sys , datetime
 from flask import Flask, jsonify, request
 from flask_cors import CORS, cross_origin
 from flask_sqlalchemy import SQLAlchemy
-from Genomics import Cadd, Trace, Learn
+from Genomics import Cadd, Trace, Learn , Restore
 from Email import emailHandler
 
 sys.path.insert(0, '')
@@ -51,6 +51,11 @@ def process_vcf():
     return jsonify([hanan_output, {'time': date_time}])
     # return "VCF file has been sent successfully"
 
+@app.route('/history/id:', methods=['GET'])
+# @cross_origin()
+def restore():
+    response = Restore.process_request(request)
+    return response
 
 @app.errorhandler(422)
 def handle_validation_error(err):
