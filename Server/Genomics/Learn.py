@@ -3,6 +3,7 @@ from scp import SCPClient
 import csv
 import json
 
+
 def getConnectionConfig():
     CLUSTER_HOST = 'sge180.bgu.ac.il'
     CLUSTER_USER = 'chanana'
@@ -47,7 +48,6 @@ def execute_ML_module(date_time, tissue):
     tissue = tissue + " "
 
     hanan_cluster_path = "cd PathoSearch/ML-Scripts && "
-
 
     exec_command = "run_script_yair.sh " + cadd_cluster_path + trace_cluster_path + tissue + date_time
     print("tissue is:", tissue)

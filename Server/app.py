@@ -2,7 +2,7 @@ import os , sys , datetime
 from flask import Flask, jsonify, request
 from flask_cors import CORS, cross_origin
 from flask_sqlalchemy import SQLAlchemy
-from Genomics import Cadd, Trace, Learn , Restore
+from Genomics import Cadd, Trace, Learn , Check_History
 from Email import emailHandler
 
 sys.path.insert(0, '')
@@ -54,7 +54,7 @@ def process_vcf():
 @app.route('/history/id:', methods=['GET'])
 # @cross_origin()
 def restore():
-    response = Restore.process_request(request)
+    response = Check_History.process_request(request)
     return response
 
 @app.errorhandler(422)
