@@ -17,7 +17,7 @@ def exist_in_cluster(date_time):
 
 
 def process_request(request):
-    #TODO: Concat timestamp from request query
-    timestamp = request.query_string
+    timestamp = request.args.get('timestamp')
+    # print(timestamp)
     output = exist_in_cluster(timestamp)
     return output

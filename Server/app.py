@@ -52,7 +52,7 @@ def process_vcf():
     return jsonify([hanan_output, {'time': date_time}])
     # return "VCF file has been sent successfully"
 
-@app.route('/history/id:', methods=['GET'])
+@app.route('/history', methods=['GET'])
 # @cross_origin()
 def restore():
     response = Check_History.process_request(request)
