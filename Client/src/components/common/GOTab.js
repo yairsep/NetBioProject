@@ -12,7 +12,7 @@ const GOTab = (props) => {
   useEffect(() => {
     if (gene !== null) {
       setLoading(true)
-      fetch(`http://mygene.info/v3/query?q=symbol:${gene}&fields=entrezgene,ensembl.gene`)
+      fetch(`https://mygene.info/v3/query?q=symbol:${gene}&fields=entrezgene,ensembl.gene`)
         .then((res) => res.json())
         .then((json) => {
           const hits = json['hits'];

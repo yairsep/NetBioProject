@@ -41,6 +41,7 @@ def sample():
 def process_vcf():
     print("VCF file received in Server")
     tissue = request.get_json()['tissue']
+    print('The tissue is: ', tissue)
     date_time = datetime.datetime.now()
     date_time = str(date_time.replace(microsecond=0)).replace(" ", "__").replace(':', '_')
     Cadd.process_request(request, date_time)

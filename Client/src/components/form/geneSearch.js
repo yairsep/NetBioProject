@@ -13,7 +13,7 @@ const GeneSearch = (props) => {
   useEffect(() => {
     if (props.disabled) setSearchValue('')
     setGenes([])
-  }, [])
+  }, [props.disabled])
 
   useEffect(() => {
     setIsLoading(false);
@@ -21,9 +21,10 @@ const GeneSearch = (props) => {
 
   useEffect(() => {
     props.onGeneSelect(selectedGenes)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedGenes]);
 
-  const url = (value) => `http://mygene.info/v2/query/?q=symbol:${value} OR symbol: ${value}* OR name:${ 
+  const url = (value) => `https://mygene.info/v2/query/?q=symbol:${value} OR symbol: ${value}* OR name:${ 
     value}* OR alias: ${value}* OR summary:${value}* OR ${value 
   }*&species=9606&fields=name,symbol,ensembl.gene,entrezgene,type_of_gene&limit=20`;
 
