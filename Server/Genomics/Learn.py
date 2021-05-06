@@ -24,7 +24,7 @@ def execute_ML_module(date_time, tissue):
 
     # Moving Outputs from CADD & Trace to Cluster
     cadd_input_tsv = "./Data/Cadd_Output/{}_cadd.csv".format(date_time)
-    trace_input_csv = "./Data/Trace_Output/{}_trace.csv".format(date_time)
+    trace_input_csv = "./Data/TRACE_Output/{}_trace.csv".format(date_time)
 
     cluster_input_path = "./PathoSearch/ML-Scripts/DataInput"
     scp = SCPClient(client.get_transport())

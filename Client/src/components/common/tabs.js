@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { List, Label, Tab } from 'semantic-ui-react'
+import React from 'react';
+import { Tab } from 'semantic-ui-react'
 import TabsTable from './tabsTable';
 import GOTab from './GOTab';
 import Chart from './distributionChart';
