@@ -50,7 +50,6 @@ def process_vcf():
     Learn.execute_ML_module(date_time, tissue)
     hanan_output = Learn.getOutput(date_time)
     return jsonify([hanan_output, {'time': date_time}])
-    # return "VCF file has been sent successfully"
 
 @app.route('/history', methods=['GET'])
 # @cross_origin()

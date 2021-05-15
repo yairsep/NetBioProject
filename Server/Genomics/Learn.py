@@ -11,6 +11,40 @@ def getConnectionConfig():
     return CLUSTER_HOST, CLUSTER_USER, CLUSTER_PASSWORD
 
 
+def fetch_shap_results(client, date_time):
+
+    hanan_cluster_path = "cd PathoSearch/ML-Scripts && "
+    exec_command = "run_shap_python_script_yair.sh "
+
+    # TODO: Add relevant arguments
+    relevant_model = "?"
+    shap_explainer = "?"
+    saved_model_input = "?"
+    variant_index = "?"
+
+    cmd = hanan_cluster_path + exec_command
+    stdin, stdout, stderr = client.exec_command(cmd)
+    print('Shap algo in Cluster Was executed')
+    msg = stderr.readlines()
+    print(msg)
+    # Coping Shap output to server
+    server_hanan_output_path = './Data/Shap_Output/{}_shap_output.jpg'.format(date_time)
+    sftp = client.open_sftp()
+
+    # TODO: Revert from hardcoded value
+    # cluster_output_path = "./PathoSearch/ML-Scripts/Shap_Output/{}.jpg".format(date_time)
+
+    cluster_output_path = "./PathoSearch/ML-Scripts/SHAP_Output/variant_input_Heart-Left-Ventricle_SHAP_Decision_Plot_RF.jpg"
+    while not os.path.exists(server_hanan_output_path):
+        try:
+            print('Trying to copy jpg shap output file from Genomics to Server...')
+            sftp.get(cluster_output_path, server_hanan_output_path)
+        except IOError or paramiko.SSHException:
+            time.sleep(5)
+            print('Waiting 5 secs for re-copying')
+            break
+    print('Shap results has been copied to server successfully!')
+
 def execute_ML_module(date_time, tissue):
     # Send cadd & trace output to ML Module
     print("Initiating Connection with Cluster")
@@ -69,10 +103,13 @@ def execute_ML_module(date_time, tissue):
             time.sleep(5)
             print('Waiting 5 secs for re-copying')
             break
+
+    fetch_shap_results(client, date_time)
+
     client.close()
 
 
-# TODO: Complete parsing CSV to Json
+# TODO: send the jpg shap file as well
 def getOutput(date_time):
     json_output = []
     with open("./Data/Hanan_Output/{}_hanan_output.csv".format(date_time)) as input_file:
@@ -81,4 +118,6 @@ def getOutput(date_time):
         for rows in csvReader:
             json_output.append(rows)
             # print(input_file)
+
+    print("Sending Chanan CSV output file & Shap results back to Client!")
     return json_output
