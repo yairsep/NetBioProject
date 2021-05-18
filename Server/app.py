@@ -1,5 +1,5 @@
 import os , sys , datetime
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request , send_file
 from flask_cors import CORS, cross_origin
 from flask_sqlalchemy import SQLAlchemy
 from Genomics import Cadd, Trace, Learn , Check_History
@@ -50,6 +50,19 @@ def process_vcf():
     Learn.execute_ML_module(date_time, tissue)
     hanan_output = Learn.getOutput(date_time)
     return jsonify([hanan_output, {'time': date_time}])
+
+@app.route('/shap', methods=['POST'])
+@cross_origin(supports_credentials=True)
+def get_shap_results():
+    print("Shap get request received in Server")
+    # tissue = request.get_json()['tissue']
+    # TODO: check about timestamp
+    date_time = datetime.datetime.now()
+    date_time = str(date_time.replace(microsecond=0)).replace(" ", "__").replace(':', '_')
+    # Then Execute ML module
+    image_name = Learn.fetch_shap_results(date_time)
+
+    return send_file(image_name, mimetype='image/gif')
 
 @app.route('/history', methods=['GET'])
 # @cross_origin()

@@ -11,7 +11,13 @@ def getConnectionConfig():
     return CLUSTER_HOST, CLUSTER_USER, CLUSTER_PASSWORD
 
 
-def fetch_shap_results(client, date_time):
+def fetch_shap_results(date_time):
+    # Initiating a ssh client protocol
+    CLUSTER_HOST, CLUSTER_USER, CLUSTER_PASSWORD = getConnectionConfig()
+    client = paramiko.SSHClient()
+    client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    client.load_system_host_keys()
+    client.connect(CLUSTER_HOST, username=CLUSTER_USER, password=CLUSTER_PASSWORD)
 
     hanan_cluster_path = "cd PathoSearch/ML-Scripts && "
     exec_command = "run_shap_python_script_yair.sh "
@@ -44,6 +50,7 @@ def fetch_shap_results(client, date_time):
             print('Waiting 5 secs for re-copying')
             break
     print('Shap results has been copied to server successfully!')
+    return server_hanan_output_path
 
 def execute_ML_module(date_time, tissue):
     # Send cadd & trace output to ML Module
@@ -103,8 +110,6 @@ def execute_ML_module(date_time, tissue):
             time.sleep(5)
             print('Waiting 5 secs for re-copying')
             break
-
-    fetch_shap_results(client, date_time)
 
     client.close()
 
