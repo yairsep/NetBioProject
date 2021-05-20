@@ -4,6 +4,7 @@ import { HashRouter, Route, Switch } from 'react-router-dom'
 import App from './App';
 import Home from './components/content/home'
 import outputContainer from './components/results/outputContainer'
+import historyContainer from './components/results/historyContainer'
 // import '../semantic/dist/semantic.min.css'
 
 render((
@@ -14,6 +15,7 @@ render((
         <Route path="/home" component={Home} />
         {/*<Route path="/login" component={ Login }/>*/}
         <Route path="/OutputExample" component={outputContainer} />
+        <Route path="/findResult" component={historyContainer} />
         <Route path="/results" component={outputContainer} />
       </Switch>
     </App>

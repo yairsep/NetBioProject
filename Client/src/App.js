@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom'
 import MenuWrapper from './components/navigation/menuWrapper'
@@ -15,27 +16,28 @@ const App = (props) => {
   []);
 
   const { children } = props;
-  // eslint-disable-next-line react/destructuring-assignment
   // console.log(props.location.pathname);
   return (serverRunning === 1) ? (
     <div>
     
       <Header headerButtons={headerItems} />
-      {/*eslint-disable-next-line react/destructuring-assignment*/}
-      {props.location.pathname.substring(0, 8) === '/results' || props.location.pathname === '/OutputExample' ? (
-        <div>
-          {children}
-        </div>
-      ) : (
-        <div className="ui grid container">
-          <div className="two wide left floated column">
-            <MenuWrapper items={MenuItems} />
-          </div>
-          <div className="twelve wide right floated column">
+      {props.location.pathname.substring(0, 8) === '/results'
+      || props.location.pathname === '/OutputExample'
+      || props.location.pathname.includes('findResult') 
+        ? (
+          <div>
             {children}
           </div>
-        </div>
-      )}
+        ) : (
+          <div className="ui grid container">
+            <div className="two wide left floated column">
+              <MenuWrapper items={MenuItems} />
+            </div>
+            <div className="twelve wide right floated column">
+              {children}
+            </div>
+          </div>
+        )}
       <Footer />
     </div>
   ) : (

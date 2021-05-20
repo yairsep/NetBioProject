@@ -32,4 +32,9 @@ export const fetchShap = async (timestamp) => {
   return res.data
 }
 
-export const fetchShapImgUrl = (timestamp) => `${baseUrl}/shap?timestamp=${timestamp}`
+export const fetchShapImgUrl = (timestamp) => `${baseUrl}/shap?timestamp=${timestamp}`;
+
+export const fetchHistory = async (timestamp) => {
+  const res = await axios.get(`${baseUrl}/history?timestamp=${timestamp}`)
+  return res.data
+}

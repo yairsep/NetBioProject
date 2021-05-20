@@ -121,27 +121,47 @@ const OutputContainer = (props) => {
 
           <div className="ui basic segment">
             <div className="ui center aligned segment" style={{ overflow: 'auto' }}>
-              {time && pathname.includes('results') && <p>You can come back to your results in https://netbio.bgu.ac.il/PathoSearch/findResult/{time}</p>}
               <ResultsTable tableData={results} onRowSelect={onRowSelect} selectedRow={selectedRow} />
             </div>
           </div>
-          <div style={{ textAlign: 'center' }}>
-            <Label size="big" style={{ lineHeight: '2em' }}>
-              Switch tissue model
-              <Label.Detail>
-                <Dropdown 
-                  name="tissue"
-                  options={tissues}
-                  onChange={changeTissue}
-                  defaultValue={selectedTissue}
-                  labeled
-                  button
-                  icon="exchange"
-                  className="ui black icon"
-                />
-              </Label.Detail>
-            </Label>
+
+          <div className="ui basic segment">
+            <div className="ui center aligned segment">
+              {time && pathname.includes('results') 
+                && (
+                  <>
+                    <p>
+                      {/* You can come back to your results at <a href={`https://netbio.bgu.ac.il/pathosearch/#findResult/${time}`} target="_blank" rel="noreferrer">this link.</a> */}
+                      You can come back to your results at <a href={`http://localhost:8080/#findResult/${time}`} target="_blank" rel="noreferrer">this link.</a>
+                    </p>
+                    <p>
+                      Please keep it for future use!
+                    </p>
+                  </>
+                )}
+            </div>
           </div>
+
+          {pathname.includes('results')
+            && (
+              <div style={{ textAlign: 'center' }}>
+                <Label size="big" style={{ lineHeight: '2em' }}>
+                  Switch tissue model
+                  <Label.Detail>
+                    <Dropdown 
+                      name="tissue"
+                      options={tissues}
+                      onChange={changeTissue}
+                      defaultValue={selectedTissue}
+                      labeled
+                      button
+                      icon="exchange"
+                      className="ui black icon"
+                    />
+                  </Label.Detail>
+                </Label>
+              </div>
+            )}
         </div>
 
         <div className="computer only six wide centered column" style={{ paddingLeft: '0.1rem' }}>
