@@ -5,7 +5,7 @@ import { useHistory, withRouter, useLocation } from 'react-router-dom';
 import ResultsTable from '../content/resultsTable';
 import tissues from '../common/tissues';
 import Tabs from '../common/tabs';
-import { sendVcfFile, fetchSample } from '../Genomics/genomics_api';
+import { sendVcfFile, fetchSample, fetchShap, fetchShapImgUrl } from '../Genomics/genomics_api';
 
 const OutputContainer = (props) => {
   const location = useLocation()
@@ -27,7 +27,7 @@ const OutputContainer = (props) => {
   const [selectedTissue, setNewTissue] = useState(initialTissue())
   const [results, setResults] = useState([])
   const [time, setTime] = useState()
-  console.log('THIS IS OUTSIDE');
+  const [shapData, setShapData] = useState({ url: '', isReady: false })
   let { data } = history.location
   if (!data && pathname.includes('results')) JSON.parse(localStorage.getItem('pathoSearchData'))
 
@@ -39,12 +39,10 @@ const OutputContainer = (props) => {
   const onRowSelect = (e) => selectRow(e.target.id)
 
   const changeTissue = (e, { value }) => {
-    //TODO: If Switch tissue in sample, this shouldn't be sample anymore
     // eslint-disable-next-line no-const-assign
     // if (props.location.state === 'sample') location = undefined;
     setFetchStatus(false)
     setNewTissue(value)
-    // console.log(data)
     if (!data) {
       data = JSON.parse(localStorage.getItem('pathoSearchData'))
     }
@@ -64,7 +62,6 @@ const OutputContainer = (props) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      console.log('THIS IS INSIDE')
       let vcfData = {}
       if (data) {
         vcfData = { genes: data.genes, tissue: data.tissue, inputFormat: data.inputFormat, genomeVersion: data.genomeVersion }
@@ -73,26 +70,41 @@ const OutputContainer = (props) => {
 
       const fullRes = await (pathname.includes('results') ? sendVcfFile(vcfData) : fetchSample())
       let res
-      pathname.includes('results') ? res = fullRes[0] : res = fullRes
-
-      pathname.includes('results') && setTime(fullRes[1].time)
-
-      console.log('res', res)
-      setResults(res)
-      setFetchStatus(true)
 
       if (pathname.includes('results')) {
+        // eslint-disable-next-line prefer-destructuring
+        res = fullRes[0]
+        setTime(fullRes[1].time)
+        try {
+          await fetchShap(fullRes[1].time)
+          setShapData({
+            url: fetchShapImgUrl(fullRes[1].time),
+            isReady: true,
+          })
+          // localStorage.setItem('shap', fetchShapImgUrl(fullRes[1].time))
+        } catch {
+          console.log("can't fetch shap image")
+        }
         localStorage.setItem('gene', JSON.stringify(res))
         localStorage.setItem('tissuePathoSearch', selectedTissue)
         localStorage.setItem('timeSig', fullRes[1].time)
+      } else {
+        res = fullRes
       }
+      console.log('res', res)
+      setResults(res)
+      setFetchStatus(true)
     }
 
     if (localStorage.getItem('gene') && pathname.includes('results')) {
       setResults(JSON.parse(localStorage.getItem('gene')))
       console.log(results)
-      setFetchStatus(true)
       setTime(localStorage.getItem('timeSig'))
+      setShapData({
+        isReady: true,
+        url: fetchShapImgUrl(localStorage.getItem('timeSig'))
+      })
+      setFetchStatus(true)
       data = JSON.parse(localStorage.getItem('pathoSearchData')) //Probably can erase this
     } else {
       fetchData()
@@ -135,7 +147,8 @@ const OutputContainer = (props) => {
         <div className="computer only six wide centered column" style={{ paddingLeft: '0.1rem' }}>
           <div className="ui basic segment">
             <div className="ui segment">
-              <Tabs data={results} summaryData={summary} gene={selectedRow} style={{ width: '0', minWidth: '100%' }} />
+              <Tabs data={results} summaryData={summary} gene={selectedRow} style={{ width: '0', minWidth: '100%' }} shapData={shapData} />
+              {/* {shap && <img src={fetchShapImgUrl(time)} alt="shap chart" width="100%" />} */}
             </div>
           </div>
         </div>

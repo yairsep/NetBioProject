@@ -3,4 +3,5 @@
 *.vcf
 *.csv
 *.tsv
+*.jpg
 __pycache__

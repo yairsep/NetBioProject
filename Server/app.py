@@ -56,13 +56,18 @@ def process_vcf():
 def get_shap_results():
     print("Shap get request received in Server")
     # tissue = request.get_json()['tissue']
-    # TODO: check about timestamp
-    date_time = datetime.datetime.now()
-    date_time = str(date_time.replace(microsecond=0)).replace(" ", "__").replace(':', '_')
+    date_time = request.get_json()['timestamp']
     # Then Execute ML module
     image_name = Learn.fetch_shap_results(date_time)
 
     return send_file(image_name, mimetype='image/gif')
+
+@app.route('/shap', methods=['GET'])
+# @cross_origin()
+def get_image():
+    timestamp = request.args.get('timestamp')
+    img_path = './Data/Shap_Output/{}_shap_output.jpg'.format(timestamp)
+    return send_file(img_path, mimetype='image/gif')
 
 @app.route('/history', methods=['GET'])
 # @cross_origin()
