@@ -24,6 +24,7 @@ const OutputContainer = (props) => {
   const history = useHistory();
   const [selectedRow, selectRow] = useState(null)
   const [isFetched, setFetchStatus] = useState(false)
+  const [isError, setError] = useState(null)
   const [selectedTissue, setNewTissue] = useState(initialTissue())
   const [results, setResults] = useState([])
   const [time, setTime] = useState()
@@ -62,40 +63,45 @@ const OutputContainer = (props) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      let vcfData = {}
-      if (data) {
-        vcfData = { genes: data.genes, tissue: data.tissue, inputFormat: data.inputFormat, genomeVersion: data.genomeVersion }
-        localStorage.setItem('pathoSearchData', JSON.stringify(data))
-      }
-
-      const fullRes = await (pathname.includes('results') ? sendVcfFile(vcfData) : fetchSample())
-      let res
-
-      if (pathname.includes('results')) {
-        // eslint-disable-next-line prefer-destructuring
-        res = fullRes[0]
-        setTime(fullRes[1].time)
-        try {
-          await fetchShap(fullRes[1].time)
-          setShapData({
-            url: fetchShapImgUrl(fullRes[1].time),
-            isReady: true,
-          })
-          // localStorage.setItem('shap', fetchShapImgUrl(fullRes[1].time))
-        } catch {
-          console.log("can't fetch shap image")
+      try {
+        let vcfData = {}
+        if (data) {
+          vcfData = { genes: data.genes, tissue: data.tissue, inputFormat: data.inputFormat, genomeVersion: data.genomeVersion }
+          localStorage.setItem('pathoSearchData', JSON.stringify(data))
         }
-        localStorage.setItem('gene', JSON.stringify(res))
-        localStorage.setItem('tissuePathoSearch', selectedTissue)
-        localStorage.setItem('timeSig', fullRes[1].time)
-      } else {
-        res = fullRes
-      }
-      console.log('res', res)
-      setResults(res)
-      setFetchStatus(true)
-    }
 
+        const fullRes = await (pathname.includes('results') ? sendVcfFile(vcfData) : fetchSample())
+        let res
+
+        if (pathname.includes('results')) {
+          // eslint-disable-next-line prefer-destructuring
+          res = fullRes[0]
+          setTime(fullRes[1].time)
+          try {
+            await fetchShap(fullRes[1].time)
+            setShapData({
+              url: fetchShapImgUrl(fullRes[1].time),
+              isReady: true,
+            })
+            // localStorage.setItem('shap', fetchShapImgUrl(fullRes[1].time))
+          } catch {
+            console.log("can't fetch shap image")
+          }
+          localStorage.setItem('gene', JSON.stringify(res))
+          localStorage.setItem('tissuePathoSearch', selectedTissue)
+          localStorage.setItem('timeSig', fullRes[1].time)
+        } else {
+          res = fullRes
+        }
+        console.log('res', res)
+        setResults(res)
+        setFetchStatus(true)
+      } catch (err) {
+        console.log(`Error: ${err}`)
+        setError(err)
+        setFetchStatus(false)
+      }
+    }
     if (localStorage.getItem('gene') && pathname.includes('results')) {
       setResults(JSON.parse(localStorage.getItem('gene')))
       console.log(results)
@@ -105,6 +111,7 @@ const OutputContainer = (props) => {
         url: fetchShapImgUrl(localStorage.getItem('timeSig'))
       })
       setFetchStatus(true)
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       data = JSON.parse(localStorage.getItem('pathoSearchData')) //Probably can erase this
     } else {
       fetchData()
@@ -112,7 +119,7 @@ const OutputContainer = (props) => {
   }, [pathname, history, selectedTissue]);
   
   return (
-    isFetched ? (
+    isError == null && isFetched ? (
       <div className="ui grid">
         <div
           className="sixteen wide tablet ten wide computer center aligned column"
@@ -173,36 +180,42 @@ const OutputContainer = (props) => {
           </div>
         </div>
       </div>
-    ) : (
-      <div>
-        <Placeholder fluid>
-          <div className="ui grid">
-            <div
-              className="sixteen wide tablet nine wide computer centered column"
-              style={{ paddingRight: '0.2rem' }}
-            >
-              <div className="ui basic segment">
-                <div className="ui segment" style={{ height: '80vh', overflow: 'auto' }}>
-                  <Placeholder>
-                    <Loader active />
-                  </Placeholder>
-                </div>
-              </div>
-            </div>
-
-            <div className="computer only seven wide centered column" style={{ paddingLeft: '0.1rem' }}>
-              <div className="ui basic segment">
-                <div className="ui segment" style={{ height: '40vh', overflow: 'auto' }}>
-                  <Placeholder>
-                    <Loader active />
-                  </Placeholder>
-                </div>
-              </div>
-            </div>
-          </div>
-        </Placeholder>
-      </div>
     )
+      : isError == null ? (
+        <div>
+          <Placeholder fluid>
+            <div className="ui grid">
+              <div
+                className="sixteen wide tablet nine wide computer centered column"
+                style={{ paddingRight: '0.2rem' }}
+              >
+                <div className="ui basic segment">
+                  <div className="ui segment" style={{ height: '80vh', overflow: 'auto' }}>
+                    <Placeholder>
+                      <Loader active />
+                    </Placeholder>
+                  </div>
+                </div>
+              </div>
+
+              <div className="computer only seven wide centered column" style={{ paddingLeft: '0.1rem' }}>
+                <div className="ui basic segment">
+                  <div className="ui segment" style={{ height: '40vh', overflow: 'auto' }}>
+                    <Placeholder>
+                      <Loader active />
+                    </Placeholder>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Placeholder>
+        </div>
+      )
+        : (
+          <div>
+            <h1>{`${isError}`}</h1>
+          </div>
+        )
   );
 };
 

@@ -8,4 +8,4 @@ Configuration instructions:
 
 - Setting Up Back-End:
  - pip install ...
- - Run app.py
+ - Run app.py (or python app.py)
