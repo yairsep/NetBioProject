@@ -57,8 +57,10 @@ def get_shap_results():
     print("Shap get request received in Server")
     # tissue = request.get_json()['tissue']
     date_time = request.get_json()['timestamp']
+    tissue = request.get_json()['tissue']
+    print('The tissue is: ', tissue)
     # Then Execute ML module
-    image_name = Learn.fetch_shap_results(date_time)
+    image_name = Learn.fetch_shap_results(date_time, tissue)
 
     return send_file(image_name, mimetype='image/gif')
 

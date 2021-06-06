@@ -11,7 +11,7 @@ def getConnectionConfig():
     return CLUSTER_HOST, CLUSTER_USER, CLUSTER_PASSWORD
 
 
-def fetch_shap_results(date_time):
+def fetch_shap_results(date_time , tissue):
     # Initiating a ssh client protocol
     CLUSTER_HOST, CLUSTER_USER, CLUSTER_PASSWORD = getConnectionConfig()
     client = paramiko.SSHClient()
@@ -22,13 +22,13 @@ def fetch_shap_results(date_time):
     hanan_cluster_path = "cd PathoSearch/ML-Scripts && "
     exec_command = "run_shap_python_script_yair.sh "
 
-    # TODO: Add relevant arguments
-    relevant_model = "?"
-    shap_explainer = "?"
-    saved_model_input = "?"
-    variant_index = "?"
+    cadd_output_path = "./DataInput/{}_cadd.csv ".format(date_time)
+    trace_output_path= "./DataInput/{}_trace.csv ".format(date_time)
+    prediction_output_path = "./DataOutput/{}.csv".format(date_time)
+    relevant_variant_index = "0 "
+    tissue = tissue + " "
 
-    cmd = hanan_cluster_path + exec_command
+    cmd = hanan_cluster_path + exec_command + cadd_output_path + trace_output_path + relevant_variant_index + tissue + prediction_output_path
     stdin, stdout, stderr = client.exec_command(cmd)
     print('Shap algo in Cluster Was executed')
     msg = stderr.readlines()
@@ -38,9 +38,8 @@ def fetch_shap_results(date_time):
     sftp = client.open_sftp()
 
     # TODO: Revert from hardcoded value
-    # cluster_output_path = "./PathoSearch/ML-Scripts/Shap_Output/{}.jpg".format(date_time)
+    cluster_output_path = "./PathoSearch/ML-Scripts/Shap_Output/{}.jpg".format(date_time)
 
-    cluster_output_path = "./PathoSearch/ML-Scripts/SHAP_Output/variant_input_Heart-Left-Ventricle_SHAP_Decision_Plot_RF.jpg"
     while not os.path.exists(server_hanan_output_path):
         try:
             print('Trying to copy jpg shap output file from Genomics to Server...')
