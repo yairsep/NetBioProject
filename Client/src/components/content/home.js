@@ -6,7 +6,7 @@ import Uploader from '../form/uploader'
 import GeneSearch from '../form/geneSearch'
 
 const Home = () => {
-  const [selectedTissue, setTissue] = useState('Heart-Left-Ventricle')
+  const [selectedTissue, setTissue] = useState('Heart')
   const [submissionPerm, setSubmissionPerm] = useState(false)
   // const [userName, setUserName] = useState('')
   const [inputFormat, setInputFormat] = useState('VCF')
@@ -83,8 +83,8 @@ const Home = () => {
                 placeholder="Choose an organism"
                 fluid
                 selection
-                defaultSearchQuery="Heart-Left-Ventricle"
-                defaultValue="Heart-Left-Ventricle"
+                defaultSearchQuery="Heart"
+                defaultValue="Heart"
                 style={{ zIndex: '12' }}
               />
             </Grid.Column>
