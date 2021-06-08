@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-const baseUrl = 'http://localhost:5000';
-// const baseUrl = 'https://netbio.bgu.ac.il/pathosearch-api';
+// const baseUrl = 'http://localhost:5000';
+const baseUrl = 'https://netbio.bgu.ac.il/pathosearch-api';
 
 export const fetchCadd = async () => {
   const res = await axios.get(`${baseUrl}/cadd`)
@@ -25,16 +25,16 @@ export const sendVcfFile = async (vcfFile) => {
   return res.data
 }
 
-export const fetchShap = async (timestamp , tissue , genomeVersion) => {
+export const fetchShap = async (timestamp, tissue, genomeVersion) => {
   console.log('fetching shap')
-  const res = await axios.post(`${baseUrl}/shap`, { timestamp , tissue , genomeVersion})
+  const res = await axios.post(`${baseUrl}/shap`, { timestamp, tissue, genomeVersion })
   console.log('my res.data', res.data)
   return res.data
 }
 
-export const fetchShapImgUrl = (timestamp , tissue) => `${baseUrl}/shap?timestamp=${timestamp}&tissue=${tissue}`;
+export const fetchShapImgUrl = (timestamp, tissue) => `${baseUrl}/shap?timestamp=${timestamp}&tissue=${tissue}`;
 
-export const fetchHistory = async (timestamp) => {
-  const res = await axios.get(`${baseUrl}/history?timestamp=${timestamp}`)
+export const fetchHistory = async (timestamp, tissue) => {
+  const res = await axios.get(`${baseUrl}/history?timestamp=${timestamp}&tissue=${tissue}`)
   return res.data
 }

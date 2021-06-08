@@ -9,35 +9,34 @@ import { fetchHistory, fetchShapImgUrl } from '../Genomics/genomics_api';
 const HistoryContainer = () => {
   const [selectedRow, selectRow] = useState(null)
   const [isFetched, setFetchStatus] = useState(false)
-  const [selectedTissue, setNewTissue] = useState()
+  const [selectedTissue, setSelectedTissue] = useState('Heart-Left-Ventricle')
   const [results, setResults] = useState([])
   const [shapData, setShapData] = useState({ url: '', isReady: false })
   const [timestamp, setTimestamp] = useState()
 
   const location = useLocation()
 
-  const setTissue = () => {
-    //TODO: How can I know the tissue??
-  }
-
   const onRowSelect = (e) => selectRow(e.target.id)
 
   const summary = {
-    tissue: 'Heart-Left-Ventricle',
-    gene_not_in_db: 'test'
+    tissue: selectedTissue,
+    gene_not_in_db: NaN
   }
 
   useEffect(() => {
     const fetchData = async () => {
-      const { pathname } = location
-      const timestampFromPath = pathname.substring(12)
+      let { pathname } = location
+      pathname = pathname.split('/')
+      const timestampFromPath = pathname[2]
+      const tissue = pathname[3]
       setTimestamp(timestampFromPath)
-      const res = await fetchHistory(timestampFromPath)
+      setSelectedTissue(tissue)
+      const res = await fetchHistory(timestampFromPath, tissue)
       setResults(res[0])
-
+      console.log(res)
       setShapData({
         isReady: true,
-        url: fetchShapImgUrl(timestampFromPath)
+        url: fetchShapImgUrl(timestampFromPath, tissue)
       })
 
       setFetchStatus(true)

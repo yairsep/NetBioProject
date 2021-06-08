@@ -11,7 +11,7 @@ def getConnectionConfig():
     return CLUSTER_HOST, CLUSTER_USER, CLUSTER_PASSWORD
 
 
-def fetch_shap_results(date_time , tissue , genome_version):
+def fetch_shap_results(date_time, tissue, genome_version):
     # Initiating a ssh client protocol
     CLUSTER_HOST, CLUSTER_USER, CLUSTER_PASSWORD = getConnectionConfig()
     client = paramiko.SSHClient()
@@ -38,13 +38,13 @@ def fetch_shap_results(date_time , tissue , genome_version):
     print(msg)
     # Coping Shap output to server
     tissue = tissue.strip()
-    server_hanan_output_path = './Data/Shap_Output/{}_{}_shap_output.jpg'.format(date_time , tissue)
+    server_hanan_output_path = './Data/Shap_Output/{}_{}_shap_output.jpg'.format(date_time, tissue)
     sftp = client.open_sftp()
 
     # TODO: Revert from hardcoded value
-    cluster_output_path = "./PathoSearch/ML-Scripts/SHAP_Output/{}_{}_shap_output.jpg".format(date_time , tissue)
-    print("server_hanan_output_path" , server_hanan_output_path)
-    print("cluster_output_path" , cluster_output_path)
+    cluster_output_path = "./PathoSearch/ML-Scripts/SHAP_Output/{}_{}_shap_output.jpg".format(date_time, tissue)
+    print("server_hanan_output_path", server_hanan_output_path)
+    print("cluster_output_path", cluster_output_path)
     while not os.path.exists(server_hanan_output_path):
         try:
             print('Trying to copy jpg shap output file from Genomics to Server...')
@@ -56,7 +56,7 @@ def fetch_shap_results(date_time , tissue , genome_version):
     print('Shap results has been copied to server successfully!')
     return server_hanan_output_path
 
-def execute_ML_module(date_time, tissue , genome_version):
+def execute_ML_module(date_time, tissue, genome_version):
     # Send cadd & trace output to ML Module
     print("Initiating Connection with Cluster")
 

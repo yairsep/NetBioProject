@@ -1,8 +1,8 @@
-import os , sys , datetime , time
-from flask import Flask, jsonify, request , send_file
+import os, sys, datetime, time
+from flask import Flask, jsonify, request, send_file
 from flask_cors import CORS, cross_origin
 from flask_sqlalchemy import SQLAlchemy
-from Genomics import Cadd, Trace, Learn , Check_History
+from Genomics import Cadd, Trace, Learn, Check_History
 from Email import emailHandler
 
 sys.path.insert(0, '')
@@ -49,7 +49,7 @@ def process_vcf():
     Cadd.process_request(request, date_time)
     Trace.process_request(request, date_time, tissue)
     # Then Execute ML module
-    Learn.execute_ML_module(date_time, tissue , genome_version)
+    Learn.execute_ML_module(date_time, tissue, genome_version)
     hanan_output = Learn.getOutput(date_time, tissue)
     return jsonify([hanan_output, {'time': date_time}])
 
@@ -62,9 +62,9 @@ def get_shap_results():
     tissue = request.get_json()['tissue']
     genome_version = request.get_json()['genomeVersion']
     print('The tissue is: ', tissue)
-    print("genome_version" , genome_version)
+    print("genome_version", genome_version)
     # Then Execute ML module
-    image_name = Learn.fetch_shap_results(date_time, tissue , genome_version)
+    image_name = Learn.fetch_shap_results(date_time, tissue, genome_version)
 
     return send_file(image_name, mimetype='image/gif')
 
@@ -73,7 +73,7 @@ def get_shap_results():
 def get_image():
     timestamp = request.args.get('timestamp')
     tissue = request.args.get('tissue')
-    img_path = './Data/Shap_Output/{}_{}_shap_output.jpg'.format(timestamp , tissue)
+    img_path = './Data/Shap_Output/{}_{}_shap_output.jpg'.format(timestamp, tissue)
     return send_file(img_path, mimetype='image/gif')
 
 @app.route('/history', methods=['GET'])

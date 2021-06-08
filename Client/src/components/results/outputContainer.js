@@ -78,9 +78,9 @@ const OutputContainer = (props) => {
           res = fullRes[0]
           setTime(fullRes[1].time)
           try {
-            await fetchShap(fullRes[1].time , vcfData.tissue , vcfData.genomeVersion)
+            await fetchShap(fullRes[1].time, vcfData.tissue, vcfData.genomeVersion)
             setShapData({
-              url: fetchShapImgUrl(fullRes[1].time , vcfData.tissue),
+              url: fetchShapImgUrl(fullRes[1].time, vcfData.tissue),
               isReady: true,
             })
             // localStorage.setItem('shap', fetchShapImgUrl(fullRes[1].time))
@@ -108,7 +108,7 @@ const OutputContainer = (props) => {
       setTime(localStorage.getItem('timeSig'))
       setShapData({
         isReady: true,
-        url: fetchShapImgUrl(localStorage.getItem('timeSig') , localStorage.getItem('tissuePathoSearch'))
+        url: fetchShapImgUrl(localStorage.getItem('timeSig'), localStorage.getItem('tissuePathoSearch'))
       })
       setFetchStatus(true)
       // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -138,8 +138,8 @@ const OutputContainer = (props) => {
                 && (
                   <>
                     <p>
-                      {/* You can come back to your results at <a href={`https://netbio.bgu.ac.il/pathosearch/#findResult/${time}`} target="_blank" rel="noreferrer">this link.</a> */}
-                      You can come back to your results at <a href={`http://localhost:8080/#findResult/${time}`} target="_blank" rel="noreferrer">this link.</a>
+                      You can come back to your results at <a href={`https://netbio.bgu.ac.il/pathosearch/#findResult/${time}/${selectedTissue}`} target="_blank" rel="noreferrer">this link.</a>
+                      {/* You can come back to your results at <a href={`http://localhost:8080/#findResult/${time}/${selectedTissue}`} target="_blank" rel="noreferrer">this link.</a> */}
                     </p>
                     <p>
                       Please keep it for future use!

@@ -1,7 +1,7 @@
 import csv
 
 
-def process_request(request, date_time , tissue):
+def process_request(request, date_time, tissue):
     print('Trace is processing request')
     genes = request.get_json()['genes']
     genomeVersion = request.get_json()['genomeVersion']
