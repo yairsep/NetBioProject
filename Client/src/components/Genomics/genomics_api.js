@@ -25,9 +25,9 @@ export const sendVcfFile = async (vcfFile) => {
   return res.data
 }
 
-export const fetchShap = async (timestamp) => {
+export const fetchShap = async (timestamp , tissue) => {
   console.log('fetching shap')
-  const res = await axios.post(`${baseUrl}/shap`, { timestamp })
+  const res = await axios.post(`${baseUrl}/shap`, { timestamp , tissue })
   console.log('my res.data', res.data)
   return res.data
 }

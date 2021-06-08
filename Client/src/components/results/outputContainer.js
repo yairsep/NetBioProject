@@ -78,7 +78,7 @@ const OutputContainer = (props) => {
           res = fullRes[0]
           setTime(fullRes[1].time)
           try {
-            await fetchShap(fullRes[1].time)
+            await fetchShap(fullRes[1].time , vcfData.tissue)
             setShapData({
               url: fetchShapImgUrl(fullRes[1].time),
               isReady: true,
