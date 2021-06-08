@@ -78,9 +78,9 @@ const OutputContainer = (props) => {
           res = fullRes[0]
           setTime(fullRes[1].time)
           try {
-            await fetchShap(fullRes[1].time , vcfData.tissue)
+            await fetchShap(fullRes[1].time , vcfData.tissue , vcfData.genomeVersion)
             setShapData({
-              url: fetchShapImgUrl(fullRes[1].time),
+              url: fetchShapImgUrl(fullRes[1].time , vcfData.tissue),
               isReady: true,
             })
             // localStorage.setItem('shap', fetchShapImgUrl(fullRes[1].time))
@@ -108,7 +108,7 @@ const OutputContainer = (props) => {
       setTime(localStorage.getItem('timeSig'))
       setShapData({
         isReady: true,
-        url: fetchShapImgUrl(localStorage.getItem('timeSig'))
+        url: fetchShapImgUrl(localStorage.getItem('timeSig') , localStorage.getItem('tissuePathoSearch'))
       })
       setFetchStatus(true)
       // eslint-disable-next-line react-hooks/exhaustive-deps

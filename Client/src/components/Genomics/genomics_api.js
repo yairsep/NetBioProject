@@ -25,14 +25,14 @@ export const sendVcfFile = async (vcfFile) => {
   return res.data
 }
 
-export const fetchShap = async (timestamp , tissue) => {
+export const fetchShap = async (timestamp , tissue , genomeVersion) => {
   console.log('fetching shap')
-  const res = await axios.post(`${baseUrl}/shap`, { timestamp , tissue })
+  const res = await axios.post(`${baseUrl}/shap`, { timestamp , tissue , genomeVersion})
   console.log('my res.data', res.data)
   return res.data
 }
 
-export const fetchShapImgUrl = (timestamp) => `${baseUrl}/shap?timestamp=${timestamp}`;
+export const fetchShapImgUrl = (timestamp , tissue) => `${baseUrl}/shap?timestamp=${timestamp}&tissue=${tissue}`;
 
 export const fetchHistory = async (timestamp) => {
   const res = await axios.get(`${baseUrl}/history?timestamp=${timestamp}`)
