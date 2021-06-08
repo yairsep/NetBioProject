@@ -11,7 +11,7 @@ def getConnectionConfig():
     return CLUSTER_HOST, CLUSTER_USER, CLUSTER_PASSWORD
 
 
-def fetch_shap_results(date_time , tissue):
+def fetch_shap_results(date_time , tissue , genome_version):
     # Initiating a ssh client protocol
     CLUSTER_HOST, CLUSTER_USER, CLUSTER_PASSWORD = getConnectionConfig()
     client = paramiko.SSHClient()
@@ -24,22 +24,27 @@ def fetch_shap_results(date_time , tissue):
 
     cadd_output_path = "./DataInput/{}_cadd.csv ".format(date_time)
     trace_output_path= "./DataInput/{}_trace.csv ".format(date_time)
-    prediction_output_path = "./DataOutput/{}.csv".format(date_time)
     relevant_variant_index = "0 "
+    prediction_output_path = "./DataOutput/{}_{}.csv ".format(date_time, tissue)
     tissue = tissue + " "
 
-    cmd = hanan_cluster_path + exec_command + cadd_output_path + trace_output_path + relevant_variant_index + tissue + prediction_output_path
+    cmd = hanan_cluster_path + exec_command + cadd_output_path + trace_output_path + relevant_variant_index + tissue + prediction_output_path + genome_version + " " + date_time
+    print("---------------------------------------")
+    print(cmd)
+    print("---------------------------------------")
     stdin, stdout, stderr = client.exec_command(cmd)
     print('Shap algo in Cluster Was executed')
     msg = stderr.readlines()
     print(msg)
     # Coping Shap output to server
-    server_hanan_output_path = './Data/Shap_Output/{}_shap_output.jpg'.format(date_time)
+    tissue = tissue.strip()
+    server_hanan_output_path = './Data/Shap_Output/{}_{}_shap_output.jpg'.format(date_time , tissue)
     sftp = client.open_sftp()
 
     # TODO: Revert from hardcoded value
-    cluster_output_path = "./PathoSearch/ML-Scripts/Shap_Output/{}.jpg".format(date_time)
-
+    cluster_output_path = "./PathoSearch/ML-Scripts/SHAP_Output/{}_{}_shap_output.jpg".format(date_time , tissue)
+    print("server_hanan_output_path" , server_hanan_output_path)
+    print("cluster_output_path" , cluster_output_path)
     while not os.path.exists(server_hanan_output_path):
         try:
             print('Trying to copy jpg shap output file from Genomics to Server...')
@@ -51,7 +56,7 @@ def fetch_shap_results(date_time , tissue):
     print('Shap results has been copied to server successfully!')
     return server_hanan_output_path
 
-def execute_ML_module(date_time, tissue):
+def execute_ML_module(date_time, tissue , genome_version):
     # Send cadd & trace output to ML Module
     print("Initiating Connection with Cluster")
 
@@ -84,12 +89,15 @@ def execute_ML_module(date_time, tissue):
 
     # trace_cluster_path = "Trace_Sample_CardiomyopathyOtB0551.csv "
 
-    # tissue = tissue + " "
     tissue = tissue + " "
 
     hanan_cluster_path = "cd PathoSearch/ML-Scripts && "
 
-    exec_command = "run_script_yair.sh " + cadd_cluster_path + trace_cluster_path + tissue + date_time
+    exec_command = "run_script_yair.sh " + cadd_cluster_path + trace_cluster_path + tissue + genome_version + " " + date_time
+    # print("----------------------------------")
+    # print(exec_command)
+    # print("----------------------------------")
+
     print("tissue is:", tissue)
     cmd = hanan_cluster_path + exec_command
     stdin, stdout, stderr = client.exec_command(cmd)
@@ -98,9 +106,13 @@ def execute_ML_module(date_time, tissue):
     print(msg)
 
     # Coping Hanan algo output to server
-    server_hanan_output_path = './Data/Hanan_Output/{}_hanan_output.csv'.format(date_time)
+    tissue = tissue.strip()
+    server_hanan_output_path = './Data/Hanan_Output/{}_{}_hanan_output.csv'.format(date_time, tissue)
     sftp = client.open_sftp()
-    cluster_output_path = "./PathoSearch/ML-Scripts/DataOutput/{}.csv".format(date_time)
+    cluster_output_path = "./PathoSearch/ML-Scripts/DataOutput/{}_{}.csv".format(date_time, tissue)
+    print("----------------------------------")
+    print(cluster_output_path)
+    print("----------------------------------")
     while not os.path.exists(server_hanan_output_path):
         try:
             print('Trying to copy file from Genomics to Server...')
@@ -114,9 +126,9 @@ def execute_ML_module(date_time, tissue):
 
 
 # TODO: send the jpg shap file as well
-def getOutput(date_time):
+def getOutput(date_time, tissue):
     json_output = []
-    with open("./Data/Hanan_Output/{}_hanan_output.csv".format(date_time)) as input_file:
+    with open('./Data/Hanan_Output/{}_{}_hanan_output.csv'.format(date_time, tissue)) as input_file:
         # print(input_file)
         csvReader = csv.DictReader(input_file)
         for rows in csvReader:
