@@ -1,7 +1,7 @@
 export default [
   { key: 'Heart', text: 'Heart', value: 'Heart' },
-  { key: 'Kidney', text: 'Kidney', value: 'Kidney' },
-  { key: 'Muscle', text: 'Muscle', value: 'Muscle_Skeletal' },
+  { key: 'Kidney', text: 'Kidney', value: 'kidney' },
+  { key: 'Muscle', text: 'Muscle', value: 'Muscle-Skeletal' },
   { key: 'Skin', text: 'Skin', value: 'Skin' },
   { key: 'Liver', text: 'Liver', value: 'Liver' },
   { key: 'Nerve', text: 'Nerve', value: 'Nerve-Tibial' },
@@ -11,4 +11,9 @@ export default [
   { key: 'Brain Cerebellum', text: 'Brain Cerebellum', value: 'brain-1' },
   { key: 'Brain Basal Ganglia', text: 'Brain Basal Ganglia', value: 'brain-2' },
   { key: 'Brain Spinal Cord', text: 'Brain Spinal Cord', value: 'brain-3' },
+  { key: 'Testis', text: 'Testis', value: 'Testis' },
+  { key: 'Ovary', text: 'Ovary', value: 'Ovary' },
+  { key: 'Pituitary', text: 'Pituitary', value: 'Pituitary' },
+  { key: 'Lung', text: 'Lung', value: 'Lung' },
+  { key: 'Artery', text: 'Artery', value: 'Artery-Aorta' },
 ];

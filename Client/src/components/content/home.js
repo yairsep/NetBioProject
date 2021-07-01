@@ -140,6 +140,7 @@ const Home = () => {
                   checked={inputFormat === 'manual'}
                   label="Manual Search"
                   style={{ zIndex: '10' }}
+                  disabled //Remove when the option will be available
                 />
                 <br />
                 <GeneSearch onGeneSelect={onGeneResultSelect} disabled={inputFormat !== 'manual'} totalSelectedGenes={inputData[1]} />
@@ -152,6 +153,7 @@ const Home = () => {
                   onChange={onInputFormatSelect}
                   checked={inputFormat === 'simpleFile'}
                   label="Simple Text File"
+                  disabled //Remove when the option will be available
                 />
                 <br /><br />
                 <div>
