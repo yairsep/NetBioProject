@@ -1,6 +1,6 @@
 export default [
   {
-    name: 'Run Patho Search',
+    name: 'Run TRACEvar',
     link: '/'
   },
   // {

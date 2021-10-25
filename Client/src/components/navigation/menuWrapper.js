@@ -10,7 +10,7 @@ const MenuWrapper = (props) => {
   return (
     <div className="ui vertical menu">
       <div className="header item">
-        <h3 className="ui header">Patho Search</h3>
+        <h3 className="ui header">TRACEvar</h3>
         {/*<InjectionText >*/}
         {/*{injectionText}*/}
         {/*</InjectionText>*/}

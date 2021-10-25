@@ -65,7 +65,7 @@ const Home = () => {
       <form className="ui form" id="homeForm">
 
         <div className="ui dividing header">
-          <h1>Welcome to the Patho Search</h1>
+          <h1>Welcome to TRACEvar</h1>
           <p>Need a header about something</p>
         </div>
 

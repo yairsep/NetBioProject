@@ -138,7 +138,7 @@ const OutputContainer = (props) => {
                 && (
                   <>
                     <p>
-                      You can come back to your results at <a href={`https://netbio.bgu.ac.il/pathosearch/#findResult/${time}/${selectedTissue}`} target="_blank" rel="noreferrer">this link.</a>
+                      You can come back to your results at <a href={`https://netbio.bgu.ac.il/tracevar/#findResult/${time}/${selectedTissue}`} target="_blank" rel="noreferrer">this link.</a>
                       {/* You can come back to your results at <a href={`http://localhost:8080/#findResult/${time}/${selectedTissue}`} target="_blank" rel="noreferrer">this link.</a> */}
                     </p>
                     <p>
