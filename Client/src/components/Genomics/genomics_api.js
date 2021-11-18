@@ -13,9 +13,9 @@ export const fetchTrace = async () => {
   return res.data
 }
 
-export const fetchSample = async () => {
+export const fetchSample = async (selectedTissue) => {
   console.log('FetchSample')
-  const res = await axios.get(`${baseUrl}/sample`)
+  const res = await axios.get(`${baseUrl}/sample/${selectedTissue}`)
   return res.data
 }
 

@@ -27,11 +27,13 @@ db.init_app(app)
 db.reflect(app=app)
 
 
-@app.route('/sample', methods=['GET'])
+@app.route('/sample/<tissue>', methods=['GET'])
 # @cross_origin()
-def sample():
-    from Utils.sample import sample_json
-    return jsonify(sample_json)
+def sample(tissue):
+    from Utils.sample import brain_sample_jason, Testis_sample_jason
+    if(tissue == 'brain'):
+        return jsonify(brain_sample_jason)
+    return jsonify(Testis_sample_jason)
     # from Database.service import generate_sample_table
     # sample_ans = generate_sample_table()
 

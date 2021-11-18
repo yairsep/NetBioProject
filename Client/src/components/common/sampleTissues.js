@@ -1,0 +1,20 @@
+export default [
+    { key: 'Heart', text: 'Heart', value: 'Heart', disabled:true},
+    { key: 'Kidney', text: 'Kidney', value: 'kidney', disabled:true},
+    { key: 'Muscle', text: 'Muscle', value: 'Muscle-Skeletal', disabled:true},
+    { key: 'Skin', text: 'Skin', value: 'Skin', disabled:true},
+    { key: 'Liver', text: 'Liver', value: 'Liver', disabled:true},
+    { key: 'Nerve', text: 'Nerve', value: 'Nerve-Tibial', disabled:true},
+    { key: 'Blood', text: 'Blood', value: 'Blood', disabled:true},
+    { key: 'Whole Brain', text: 'Whole Brain', value: 'brain', disabled:false},
+    { key: 'Brain Cortex', text: 'Brain Cortex', value: 'brain-0', disabled:true},
+    { key: 'Brain Cerebellum', text: 'Brain Cerebellum', value: 'brain-1', disabled:true},
+    { key: 'Brain Basal Ganglia', text: 'Brain Basal Ganglia', value: 'brain-2', disabled:true},
+    { key: 'Brain Spinal Cord', text: 'Brain Spinal Cord', value: 'brain-3', disabled:true},
+    { key: 'Testis', text: 'Testis', value: 'Testis', disabled:false},
+    { key: 'Ovary', text: 'Ovary', value: 'Ovary', disabled:true},
+    { key: 'Pituitary', text: 'Pituitary', value: 'Pituitary', disabled:true},
+    { key: 'Lung', text: 'Lung', value: 'Lung', disabled:true},
+    { key: 'Artery', text: 'Artery', value: 'Artery-Aorta', disabled:true},
+  ];
+  

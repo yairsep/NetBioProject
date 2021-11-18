@@ -4,6 +4,7 @@ import { Label, Dropdown, Placeholder, Loader } from 'semantic-ui-react';
 import { useHistory, withRouter, useLocation } from 'react-router-dom';
 import ResultsTable from '../content/resultsTable';
 import tissues from '../common/tissues';
+import sampleTissues from '../common/sampleTissues';
 import Tabs from '../common/tabs';
 import { sendVcfFile, fetchSample, fetchShap, fetchShapImgUrl } from '../Genomics/genomics_api';
 
@@ -14,7 +15,7 @@ const OutputContainer = (props) => {
   const initialTissue = () => {
     // eslint-disable-next-line no-use-before-define
     if (pathname.includes('Example')) {
-      return 'Heart-Left-Ventricle';
+      return 'brain';
     // eslint-disable-next-line no-else-return
     } else if (props.location.data) {
       return props.location.data.tissue;
@@ -53,11 +54,12 @@ const OutputContainer = (props) => {
       localStorage.removeItem('tissuePathoSearch')
       localStorage.removeItem('timeSig')
       localStorage.removeItem('pathoSearchData')
-
-      history.push({
-        pathname: `/results/${value}`,
-        data: { tissue: value, genes: data.genes, inputFormat: data.inputFormat, genomeVersion: data.genomeVersion }
-      })
+      if(pathname.includes('results')){
+        history.push({
+          pathname: `/results/${value}`,
+          data: { tissue: value, genes: data.genes, inputFormat: data.inputFormat, genomeVersion: data.genomeVersion }
+        })
+      }
     }
   }
 
@@ -70,7 +72,7 @@ const OutputContainer = (props) => {
           localStorage.setItem('pathoSearchData', JSON.stringify(data))
         }
 
-        const fullRes = await (pathname.includes('results') ? sendVcfFile(vcfData) : fetchSample())
+        const fullRes = await (pathname.includes('results') ? sendVcfFile(vcfData) : fetchSample(selectedTissue))
         let res
 
         if (pathname.includes('results')) {
@@ -94,6 +96,10 @@ const OutputContainer = (props) => {
           res = fullRes
         }
         console.log('res', res)
+        setShapData({
+          url: fetchShapImgUrl('sample', selectedTissue),
+          isReady: true,
+        })
         setResults(res)
         setFetchStatus(true)
       } catch (err) {
@@ -148,27 +154,23 @@ const OutputContainer = (props) => {
                 )}
             </div>
           </div>
-
-          {pathname.includes('results')
-            && (
-              <div style={{ textAlign: 'center' }}>
-                <Label size="big" style={{ lineHeight: '2em' }}>
-                  Switch tissue model
-                  <Label.Detail>
-                    <Dropdown 
-                      name="tissue"
-                      options={tissues}
-                      onChange={changeTissue}
-                      defaultValue={selectedTissue}
-                      labeled
-                      button
-                      icon="exchange"
-                      className="ui black icon"
-                    />
-                  </Label.Detail>
-                </Label>
-              </div>
-            )}
+            <div style={{ textAlign: 'center' }}>
+              <Label size="big" style={{ lineHeight: '2em' }}>
+                Switch tissue model
+                <Label.Detail>
+                  <Dropdown 
+                    name="tissue"
+                    options={pathname.includes('results') ? tissues : sampleTissues}
+                    onChange={changeTissue}
+                    defaultValue={selectedTissue}
+                    labeled
+                    button
+                    icon="exchange"
+                    className="ui black icon"
+                  />
+                </Label.Detail>
+              </Label>
+            </div>
         </div>
 
         <div className="computer only six wide centered column" style={{ paddingLeft: '0.1rem' }}>

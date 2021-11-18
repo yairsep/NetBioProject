@@ -7,7 +7,7 @@ export const fetchGene = async (props) => {
   console.log(props)
 }
 
-export const fetchSample = async () => {
-  const res = await axios.get(`${baseUrl}/sample`)
+export const fetchSample = async (sampleTissue) => {
+  const res = await axios.get(`${baseUrl}/sample/${sampleTissue}`)
   return res.data
 }
