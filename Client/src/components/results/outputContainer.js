@@ -6,7 +6,7 @@ import ResultsTable from '../content/resultsTable';
 import tissues from '../common/tissues';
 import sampleTissues from '../common/sampleTissues';
 import Tabs from '../common/tabs';
-import { sendVcfFile, fetchSample, fetchShap, fetchShapImgUrl } from '../Genomics/genomics_api';
+import { sendVcfFile, fetchSample, fetchShap, fetchShapImgUrl, updateShap } from '../Genomics/genomics_api';
 
 const OutputContainer = (props) => {
   const location = useLocation()
@@ -29,6 +29,7 @@ const OutputContainer = (props) => {
   const [selectedTissue, setNewTissue] = useState(initialTissue())
   const [results, setResults] = useState([])
   const [time, setTime] = useState()
+  const [genomeVersion, setGenomeVersion] = useState("GRCh37")
   const [shapData, setShapData] = useState({ url: '', isReady: false })
   let { data } = history.location
   if (!data && pathname.includes('results')) JSON.parse(localStorage.getItem('pathoSearchData'))
@@ -38,7 +39,26 @@ const OutputContainer = (props) => {
     gene_not_in_db: 'test'
   }
 
-  const onRowSelect = (e) => selectRow(e.target.id)
+  const onRowSelect = (e, rowIdx) => {
+    setShapData({
+      isReady: false,
+    })
+    const makeShapUpdate = async() =>{
+      selectRow(e.target.id)
+      console.log("^^^^^^^^^^^^^^^^^^")
+      console.log(rowIdx)
+      // setTime(timeStamp)
+      console.log(rowIdx)
+        const img = await updateShap(time ,selectedTissue, genomeVersion, rowIdx)
+        console.log(img)
+        setShapData({
+          url: fetchShapImgUrl(time, selectedTissue),
+          isReady: true,
+        })
+        // localStorage.setItem('shap', fetchShapImgUrl(fullRes[1].time))
+    }
+    makeShapUpdate()
+  }
 
   const changeTissue = (e, { value }) => {
     // eslint-disable-next-line no-const-assign
@@ -73,11 +93,14 @@ const OutputContainer = (props) => {
         }
 
         const fullRes = await (pathname.includes('results') ? sendVcfFile(vcfData) : fetchSample(selectedTissue))
+        console.log("********************")
+        console.log(fullRes)
         let res
 
         if (pathname.includes('results')) {
           // eslint-disable-next-line prefer-destructuring
           res = fullRes[0]
+          console.log(`time changed to:${fullRes[1].time}`)
           setTime(fullRes[1].time)
           try {
             await fetchShap(fullRes[1].time, vcfData.tissue, vcfData.genomeVersion)
@@ -94,12 +117,12 @@ const OutputContainer = (props) => {
           localStorage.setItem('timeSig', fullRes[1].time)
         } else {
           res = fullRes
+          console.log('res', res)
+          setShapData({
+            url: fetchShapImgUrl('sample', selectedTissue),
+            isReady: true,
+          })
         }
-        console.log('res', res)
-        setShapData({
-          url: fetchShapImgUrl('sample', selectedTissue),
-          isReady: true,
-        })
         setResults(res)
         setFetchStatus(true)
       } catch (err) {

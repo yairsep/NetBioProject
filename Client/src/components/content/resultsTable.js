@@ -2,7 +2,7 @@
 /* eslint-disable radix */
 /* eslint-disable no-use-before-define */
 import React, { useState, useEffect } from 'react'
-import { Table, Icon, Pagination, Dropdown } from 'semantic-ui-react'
+import { Table, Icon, Pagination, Dropdown, Popup } from 'semantic-ui-react'
 import tissues from '../common/tissues'
 import resultsHeaders from '../../config/resultsHeaders'
 
@@ -67,8 +67,15 @@ const ResultsTable = (props) => {
 
         <Table.Body>
           {sortStatus.data.slice(getSliceRng(), (getSliceRng() + 16))
-            .map(({ GeneName, GeneID_y, "#Chr": Chr, Pos, Ref, Alt, Type, Length, SITFval, PolyPhenVal, PHRED, Pathological_probability }) => (
-              <Table.Row positive={GeneName === props.selectedRow} onClick={props.onRowSelect} key={`${GeneName}_${Math.random()}`}>
+            .map(({ GeneName, GeneID_y, "#Chr": Chr, Pos, Ref, Alt, Type, Length, SITFval, PolyPhenVal, PHRED, Pathological_probability }, index) => (
+              <Popup
+              wide
+              // style={{ display: 'inline-block' }}
+              content={`Click to update shap according this row`}
+              // position="top left"
+              // size="small"
+              trigger={(
+                <Table.Row positive={GeneName === props.selectedRow} onClick={(e) => props.onRowSelect(e, index)} key={`${GeneName}_${Math.random()}`} selectable>
                 <Table.Cell id={GeneName}>{GeneName}</Table.Cell>
                 <Table.Cell id={GeneName}>{GeneID_y}</Table.Cell>
                 <Table.Cell id={GeneName}>{Chr}</Table.Cell>
@@ -82,6 +89,9 @@ const ResultsTable = (props) => {
                 <Table.Cell id={GeneName}>{PHRED}</Table.Cell>
                 <Table.Cell id={GeneName}>{Pathological_probability}</Table.Cell>
               </Table.Row>
+              )}
+            />
+
             ))}
         </Table.Body>  
       </Table>

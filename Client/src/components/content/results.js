@@ -46,6 +46,7 @@ const Results = (props) => {
           genes = props.location.data.genes
           inputFormat = props.location.data.inputFormat
         } else {
+          console.log("fetched from local history")
           genes = JSON.parse(localStorage.getItem('genes')) //In case of old request (refreshed page, etc)
           inputFormat = localStorage.getItem('inputFormat')
         }

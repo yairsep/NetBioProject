@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Dropdown, Button, Icon, Grid, Segment, Checkbox } from 'semantic-ui-react';
+import { Dropdown, Button, Icon, Grid, Segment, Checkbox, Popup } from 'semantic-ui-react';
 import { withRouter, useHistory } from 'react-router-dom';
 import tissues from '../common/tissues';
 import Uploader from '../form/uploader'
@@ -11,7 +11,7 @@ const Home = () => {
   // const [userName, setUserName] = useState('')
   const [inputFormat, setInputFormat] = useState('VCF')
   const [inputData, setInputData] = useState(['', []]); //[fileName, Data]
-  const [genomeVersion, setGenomeVersion] = useState('GRCh38')
+  const [genomeVersion, setGenomeVersion] = useState('GRCh37')
   const history = useHistory()
   
   useEffect(() => {
@@ -113,21 +113,30 @@ const Home = () => {
                 </div>
                 <br />
                 <div>
+                  <Popup
+                    wide
+                    style={{ display: 'inline-block' }}
+                    content={"Will be available soon"}
+                    position="top left"
+                    size="small"
+                    trigger={(
+                      <Checkbox
+                        radio
+                        value="GRCh38"
+                        onChange={onGenomeVersionSelect}
+                        checked={genomeVersion === 'GRCh38'}
+                        label="GRCh38"
+                        disabled
+                      />
+                    )}
+                   />
                   <Checkbox
-                    radio
-                    value="GRCh38"
-                    onChange={onGenomeVersionSelect}
-                    checked={genomeVersion === 'GRCh38'}
-                    label="GRCh38"
-                    disabled={inputFormat !== 'VCF'}
-                  />
-                  <Checkbox
-                    radio
-                    value="GRCh37"
-                    onChange={onGenomeVersionSelect}
-                    checked={genomeVersion === 'GRCh37'}
-                    label="GRCh37"
-                    disabled={inputFormat !== 'VCF'}
+                      radio
+                      value="GRCh37"
+                      onChange={onGenomeVersionSelect}
+                      checked={genomeVersion === 'GRCh37'}
+                      label="GRCh37"
+                      disabled={inputFormat !== 'VCF'}
                   />
                 </div>
               </Grid.Column>

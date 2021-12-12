@@ -1,7 +1,7 @@
 import axios from 'axios'
-
+const prod = true
 // const baseUrl = 'http://localhost:5000';
-const baseUrl = 'https://netbio.bgu.ac.il/pathosearch-api';
+const baseUrl = prod ? 'https://netbio.bgu.ac.il/pathosearch-api' : 'http://localhost:5000'
 
 export const fetchCadd = async () => {
   const res = await axios.get(`${baseUrl}/cadd`)
@@ -28,6 +28,13 @@ export const sendVcfFile = async (vcfFile) => {
 export const fetchShap = async (timestamp, tissue, genomeVersion) => {
   console.log('fetching shap')
   const res = await axios.post(`${baseUrl}/shap`, { timestamp, tissue, genomeVersion })
+  console.log('my res.data', res.data)
+  return res.data
+}
+
+export const updateShap = async (timeStamp, tissue, genomeVersion, rowNum) => {
+  console.log('fetching shap')
+  const res = await axios.post(`${baseUrl}/updateShap`, {timeStamp ,tissue, genomeVersion, rowNum })
   console.log('my res.data', res.data)
   return res.data
 }

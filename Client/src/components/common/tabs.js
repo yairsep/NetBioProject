@@ -9,61 +9,59 @@ const Tabs = (props) => {
   const { summaryData, gene, data, shapData } = props
 
   let panes;
+  panes = [  
+    {
+      menuItem: 'Shap Graph',
+      key: 'shap',
+      render: () => <ShapImage shapData={shapData}/>
 
-  if (shapData.isReady) {
-    panes = [  
-      {
-        menuItem: 'Shap Graph',
-        key: 'shap',
-        render: () => <ShapImage shapData={shapData} />
+    },
+    
+    {
+      menuItem: 'Distributions',
+      key: 'distribution',
+      render: () => <Chart data={data} />
+
+    },
+
+    {
+      menuItem: 'Summary',
+      key: 'summary',
+      render: () => <TabsTable content={summaryData} data={data} />
+
+    },
+
+    {
+      menuItem: 'Gene Ontology',
+      key: 'go',
+      render: () => <GOTab gene={gene} />
+
+    }
+  ]
+  // } else {
+  //   panes = [      
+  //     {
+  //       menuItem: 'Distributions',
+  //       key: 'distribution',
+  //       render: () => <Chart data={data} />
   
-      },
-      
-      {
-        menuItem: 'Distributions',
-        key: 'distribution',
-        render: () => <Chart data={data} />
+  //     },
   
-      },
+  //     {
+  //       menuItem: 'Summary',
+  //       key: 'summary',
+  //       render: () => <TabsTable content={summaryData} data={data} />
   
-      {
-        menuItem: 'Summary',
-        key: 'summary',
-        render: () => <TabsTable content={summaryData} data={data} />
+  //     },
   
-      },
+  //     {
+  //       menuItem: 'Gene Ontology',
+  //       key: 'go',
+  //       render: () => <GOTab gene={gene} />
   
-      {
-        menuItem: 'Gene Ontology',
-        key: 'go',
-        render: () => <GOTab gene={gene} />
-  
-      }
-    ]
-  } else {
-    panes = [      
-      {
-        menuItem: 'Distributions',
-        key: 'distribution',
-        render: () => <Chart data={data} />
-  
-      },
-  
-      {
-        menuItem: 'Summary',
-        key: 'summary',
-        render: () => <TabsTable content={summaryData} data={data} />
-  
-      },
-  
-      {
-        menuItem: 'Gene Ontology',
-        key: 'go',
-        render: () => <GOTab gene={gene} />
-  
-      }
-    ]
-  }
+  //     }
+  //   ]
+  // }
 
   return (
     <Tab panes={panes} />

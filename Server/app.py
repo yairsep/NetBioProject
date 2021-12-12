@@ -66,7 +66,7 @@ def get_shap_results():
     print('The tissue is: ', tissue)
     print("genome_version", genome_version)
     # Then Execute ML module
-    image_name = Learn.fetch_shap_results(date_time, tissue, genome_version)
+    image_name = Learn.fetch_shap_results(date_time, tissue, genome_version, 0, False)
 
     return send_file(image_name, mimetype='image/gif')
 
@@ -77,6 +77,23 @@ def get_image():
     tissue = request.args.get('tissue')
     img_path = './Data/Shap_Output/{}_{}_shap_output.jpg'.format(timestamp, tissue)
     return send_file(img_path, mimetype='image/gif')
+
+@app.route('/updateShap', methods=['POST'])
+@cross_origin(supports_credentials=True)
+def update_shap_results():
+    print("Shap get request received in Server")
+    # tissue = request.get_json()['tissue']
+    # date_time = request.get_json()['timestamp']
+    date_time = request.get_json()['timeStamp']
+    genome_version = request.get_json()['genomeVersion']
+    tissue = request.get_json()['tissue']
+    row_num = request.get_json()['rowNum']
+    print('The tissue is: ', request.get_json()['tissue'])
+    print("genome_version", genome_version)
+    # Then Execute ML module
+    image_name = Learn.fetch_shap_results(date_time, tissue, genome_version, row_num, True)
+    print(image_name)
+    return send_file(image_name, mimetype='image/gif')
 
 @app.route('/history', methods=['GET'])
 # @cross_origin()

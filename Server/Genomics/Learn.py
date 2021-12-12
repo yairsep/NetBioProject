@@ -11,7 +11,7 @@ def getConnectionConfig():
     return CLUSTER_HOST, CLUSTER_USER, CLUSTER_PASSWORD
 
 
-def fetch_shap_results(date_time, tissue, genome_version):
+def fetch_shap_results(date_time, tissue, genome_version, row_num, update_required):
     # Initiating a ssh client protocol
     CLUSTER_HOST, CLUSTER_USER, CLUSTER_PASSWORD = getConnectionConfig()
     client = paramiko.SSHClient()
@@ -24,7 +24,7 @@ def fetch_shap_results(date_time, tissue, genome_version):
 
     cadd_output_path = "./DataInput/{}_cadd.csv ".format(date_time)
     trace_output_path= "./DataInput/{}_trace.csv ".format(date_time)
-    relevant_variant_index = "0 "
+    relevant_variant_index = "{} ".format(row_num)
     prediction_output_path = "./DataOutput/{}_{}.csv ".format(date_time, tissue)
     tissue = tissue + " "
 
@@ -32,23 +32,28 @@ def fetch_shap_results(date_time, tissue, genome_version):
     print("---------------------------------------")
     print(cmd)
     print("---------------------------------------")
+    start_running_script_time = time.time()
+    print("the script start to run at"+str(start_running_script_time))
     stdin, stdout, stderr = client.exec_command(cmd)
     print('Shap algo in Cluster Was executed')
     msg = stderr.readlines()
     print(msg)
     # Coping Shap output to server
     tissue = tissue.strip()
-    server_hanan_output_path = './Data/Shap_Output/{}_{}_shap_output.jpg'.format(date_time, tissue)
+    server_hanan_output_path = './Data/Shap_Output/{}_{}_{}_shap_output.jpg'.format(date_time, tissue, row_num)
     sftp = client.open_sftp()
 
     # TODO: Revert from hardcoded value
     cluster_output_path = "./PathoSearch/ML-Scripts/SHAP_Output/{}_{}_shap_output.jpg".format(date_time, tissue)
     print("server_hanan_output_path", server_hanan_output_path)
     print("cluster_output_path", cluster_output_path)
-    while not os.path.exists(server_hanan_output_path):
+    while update_required | (not os.path.exists(server_hanan_output_path)):
         try:
             print('Trying to copy jpg shap output file from Genomics to Server...')
-            sftp.get(cluster_output_path, server_hanan_output_path)
+            time_of_cluster_last_modification = sftp.stat(cluster_output_path).st_mtime #the time that the image was changed
+            if time_of_cluster_last_modification > start_running_script_time:
+                sftp.get(cluster_output_path, server_hanan_output_path)
+                update_required = False
         except IOError or paramiko.SSHException:
             time.sleep(5)
             print('Waiting 5 secs for re-copying')
