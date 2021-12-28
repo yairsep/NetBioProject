@@ -66,7 +66,11 @@ const Home = () => {
 
         <div className="ui dividing header">
           <h1>Welcome to TRACEvar</h1>
-          <p>Need a header about something</p>
+          <p style={{color:'red'}}>
+            TRACEvar is still under construction.
+            <br />
+            for analyses, please contact estiyl@bgu.ac.il
+          </p>
         </div>
 
         <Grid>

@@ -43,6 +43,7 @@
     "leaflet": "^1.6.0",
     "lodash": "^4.17.15",
     "react": "^16.14.0",
+    "react-clear-browser-cache": "^0.2.3",
     "react-csv": "^2.0.1",
     "react-dom": "^16.13.1",
     "react-google-charts": "^3.0.15",

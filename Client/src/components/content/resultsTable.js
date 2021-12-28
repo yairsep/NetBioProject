@@ -8,7 +8,8 @@ import resultsHeaders from '../../config/resultsHeaders'
 
 const ResultsTable = (props) => {
   // eslint-disable-next-line react/destructuring-assignment
-  const numOfPages = Math.ceil(props.tableData.length / 16);
+  const  PAGE_SIZE = 16
+  const numOfPages = Math.ceil(props.tableData.length / PAGE_SIZE);
 
   //const scoreList = props.tableData.map((item) => item['Pathological_probability']).sort((a, b) => a - b);
   //const numOfOccs = (value) => scoreList.reduce((occs, el) => occs + (el === value), 0);
@@ -40,6 +41,7 @@ const ResultsTable = (props) => {
   }
 
   const getSliceRng = () => ((parseInt(currPage)) - 1) * 16
+  const calculateIdx = (index) => (currPage - 1)*PAGE_SIZE + index
 
   useEffect(() => {
     const { tableData } = props
@@ -49,17 +51,18 @@ const ResultsTable = (props) => {
 
   return (
     <div>
-      <Table sortable celled selectable textAlign="center" display="inline-block" overflow="scroll">
+      <Table celled textAlign="center" display="inline-block" overflow="scroll" selectable>
         <Table.Header>
           <Table.Row>
             {resultsHeaders.map(({ attr, value }) => (
               <Table.HeaderCell
                 key={attr}
                 sorted={sortStatus.column === { attr } ? sortStatus.direction : null}
-                onClick={handleSort}
+                // onClick={handleSort}
                 id={attr}
               >
-                {value + toggleArrow(attr)}
+                {/* {value + toggleArrow(attr)} */}
+                {value}
               </Table.HeaderCell>
             ))}
           </Table.Row>
@@ -75,7 +78,7 @@ const ResultsTable = (props) => {
               // position="top left"
               // size="small"
               trigger={(
-                <Table.Row positive={GeneName === props.selectedRow} onClick={(e) => props.onRowSelect(e, index)} key={`${GeneName}_${Math.random()}`} selectable>
+                <Table.Row positive={GeneName === props.selectedRow} onClick={(e) => props.onRowSelect(e, calculateIdx(index))} key={`${GeneName}_${Math.random()}`}>
                 <Table.Cell id={GeneName}>{GeneName}</Table.Cell>
                 <Table.Cell id={GeneName}>{GeneID_y}</Table.Cell>
                 <Table.Cell id={GeneName}>{Chr}</Table.Cell>

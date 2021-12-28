@@ -8,6 +8,7 @@ import sampleTissues from '../common/sampleTissues';
 import Tabs from '../common/tabs';
 import { sendVcfFile, fetchSample, fetchShap, fetchShapImgUrl, updateShap } from '../Genomics/genomics_api';
 
+
 const OutputContainer = (props) => {
   const location = useLocation()
   const { pathname } = location
@@ -23,7 +24,7 @@ const OutputContainer = (props) => {
   }
 
   const history = useHistory();
-  const [selectedRow, selectRow] = useState(null)
+  const [selectedRow, selectRow] = useState(0)
   const [isFetched, setFetchStatus] = useState(false)
   const [isError, setError] = useState(null)
   const [selectedTissue, setNewTissue] = useState(initialTissue())
@@ -31,6 +32,7 @@ const OutputContainer = (props) => {
   const [time, setTime] = useState()
   const [genomeVersion, setGenomeVersion] = useState("GRCh37")
   const [shapData, setShapData] = useState({ url: '', isReady: false })
+  const [selectedGene, selectGene] = useState()
   let { data } = history.location
   if (!data && pathname.includes('results')) JSON.parse(localStorage.getItem('pathoSearchData'))
 
@@ -39,22 +41,41 @@ const OutputContainer = (props) => {
     gene_not_in_db: 'test'
   }
 
+  const checkImage = path =>
+    new Promise(resolve => {
+        const img = new Image();
+        img.onload = () => resolve(true);
+        img.onerror = () => resolve(false);
+
+        img.src = path;
+  });
+
   const onRowSelect = (e, rowIdx) => {
     setShapData({
       isReady: false,
     })
     const makeShapUpdate = async() =>{
-      selectRow(e.target.id)
+      selectGene(e.target.id)
+      selectRow(rowIdx)
       console.log("^^^^^^^^^^^^^^^^^^")
       console.log(rowIdx)
       // setTime(timeStamp)
       console.log(rowIdx)
-        const img = await updateShap(time ,selectedTissue, genomeVersion, rowIdx)
-        console.log(img)
+      const path = fetchShapImgUrl(time, selectedTissue, rowIdx)
+      const imgExists = await checkImage(path)
+      if (imgExists){
         setShapData({
-          url: fetchShapImgUrl(time, selectedTissue),
+          url: path,
           isReady: true,
         })
+      }
+      else{
+        await updateShap(time ,selectedTissue, genomeVersion, rowIdx)
+        setShapData({
+          url: fetchShapImgUrl(time, selectedTissue, rowIdx),
+          isReady: true,
+        })
+      } 
         // localStorage.setItem('shap', fetchShapImgUrl(fullRes[1].time))
     }
     makeShapUpdate()
@@ -105,7 +126,7 @@ const OutputContainer = (props) => {
           try {
             await fetchShap(fullRes[1].time, vcfData.tissue, vcfData.genomeVersion)
             setShapData({
-              url: fetchShapImgUrl(fullRes[1].time, vcfData.tissue),
+              url: fetchShapImgUrl(fullRes[1].time, vcfData.tissue, selectedRow),
               isReady: true,
             })
             // localStorage.setItem('shap', fetchShapImgUrl(fullRes[1].time))
@@ -115,11 +136,12 @@ const OutputContainer = (props) => {
           localStorage.setItem('gene', JSON.stringify(res))
           localStorage.setItem('tissuePathoSearch', selectedTissue)
           localStorage.setItem('timeSig', fullRes[1].time)
+          localStorage.setItem('selectedRow', selectedRow)
         } else {
           res = fullRes
           console.log('res', res)
           setShapData({
-            url: fetchShapImgUrl('sample', selectedTissue),
+            url: fetchShapImgUrl('sample', selectedTissue, selectedRow),
             isReady: true,
           })
         }
@@ -137,7 +159,7 @@ const OutputContainer = (props) => {
       setTime(localStorage.getItem('timeSig'))
       setShapData({
         isReady: true,
-        url: fetchShapImgUrl(localStorage.getItem('timeSig'), localStorage.getItem('tissuePathoSearch'))
+        url: fetchShapImgUrl(localStorage.getItem('timeSig'), localStorage.getItem('tissuePathoSearch'), localStorage.getItem('selectedRow'))
       })
       setFetchStatus(true)
       // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -199,7 +221,7 @@ const OutputContainer = (props) => {
         <div className="computer only six wide centered column" style={{ paddingLeft: '0.1rem' }}>
           <div className="ui basic segment">
             <div className="ui segment">
-              <Tabs data={results} summaryData={summary} gene={selectedRow} style={{ width: '0', minWidth: '100%' }} shapData={shapData} />
+              <Tabs data={results} summaryData={summary} gene={selectedGene} style={{ width: '0', minWidth: '100%' }} shapData={shapData} />
               {/* {shap && <img src={fetchShapImgUrl(time)} alt="shap chart" width="100%" />} */}
             </div>
           </div>

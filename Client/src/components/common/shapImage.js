@@ -15,7 +15,7 @@ const ShapImage = (props) => {
 
   return (
     isReady 
-      ?      <img key={new Date().getTime()} src={shapData.url + `&update=${Date.now()}`} alt="shap chart" width="100%" />
+      ?      <img key={new Date().getTime()} src={shapData.url} alt="shap chart" width="100%" />
       :       <div style={{marginTop:'25px', display: 'flex',alignItems: 'center',justifyContent: 'center',}}><Loader active inline size='large'>Loading Shap...</Loader></div>
   )
 }

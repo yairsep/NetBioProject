@@ -35,11 +35,10 @@ export const fetchShap = async (timestamp, tissue, genomeVersion) => {
 export const updateShap = async (timeStamp, tissue, genomeVersion, rowNum) => {
   console.log('fetching shap')
   const res = await axios.post(`${baseUrl}/updateShap`, {timeStamp ,tissue, genomeVersion, rowNum })
-  console.log('my res.data', res.data)
   return res.data
 }
 
-export const fetchShapImgUrl = (timestamp, tissue) => `${baseUrl}/shap?timestamp=${timestamp}&tissue=${tissue}`;
+export const fetchShapImgUrl = (timestamp, tissue, rowNum) => `${baseUrl}/shap?timestamp=${timestamp}&tissue=${tissue}&rowNum=${rowNum}`;
 
 export const fetchHistory = async (timestamp, tissue) => {
   const res = await axios.get(`${baseUrl}/history?timestamp=${timestamp}&tissue=${tissue}`)
